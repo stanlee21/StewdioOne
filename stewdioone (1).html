@@ -1,0 +1,2667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STEWDIOONE — Luxury Photography & Videography</title>
+<meta name="description" content="STEWDIOONE — Premium photography and videography services that preserve memories, tell stories and create timeless experiences.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #F5F0E8;
+  --cream-dark: #EDE6D6;
+  --gold: #C9A84C;
+  --gold-light: #D4B96A;
+  --gold-pale: #F0E6CC;
+  --charcoal: #1A1A1A;
+  --charcoal-mid: #2C2C2C;
+  --charcoal-light: #3D3D3D;
+  --text-muted: #6B6457;
+  --white: #FFFFFF;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Jost', sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--cream);color:var(--charcoal);overflow-x:hidden}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+nav{
+position:fixed;
+top:0;
+left:0;
+right:0;
+z-index:1000;
+padding:1.5rem 4rem;
+display:flex;
+align-items:center;
+justify-content:space-between;
+transition:all .4s ease;
+background:transparent
+}
+nav.scrolled{
+background:rgba(26,26,26,.96);
+padding:1rem 4rem;
+backdrop-filter:blur(8px)
+}
+.nav-logo{
+font-family:var(--serif);
+font-size:1.5rem;
+font-weight:500;
+letter-spacing:.15em;
+color:var(--white)
+}
+.nav-logo span{
+color:var(--gold)
+}
+.nav-links{
+display:flex;
+gap:2.5rem;
+list-style:none
+}
+.nav-links a{
+font-size:.75rem;
+letter-spacing:.18em;
+text-transform:uppercase;
+color:rgba(255,255,255,.8);
+transition:color .3s
+}
+.nav-links a:hover{
+color:var(--gold)
+}
+.nav-cta{
+background:var(--gold);
+color:var(--charcoal);
+padding:.6rem 1.6rem;
+font-size:.7rem;
+letter-spacing:.18em;
+text-transform:uppercase;
+font-weight:500;
+font-family:var(--sans);
+cursor:pointer;
+border:none;
+transition:all .3s
+}
+.nav-cta:hover{
+background:var(--gold-light)
+}
+.nav-hamburger{
+display:none;
+background:none;
+border:none;
+cursor:pointer;
+flex-direction:column;
+gap:5px
+}
+.nav-hamburger span{
+width:24px;
+height:1.5px;
+background:var(--white);
+display:block;
+transition:all .3s
+}
+.mobile-menu{display:none;position:fixed;inset:0;background:var(--charcoal);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:2rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:var(--serif);font-size:2rem;color:var(--white);letter-spacing:.05em}
+.mobile-menu a:hover{color:var(--gold)}
+.mobile-close{position:absolute;top:1.5rem;right:2rem;background:none;border:none;color:var(--white);font-size:2rem;cursor:pointer}
+
+/* HERO */
+.hero{height:100vh;position:relative;overflow:hidden;display:flex;align-items:center}
+.hero-slider{position:absolute;inset:0}
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease;background-size:cover;background-position:center;background-repeat:no-repeat}
+.hero-slide.active{opacity:1}
+.hero-content{position:relative;z-index:2;padding:0 4rem;max-width:700px;animation:fadeUp .8s ease .3s both}
+.hero-label{font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem}
+.hero-title{font-family:var(--serif);font-size:clamp(3rem,6vw,5.5rem);font-weight:300;color:var(--white);line-height:1.1;margin-bottom:1.5rem}
+.hero-title em{font-style:italic;color:var(--gold)}
+.hero-desc{font-size:.9rem;line-height:1.8;color:rgba(255,255,255,.75);max-width:480px;margin-bottom:2.5rem;font-weight:300}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{background:var(--gold);color:var(--charcoal);padding:.85rem 2.2rem;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;cursor:pointer;border:none;font-family:var(--sans);transition:all .3s;display:inline-block}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-2px)}
+.btn-outline{background:transparent;color:var(--white);padding:.85rem 2.2rem;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;cursor:pointer;border:1px solid rgba(255,255,255,.5);font-family:var(--sans);transition:all .3s;display:inline-block}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+.hero-dots{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;gap:.5rem;z-index:2}
+.hero-dot{width:20px;height:2px;background:rgba(255,255,255,.3);cursor:pointer;transition:all .3s}
+.hero-dot.active{background:var(--gold);width:40px}
+.hero-scroll{position:absolute;bottom:2.5rem;right:4rem;z-index:2;display:flex;align-items:center;gap:.75rem;color:rgba(255,255,255,.6);font-size:.65rem;letter-spacing:.2em;text-transform:uppercase}
+.scroll-line{width:40px;height:1px;background:rgba(255,255,255,.4)}
+
+/* ABOUT */
+.section{
+  padding:5rem 4rem
+}
+.about{
+  background:var(--cream)
+}
+.about-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:5rem;
+  align-items:center
+}
+.section-eyebrow{
+  font-size:.65rem;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:1rem
+}
+.section-title{
+  font-family:var(--serif);
+  font-size:clamp(2.5rem,4vw,3.8rem);
+  font-weight:300;
+  line-height:1.15;
+  color:var(--charcoal)
+}
+.section-title em{
+  font-style:italic;
+  color:var(--gold)
+}
+.section-body{
+  font-size:.9rem;
+  line-height:1.9;
+  color:var(--text-muted);
+  margin-top:1.5rem;
+  font-weight:300
+}
+.about-img{
+  position:relative
+}
+.about-img img{
+  width:100%;
+  height:550px;
+  object-fit:cover
+}
+.about-img-caption{
+  margin-top:1rem;
+  font-size:.85rem;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--text-muted);
+  text-align:center;
+  letter-spacing:.25em;
+}
+.about-img-badge{
+  position:absolute;
+  bottom:-2rem;
+  left:-2rem;
+  background:var(--gold);
+  padding:2rem;
+  text-align:center
+}
+.about-img-badge .num{
+  font-family:var(--serif);
+  font-size:2.5rem;
+  font-weight:300;
+  color:var(--charcoal);
+  display:block
+}
+.about-img-badge .label{
+  font-size:.6rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--charcoal);
+  opacity:.8
+}
+.stats-row{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:2rem;
+  margin-top:3rem;
+  padding-top:3rem;
+  border-top:1px solid rgba(201,168,76,.2)
+}
+.stat-item{
+  text-align:left
+}
+.stat-num{
+  font-family:var(--serif);
+  font-size:2.2rem;
+  font-weight:300;
+  color:var(--charcoal);
+  display:block
+}
+.stat-num span{
+  color:var(--gold)
+}
+.stat-label{
+  font-size:.65rem;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  color:var(--text-muted);
+  display:block;
+  margin-top:.25rem;
+  white-space:nowrap;
+}
+.stat-item{min-width:0}
+
+/* SERVICES */
+.services{background:var(--cream)}
+.services-eyebrow-row{display:flex;align-items:center;gap:1rem;margin-bottom:.75rem}
+.services-eyebrow-line{width:40px;height:1px;background:var(--text-muted)}
+.services-eyebrow-text{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--text-muted)}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:3rem}
+.service-card{background:var(--charcoal-mid);border-radius:12px;overflow:hidden;min-height:320px;display:flex;flex-direction:column;justify-content:flex-end;padding:2rem;position:relative;cursor:pointer;transition:transform .35s ease,box-shadow .35s ease}
+.service-card:hover{transform:translateY(-5px);box-shadow:0 24px 48px rgba(0,0,0,.18)}
+.service-card::before{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.75) 0%,rgba(0,0,0,.1) 55%,transparent 100%);border-radius:12px;z-index:1}
+.service-card-content{position:relative;z-index:2}
+.service-card h3{font-family:var(--serif);font-size:1.45rem;font-weight:400;color:var(--white);margin-bottom:.5rem;letter-spacing:.01em}
+.service-card p{font-size:.78rem;line-height:1.7;color:rgba(255,255,255,.65);font-weight:300}
+
+/* PACKAGES */
+.packages{background:var(--cream)}
+.packages-eyebrow-row{display:flex;align-items:center;gap:1rem;margin-bottom:.75rem}
+.packages-eyebrow-line{width:40px;height:1px;background:var(--text-muted)}
+.packages-eyebrow-text{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--text-muted)}
+.packages-subtitle{font-size:.92rem;color:var(--text-muted);margin-top:.75rem;line-height:1.7;max-width:640px}
+.packages-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-top:3.5rem;align-items:start}
+/* Each card collapses to 500px, expands on hover */
+.pkg-card{
+  background:var(--white);
+  border:1px solid rgba(201,168,76,.18);
+  border-radius:14px;
+  padding:2.2rem 1.8rem 2rem;
+  position:relative;
+  cursor:pointer;
+  transition:box-shadow .45s cubic-bezier(.25,.8,.25,1), transform .45s cubic-bezier(.25,.8,.25,1), border-color .3s;
+  overflow:hidden;
+}
+.pkg-card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 32px 64px rgba(0,0,0,.12), 0 8px 16px rgba(0,0,0,.06);
+  border-color:rgba(201,168,76,.5);
+}
+.pkg-card.featured{
+  border:1.5px solid var(--gold);
+  box-shadow:0 8px 32px rgba(201,168,76,.12);
+}
+.pkg-card.featured:hover{
+  transform:translateY(-8px);
+  box-shadow:0 32px 64px rgba(201,168,76,.18), 0 8px 16px rgba(201,168,76,.1);
+}
+/* collapsed preview area */
+.pkg-preview{
+  min-height:420px;
+  display:flex;
+  flex-direction:column;
+}
+.pkg-badge{
+  position:absolute;top:-1px;left:50%;transform:translateX(-50%);
+  background:var(--gold);color:var(--charcoal);
+  font-family:var(--sans);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;
+  padding:.3rem 1.3rem;border-radius:0 0 8px 8px;white-space:nowrap;font-weight:500;
+}
+.pkg-name{
+  font-family:var(--serif);font-size:2.6rem;font-weight:300;
+  color:var(--charcoal);line-height:1;margin-bottom:.6rem;letter-spacing:-.01em;
+}
+.pkg-tagline{font-size:.78rem;color:var(--text-muted);line-height:1.6;min-height:2.6rem;margin-bottom:1.4rem}
+.pkg-price-row{margin-bottom:1.6rem}
+.pkg-price{
+  font-family:var(--serif);font-size:2rem;font-weight:300;
+  color:var(--charcoal);letter-spacing:-.02em;
+}
+.pkg-currency{font-size:.72rem;letter-spacing:.12em;color:var(--text-muted);font-family:var(--sans);text-transform:uppercase;margin-left:.2rem}
+/* short preview features — always visible */
+.pkg-features-preview{list-style:none;margin:0;padding:0}
+.pkg-features-preview li{
+  font-size:.78rem;color:var(--text-muted);
+  padding:.45rem 0;
+  display:flex;align-items:flex-start;gap:.7rem;
+  border-bottom:1px solid rgba(0,0,0,.055);
+  line-height:1.45;
+}
+.pkg-features-preview li:last-child{border-bottom:none}
+.pkg-check{
+  width:14px;height:14px;flex-shrink:0;margin-top:1px;
+  stroke:var(--gold);fill:none;stroke-width:2.2;
+}
+/* expandable extra features */
+.pkg-features-extra{
+  list-style:none;margin:0;padding:0;
+  max-height:0;overflow:hidden;
+  transition:max-height .55s cubic-bezier(.25,.8,.25,1), opacity .4s ease;
+  opacity:0;
+}
+.pkg-card:hover .pkg-features-extra,
+.pkg-card.touch-open .pkg-features-extra{
+  max-height:600px;
+  opacity:1;
+}
+.pkg-features-extra li{
+  font-size:.78rem;color:var(--text-muted);
+  padding:.45rem 0;
+  display:flex;align-items:flex-start;gap:.7rem;
+  border-bottom:1px solid rgba(0,0,0,.055);
+  line-height:1.45;
+}
+.pkg-features-extra li:last-child{border-bottom:none}
+.pkg-divider{height:1px;background:rgba(201,168,76,.18);margin:1.2rem 0}
+.pkg-btn{
+  width:100%;padding:.85rem;margin-top:1.6rem;
+  background:transparent;border:1px solid rgba(201,168,76,.5);
+  color:var(--text-muted);font-family:var(--sans);font-size:.68rem;
+  letter-spacing:.18em;text-transform:uppercase;cursor:pointer;
+  border-radius:6px;transition:all .3s;font-weight:400;
+}
+.pkg-btn:hover{background:var(--gold);border-color:var(--gold);color:var(--charcoal)}
+.pkg-card.featured .pkg-btn{background:rgba(201,168,76,.08);color:var(--gold);border-color:var(--gold)}
+.pkg-card.featured .pkg-btn:hover{background:var(--gold);color:var(--charcoal)}
+/* hover hint arrow */
+.pkg-hint{
+  display:flex;align-items:center;gap:.4rem;
+  font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(201,168,76,.5);
+  margin-top:1rem;transition:opacity .3s;
+}
+.pkg-card:hover .pkg-hint{opacity:0}
+.pkg-hint svg{width:12px;height:12px;stroke:var(--gold);fill:none;stroke-width:2;transition:transform .3s}
+
+/* ADDONS */
+.addons{background:var(--cream)}
+.addons-subtitle{font-size:.88rem;color:var(--text-muted);margin-top:.5rem;line-height:1.7}
+.addons-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2.5rem}
+.addon-card{
+  background:var(--white);border:1px solid rgba(201,168,76,.18);
+  border-radius:10px;padding:1.4rem 1.5rem 1.6rem;
+  cursor:pointer;transition:all .3s;position:relative;
+}
+.addon-card.selected{border-color:var(--gold);background:var(--gold-pale)}
+.addon-card:hover{border-color:rgba(201,168,76,.5);box-shadow:0 8px 24px rgba(0,0,0,.06)}
+.addon-top-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
+.addon-icon{width:28px;height:28px;stroke:var(--gold);fill:none;stroke-width:1.5}
+.addon-price-tag{font-size:.72rem;letter-spacing:.08em;color:var(--text-muted);font-family:var(--sans)}
+.addon-price-tag strong{color:var(--charcoal);font-weight:500}
+.addon-name{font-family:var(--serif);font-size:1.35rem;font-weight:400;color:var(--charcoal);margin-bottom:.4rem}
+.addon-desc{font-size:.75rem;color:var(--text-muted);line-height:1.65}
+.addon-check{
+  position:absolute;top:.75rem;right:.75rem;
+  width:18px;height:18px;border-radius:50%;
+  background:var(--gold);display:none;
+  align-items:center;justify-content:center;
+}
+.addon-check svg{width:10px;height:10px;stroke:var(--charcoal);fill:none;stroke-width:2.5}
+.addon-card.selected .addon-check{display:flex}
+
+/* PHOTO STUDIO SESSION */
+.studio-session{background:var(--white)}
+.studio-eyebrow-row{display:flex;align-items:center;gap:1rem;margin-bottom:.85rem}
+.studio-eyebrow-line{width:40px;height:1px;background:var(--text-muted)}
+.studio-eyebrow-text{font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--text-muted)}
+.studio-title{font-family:var(--serif);font-size:clamp(2.4rem,4vw,3.6rem);font-weight:300;color:var(--charcoal);line-height:1.1;margin-bottom:.9rem}
+.studio-subtitle{font-size:.95rem;color:var(--text-muted);line-height:1.7;max-width:640px;margin-bottom:2.4rem;font-weight:300}
+/* Tabs */
+.studio-tabs{display:flex;gap:.6rem;margin-bottom:2.8rem}
+.studio-tab{padding:.55rem 1.4rem;border-radius:99px;font-family:var(--sans);font-size:.78rem;letter-spacing:.04em;cursor:pointer;border:1.5px solid rgba(0,0,0,.12);background:transparent;color:var(--text-muted);transition:all .3s;font-weight:400}
+.studio-tab.active{background:var(--charcoal);color:var(--white);border-color:var(--charcoal)}
+.studio-tab:hover:not(.active){border-color:var(--charcoal);color:var(--charcoal)}
+/* Price tier grid */
+.studio-panel{display:none}
+.studio-panel.active{display:block}
+.studio-tiers{display:grid;grid-template-columns:repeat(6,1fr);gap:.85rem;margin-bottom:3rem}
+.studio-tier{
+  background:var(--cream);border-radius:10px;
+  padding:1.6rem 1.2rem 1.4rem;
+  cursor:pointer;
+  border:1.5px solid transparent;
+  transition:all .35s ease;
+  text-align:center;
+}
+.studio-tier:hover{border-color:rgba(201,168,76,.4);box-shadow:0 6px 20px rgba(0,0,0,.06);transform:translateY(-3px)}
+.studio-tier.selected{border-color:var(--gold);background:var(--gold-pale)}
+.studio-tier-price{font-family:var(--serif);font-size:1.5rem;font-weight:300;color:var(--charcoal);letter-spacing:.02em;line-height:1;display:block}
+.studio-tier-currency{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-muted);display:block;margin-top:.25rem;margin-bottom:1rem}
+.studio-tier-divider{width:20px;height:1px;background:rgba(0,0,0,.15);margin:0 auto .9rem}
+.studio-tier-label{font-size:.8rem;color:var(--text-muted);font-family:var(--sans)}
+/* Session Add-Ons */
+.studio-addons-title{font-family:var(--serif);font-size:1.9rem;font-weight:300;color:var(--charcoal);margin-bottom:1.2rem}
+.studio-addons-grid{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;margin-bottom:1.8rem}
+.studio-addon{
+  background:var(--cream);border-radius:10px;
+  padding:1.5rem 1.8rem;
+  display:flex;align-items:center;justify-content:space-between;
+  cursor:pointer;border:1.5px solid transparent;
+  transition:all .3s ease;
+}
+.studio-addon:hover{border-color:rgba(201,168,76,.3);box-shadow:0 4px 14px rgba(0,0,0,.05)}
+.studio-addon.selected{border-color:var(--gold);background:var(--gold-pale)}
+.studio-addon-name{font-family:var(--serif);font-size:1.1rem;font-weight:300;color:var(--charcoal)}
+.studio-addon-price{font-family:var(--serif);font-size:1.05rem;color:var(--gold);font-weight:300;white-space:nowrap;letter-spacing:.03em}
+/* Info note */
+.studio-note{display:flex;align-items:center;gap:.7rem;font-size:.8rem;color:var(--text-muted)}
+.studio-note-icon{width:18px;height:18px;border:1.5px solid var(--text-muted);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.6rem;color:var(--text-muted);font-weight:600}
+
+/* PORTFOLIO */
+.portfolio{background:var(--charcoal);padding:7rem 4rem}
+.portfolio-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3rem}
+.portfolio-filters{display:flex;gap:1rem;flex-wrap:wrap}
+.filter-btn{background:none;border:none;font-family:var(--sans);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.4);cursor:pointer;padding:.4rem 0;border-bottom:1px solid transparent;transition:all .3s}
+.filter-btn.active,.filter-btn:hover{color:var(--gold);border-bottom-color:var(--gold)}
+.portfolio-grid{columns:3;gap:1rem}
+.portfolio-item{break-inside:avoid;margin-bottom:1rem;position:relative;overflow:hidden;cursor:pointer}
+.portfolio-item img{width:100%;display:block;transition:transform .5s}
+.portfolio-item:hover img{transform:scale(1.04)}
+.portfolio-item-overlay{position:absolute;inset:0;background:rgba(201,168,76,.0);transition:background .3s;display:flex;align-items:center;justify-content:center}
+.portfolio-item:hover .portfolio-item-overlay{background:rgba(201,168,76,.2)}
+.expand-icon{width:40px;height:40px;border:1px solid var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s}
+.portfolio-item:hover .expand-icon{opacity:1}
+.expand-icon svg{width:14px;height:14px;stroke:var(--white);fill:none;stroke-width:2}
+
+/* LIGHTBOX */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:2000;display:none;align-items:center;justify-content:center;padding:2rem}
+.lightbox.open{display:flex}
+.lightbox-img{max-height:85vh;max-width:90vw;object-fit:contain}
+.lightbox-close{position:absolute;top:1.5rem;right:2rem;background:none;border:none;color:var(--white);font-size:2rem;cursor:pointer;line-height:1}
+.lightbox-prev,.lightbox-next{position:absolute;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;padding:1rem}
+.lightbox-prev{left:1rem}
+.lightbox-next{right:1rem}
+.lightbox-prev svg,.lightbox-next svg{width:32px;height:32px;stroke:rgba(255,255,255,.7);fill:none;stroke-width:1.5}
+
+/* TESTIMONIALS */
+.testimonials{background:var(--white);padding:7rem 4rem}
+.testimonials-eyebrow-row{display:flex;align-items:center;gap:1rem;margin-bottom:.85rem}
+.testimonials-eyebrow-line{width:40px;height:1px;background:var(--text-muted)}
+.testimonials-eyebrow-text{font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--text-muted)}
+.testimonials-heading{margin-bottom:.6rem}
+.testimonials-heading .t-line1{font-family:var(--serif);font-size:clamp(2.2rem,3.5vw,3.2rem);font-weight:300;color:var(--charcoal);display:block;line-height:1.1}
+.testimonials-heading .t-line2{font-family:var(--serif);font-size:clamp(2.2rem,3.5vw,3.2rem);font-weight:300;color:var(--gold);font-style:italic;display:block;line-height:1.1}
+.testimonials-subtitle{font-size:.88rem;color:var(--text-muted);line-height:1.7;margin-top:.75rem;margin-bottom:3.5rem}
+/* Slider wrapper — clips overflow */
+.testimonials-viewport{overflow:hidden;position:relative}
+.testimonials-track{
+  display:flex;
+  transition:transform .7s cubic-bezier(.4,0,.2,1);
+  will-change:transform;
+}
+/* Each "page" shows 2 cards side-by-side */
+.testimonials-track .t-page{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1.25rem;
+  min-width:100%;
+  padding:0 .1rem;
+}
+.t-card{
+  background:var(--cream);
+  border-radius:12px;
+  padding:2.2rem 2.2rem 2rem;
+  border:1px solid transparent;
+  transition:border-color .3s, box-shadow .3s;
+}
+.t-card:hover{border-color:rgba(201,168,76,.25);box-shadow:0 8px 30px rgba(0,0,0,.05)}
+.t-stars{display:flex;gap:3px;margin-bottom:1.1rem}
+.t-stars svg{width:15px;height:15px;fill:var(--gold);stroke:none}
+.t-name{font-family:var(--serif);font-size:1.65rem;font-weight:400;color:var(--charcoal);font-style:italic;margin-bottom:.9rem;line-height:1.2}
+.t-quote{font-family:var(--serif);font-size:.95rem;color:var(--text-muted);line-height:1.8;font-style:italic;margin-bottom:1.4rem}
+.t-meta{font-size:.72rem;color:var(--text-muted);letter-spacing:.04em}
+/* Dots */
+.testimonials-dots{display:flex;justify-content:center;align-items:center;gap:.55rem;margin-top:2.5rem}
+.t-dot{
+  width:10px;height:10px;border-radius:50%;
+  background:rgba(0,0,0,.15);cursor:pointer;
+  transition:all .35s ease;border:none;padding:0;
+}
+.t-dot.active{background:var(--gold);transform:scale(1.25)}
+
+/* BOOKING */
+.booking{background:var(--charcoal);padding:7rem 4rem}
+.booking .section-title{color:var(--white)}
+.booking-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:5rem;margin-top:4rem}
+.booking-info h3{font-family:var(--serif);font-size:1.8rem;font-weight:300;color:var(--white);margin-bottom:1rem}
+.booking-info p{font-size:.85rem;line-height:1.8;color:rgba(255,255,255,.5);margin-bottom:2rem}
+.booking-info-items{display:flex;flex-direction:column;gap:1rem}
+.booking-info-item{display:flex;gap:1rem;align-items:flex-start}
+.info-icon{width:36px;height:36px;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.info-icon svg{width:16px;height:16px;stroke:var(--gold);fill:none;stroke-width:1.5}
+.info-text strong{display:block;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:400}
+.info-text span{font-size:.8rem;color:rgba(255,255,255,.5)}
+.booking-form{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.form-full{grid-column:1/-1}
+.form-group{display:flex;flex-direction:column;gap:.5rem}
+.form-group label{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.form-group input,.form-group select,.form-group textarea{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);padding:.85rem 1rem;color:var(--white);font-family:var(--sans);font-size:.85rem;outline:none;transition:border-color .3s;-webkit-appearance:none}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--gold)}
+.form-group select option{background:var(--charcoal)}
+.form-group textarea{resize:vertical;min-height:100px}
+.form-addons{grid-column:1/-1}
+.addons-selected{font-size:.75rem;color:rgba(255,255,255,.4);margin-top:.5rem}
+.submit-btn{grid-column:1/-1;background:var(--gold);border:none;color:var(--charcoal);padding:1.1rem;font-family:var(--sans);font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;cursor:pointer;transition:all .3s}
+.submit-btn:hover{background:var(--gold-light)}
+.success-msg{display:none;text-align:center;padding:2rem;border:1px solid var(--gold);color:var(--white)}
+.success-msg h3{font-family:var(--serif);font-size:1.5rem;color:var(--gold);margin-bottom:.5rem}
+
+/* CONTACT */
+.contact{background:var(--cream);padding:7rem 4rem}
+.contact-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:5rem;margin-top:4rem}
+.contact-details h3{font-family:var(--serif);font-size:2rem;font-weight:300;color:var(--charcoal);margin-bottom:2rem}
+.contact-details h3 em{color:var(--gold);font-style:italic}
+.contact-items{display:flex;flex-direction:column;gap:1.5rem;margin-bottom:2.5rem}
+.contact-item{display:flex;gap:1rem;align-items:flex-start}
+.c-icon{width:42px;height:42px;border:1px solid rgba(201,168,76,.4);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.c-icon svg{width:18px;height:18px;stroke:var(--gold);fill:none;stroke-width:1.5}
+.c-label{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.25rem}
+.c-val{font-size:.85rem;color:var(--text-muted);line-height:1.6}
+.contact-card{background:var(--white);border:1px solid rgba(201,168,76,.18);border-radius:20px;padding:3rem;box-shadow:0 24px 60px rgba(0,0,0,.08);display:flex;flex-direction:column;justify-content:center;min-height:100%}
+.contact-card-title{font-family:var(--serif);font-size:2rem;font-weight:300;color:var(--charcoal);margin-bottom:1rem}
+.contact-card-subtitle{font-size:.95rem;line-height:1.9;color:var(--text-muted);margin-bottom:2rem;max-width:28rem}
+.contact-actions{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.contact-cta{display:flex;align-items:center;justify-content:center;gap:.75rem;padding:1.25rem 1.5rem;border-radius:14px;font-family:var(--sans);font-size:.95rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;transition:transform .3s,box-shadow .3s,background .3s,color .3s;border:none;cursor:pointer;text-decoration:none;min-height:72px}
+.contact-cta.primary{background:var(--gold);color:var(--charcoal)}
+.contact-cta.primary:hover{background:var(--gold-light);transform:translateY(-3px);box-shadow:0 20px 35px rgba(201,168,76,.22)}
+.contact-cta.secondary{background:rgba(37,211,102,.14);color:#075E34;border:1px solid rgba(37,211,102,.25)}
+.contact-cta.secondary:hover{background:rgba(37,211,102,.22);transform:translateY(-3px);box-shadow:0 20px 35px rgba(37,211,102,.16)}
+.contact-note{font-size:.82rem;color:var(--text-muted);margin-top:1.75rem;line-height:1.8;max-width:34rem}
+.contact-actions .icon{font-size:1.2rem;line-height:1}
+@media(max-width:900px){.contact-grid{grid-template-columns:1fr}.contact-actions{grid-template-columns:1fr}}
+
+/* FOOTER */
+footer{background:var(--charcoal-mid);padding:5rem 4rem 2rem;position:relative;overflow:hidden}
+.footer-watermark{position:absolute;bottom:-2rem;left:50%;transform:translateX(-50%);font-family:var(--serif);font-size:10rem;font-weight:600;color:rgba(255,255,255,.03);white-space:nowrap;pointer-events:none;letter-spacing:.1em}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:4rem;margin-bottom:4rem;position:relative;z-index:1}
+.footer-brand .nav-logo{margin-bottom:1rem;display:block}
+.footer-brand p{font-size:.8rem;line-height:1.8;color:rgba(255,255,255,.4);font-weight:300}
+.footer-col h4{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.75rem}
+.footer-col ul a{font-size:.82rem;color:rgba(255,255,255,.4);transition:color .3s}
+.footer-col ul a:hover{color:var(--gold)}
+.social-links{display:flex;gap:.75rem;margin-top:1.5rem}
+.social-link{width:38px;height:38px;border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;transition:all .3s;color:rgba(255,255,255,.4);font-size:.75rem}
+.social-link:hover{border-color:var(--gold);color:var(--gold)}
+.newsletter-form{display:flex;margin-top:1rem}
+.newsletter-form input{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-right:none;padding:.6rem .75rem;color:var(--white);font-family:var(--sans);font-size:.8rem;outline:none}
+.newsletter-form button{background:var(--gold);border:none;color:var(--charcoal);padding:.6rem 1rem;cursor:pointer;font-size:.7rem;font-family:var(--sans);letter-spacing:.1em;text-transform:uppercase;transition:background .3s}
+.newsletter-form button:hover{background:var(--gold-light)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:2rem;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1}
+.footer-copy{font-size:.72rem;color:rgba(255,255,255,.3)}
+.footer-copy a{color:var(--gold)}
+
+/* SERVICE DETAIL PAGE */
+.service-page{
+  position:fixed;inset:0;z-index:2000;
+  background:var(--cream);
+  overflow-y:auto;
+  opacity:0;pointer-events:none;
+  transition:opacity .5s cubic-bezier(.4,0,.2,1);
+}
+.service-page.open{opacity:1;pointer-events:all}
+
+/* back bar */
+.sp-back-bar{padding:1.5rem 4rem;display:flex;align-items:center}
+.sp-back-btn{
+  display:flex;align-items:center;gap:.55rem;
+  background:var(--white);border:1px solid rgba(0,0,0,.1);
+  border-radius:99px;padding:.45rem 1.1rem;
+  font-family:var(--sans);font-size:.72rem;letter-spacing:.08em;
+  color:var(--charcoal);cursor:pointer;transition:all .25s;
+}
+.sp-back-btn:hover{background:var(--cream-dark);border-color:rgba(0,0,0,.2)}
+.sp-back-btn svg{width:14px;height:14px;stroke:var(--charcoal);fill:none;stroke-width:2}
+
+/* hero block */
+.sp-hero{
+  padding:0 4rem 0;
+  background:var(--cream);
+  min-height:340px;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding-bottom:3rem;
+  position:relative;
+  overflow:hidden;
+}
+.sp-hero-bg{
+  position:absolute;inset:0;
+  background-size:cover;background-position:center;
+  opacity:.13;
+  transition:background-image .4s;
+}
+.sp-hero-content{position:relative;z-index:1;max-width:820px}
+.sp-breadcrumb{
+  font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--text-muted);margin-bottom:1rem;
+}
+.sp-breadcrumb span{color:var(--gold)}
+.sp-service-title{
+  font-family:var(--serif);font-size:clamp(2.8rem,5vw,4.5rem);
+  font-weight:300;color:var(--charcoal);line-height:1.05;
+}
+.sp-service-desc{
+  font-size:.92rem;color:var(--text-muted);line-height:1.8;
+  margin-top:1rem;max-width:560px;font-weight:300;
+}
+
+/* divider */
+.sp-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.35),transparent);margin:0 4rem}
+
+/* recent sessions */
+.sp-sessions{padding:4rem 4rem 3rem}
+.sp-sessions-eyebrow{display:flex;align-items:center;gap:.9rem;margin-bottom:1.4rem}
+.sp-sessions-line{width:36px;height:1px;background:var(--text-muted)}
+.sp-sessions-label{font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--text-muted)}
+.sp-sessions-title{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:300;color:var(--charcoal);margin-bottom:2.5rem}
+.sp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+
+/* session card */
+.sp-card{
+  border-radius:12px;overflow:hidden;
+  background:var(--cream-dark);
+  border:1px solid rgba(0,0,0,.06);
+  transition:transform .35s ease,box-shadow .35s ease;
+  cursor:pointer;
+}
+.sp-card:hover{transform:translateY(-5px);box-shadow:0 20px 44px rgba(0,0,0,.1)}
+.sp-card-img{
+  width:100%;height:220px;
+  object-fit:cover;display:block;
+  transition:transform .5s ease;
+}
+.sp-card:hover .sp-card-img{transform:scale(1.04)}
+/* first card has image overlay style */
+.sp-card.featured{position:relative}
+.sp-card.featured .sp-card-img{height:280px;filter:grayscale(20%)}
+.sp-card-overlay{
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(to top,rgba(0,0,0,.65) 0%,transparent 100%);
+  padding:1.4rem 1.2rem;
+}
+.sp-card-overlay .sp-card-name{color:var(--white)}
+.sp-card-overlay .sp-card-meta{color:rgba(255,255,255,.65)}
+.sp-card-body{padding:1.1rem 1.2rem 1.3rem}
+.sp-card-name{font-family:var(--serif);font-size:1.05rem;color:var(--charcoal);margin-bottom:.5rem}
+.sp-card-meta{display:flex;align-items:center;gap:1rem;font-size:.7rem;color:var(--text-muted)}
+.sp-card-meta span{display:flex;align-items:center;gap:.3rem}
+.sp-card-meta svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2}
+
+/* empty card placeholder */
+.sp-card-placeholder{
+  border-radius:12px;
+  background:rgba(201,168,76,.07);
+  border:1px solid rgba(201,168,76,.15);
+  min-height:220px;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:1.1rem 1.2rem 1.3rem;
+}
+.sp-card-placeholder .sp-card-name{color:var(--charcoal)}
+
+/* CTA bottom */
+.sp-cta{
+  background:var(--white);
+  padding:5rem 4rem;
+  text-align:center;
+  border-top:1px solid rgba(0,0,0,.06);
+}
+.sp-cta-title{
+  font-family:var(--serif);font-size:clamp(2rem,4vw,3.2rem);
+  font-weight:300;color:var(--charcoal);margin-bottom:1rem;
+}
+.sp-cta-subtitle{
+  font-size:.88rem;color:var(--text-muted);line-height:1.75;
+  max-width:480px;margin:0 auto 2.5rem;
+}
+.sp-cta-btns{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap}
+.sp-cta-link{
+  font-family:var(--sans);font-size:.78rem;letter-spacing:.08em;
+  color:var(--charcoal);display:flex;align-items:center;gap:.45rem;
+  border-bottom:1px solid var(--charcoal);padding-bottom:.15rem;
+  transition:all .25s;cursor:pointer;background:none;border-top:none;border-left:none;border-right:none;
+}
+.sp-cta-link:hover{color:var(--gold);border-bottom-color:var(--gold)}
+.sp-cta-link svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;transition:transform .25s}
+.sp-cta-link:hover svg{transform:translateX(3px)}
+
+/* portfolio detail */
+.portfolio-detail{position:fixed;inset:0;z-index:2200;overflow:auto;background:rgba(245,240,232,.98);display:none;opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s ease;backdrop-filter:blur(10px)}
+.portfolio-detail.open{display:block;opacity:1;visibility:visible}
+.portfolio-detail-inner{max-width:1280px;margin:0 auto;padding:2.5rem 4rem 4rem}
+.pd-back-bar{display:flex;align-items:center;gap:.85rem;margin-bottom:2rem}
+.pd-back-btn{background:none;border:1px solid rgba(0,0,0,.12);border-radius:999px;color:var(--charcoal);font-family:var(--sans);font-size:.82rem;letter-spacing:.14em;padding:.95rem 1.4rem;cursor:pointer;display:inline-flex;align-items:center;gap:.6rem;transition:all .3s}
+.pd-back-btn:hover{background:rgba(201,168,76,.1);border-color:rgba(201,168,76,.45)}
+.pd-hero{position:relative;display:grid;grid-template-columns:1fr;gap:2rem;padding:3rem 0 2rem;border-bottom:1px solid rgba(0,0,0,.08)}
+.pd-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(.52);transform:scale(1.02);transition:transform .4s ease}
+.pd-hero::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(245,240,232,0) 0%,rgba(245,240,232,.96) 68%)}
+.pd-hero-content{position:relative;z-index:1;max-width:820px}
+.pd-breadcrumb{font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
+.pd-breadcrumb span{color:var(--gold)}
+.pd-heading{font-family:var(--serif);font-size:clamp(2.8rem,5vw,4.5rem);font-weight:300;color:var(--charcoal);margin:0 0 1rem;line-height:1.05}
+.pd-description{font-size:.95rem;color:var(--text-muted);line-height:1.9;max-width:680px;margin-bottom:1.5rem;opacity:.94}
+.pd-story{margin-top:1rem;color:var(--text-muted);line-height:1.9;font-size:.95rem;max-width:720px}
+.pd-meta{display:flex;flex-wrap:wrap;gap:1rem;font-size:.9rem;color:var(--charcoal);margin-bottom:1.3rem}
+.pd-meta span{display:flex;align-items:center;gap:.55rem}
+.pd-count{font-size:.78rem;letter-spacing:.14em;color:var(--text-muted);text-transform:uppercase;margin-bottom:1.75rem;display:block}
+.pd-gallery{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem}
+.pd-thumb{background:none;border:none;padding:0;cursor:pointer;overflow:hidden;border-radius:22px;box-shadow:0 18px 42px rgba(0,0,0,.08);transition:transform .35s ease,box-shadow .35s ease,opacity .35s ease}
+.pd-thumb:hover{transform:translateY(-4px)}
+.pd-thumb img{width:100%;height:100%;aspect-ratio:4/5;object-fit:cover;display:block;border-radius:22px;transition:transform .45s ease}
+.pd-thumb:hover img{transform:scale(1.05)}
+.pd-related{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:1rem}
+.pd-related-card{background:var(--white);border-radius:18px;overflow:hidden;cursor:pointer;transition:transform .3s,box-shadow .3s;box-shadow:0 12px 28px rgba(0,0,0,.08)}
+.pd-related-card:hover{transform:translateY(-4px);box-shadow:0 18px 34px rgba(0,0,0,.12)}
+.pd-related-card img{width:100%;height:190px;object-fit:cover;display:block}
+.pd-related-body{padding:1rem 1.1rem 1.2rem}
+.pd-related-title{font-family:var(--serif);font-size:1rem;color:var(--charcoal);margin-bottom:.45rem}
+.pd-related-subtitle{font-size:.8rem;color:var(--text-muted);line-height:1.6}
+.pd-cta-row{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;margin-top:3rem}
+.pd-cta-btn{font-family:var(--sans);font-size:.85rem;font-weight:700;padding:1rem 1.5rem;border-radius:999px;border:none;cursor:pointer;transition:all .25s}
+.pd-cta-btn.primary{background:var(--charcoal);color:var(--white)}
+.pd-cta-btn.secondary{background:var(--gold);color:var(--charcoal)}
+.pd-cta-btn:hover{opacity:.95}
+@media(max-width:1024px){.pd-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.pd-related{grid-template-columns:1fr 1fr}.portfolio-detail-inner{padding:2rem}.pd-hero{padding:2.5rem 0 1.5rem}}
+@media(max-width:720px){.portfolio-detail-inner{padding:1.5rem 1.2rem 2rem}.pd-gallery{grid-template-columns:1fr}.pd-related{grid-template-columns:1fr}.pd-hero{padding:2rem 0 1rem}.pd-meta{flex-direction:column;align-items:flex-start}.pd-back-bar{flex-wrap:wrap}} 
+
+/* responsive */
+@media(max-width:900px){
+  .sp-back-bar,.sp-hero,.sp-sessions,.sp-divider,.sp-cta{padding-left:2rem;padding-right:2rem}
+  .sp-divider{margin:0 2rem}
+  .sp-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .sp-grid{grid-template-columns:1fr}
+  .sp-cta-btns{flex-direction:column;align-items:center;gap:1.5rem}
+}
+
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+  .packages-grid{grid-template-columns:repeat(2,1fr)}
+  .addons-grid{grid-template-columns:repeat(3,1fr)}
+  .studio-tiers{grid-template-columns:repeat(3,1fr)}
+  .portfolio-grid{columns:2}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:900px){
+  nav{padding:1.25rem 2rem}
+  nav.scrolled{padding:.9rem 2rem}
+  .nav-links,.nav-cta{display:none}
+  .nav-hamburger{display:flex}
+  .section{padding:5rem 2rem}
+  .about-grid,.booking-grid,.contact-grid{grid-template-columns:1fr}
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+  .stats-row{grid-template-columns:repeat(2,1fr)}
+  .studio-tiers{grid-template-columns:repeat(3,1fr)}
+  .studio-addons-grid{grid-template-columns:1fr}
+  .hero-content{padding:0 2rem}
+  .booking{padding:5rem 2rem}
+  .portfolio{padding:5rem 2rem}
+  .testimonials{padding:5rem 2rem}
+  .contact{padding:5rem 2rem}
+  footer{padding:4rem 2rem 2rem}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:2rem}
+}
+@media(max-width:600px){
+  .services-grid{grid-template-columns:1fr}
+  .packages-grid{grid-template-columns:1fr}
+  .addons-grid{grid-template-columns:1fr 1fr}
+  .studio-tiers{grid-template-columns:repeat(2,1fr)}
+  .studio-addons-grid{grid-template-columns:1fr}
+  .portfolio-grid{columns:1}
+  .booking-form{grid-template-columns:1fr}
+  .form-full{grid-column:auto}
+  .c-form-grid{grid-template-columns:1fr}
+  .testimonial-slide{min-width:100%}
+  .footer-grid{grid-template-columns:1fr}
+  .footer-watermark{font-size:5rem}
+  .hero-scroll{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">STEWDIO<span>ONE</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#packages">Packages</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book Session</button>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose" aria-label="Close menu">×</button>
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#services" onclick="closeMobile()">Services</a>
+  <a href="#packages" onclick="closeMobile()">Packages</a>
+  <a href="#portfolio" onclick="closeMobile()">Portfolio</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+  <a href="#booking" onclick="closeMobile()" style="color:var(--gold)">Book Session</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-slider">
+    <div class="hero-slide active" style="background-image:linear-gradient(to right,rgba(0,0,0,.7) 50%,rgba(0,0,0,.3) 100%),url('BGLandingPage/1.jpeg')"></div>
+    <div class="hero-slide" style="background-image:linear-gradient(to right,rgba(0,0,0,.7) 50%,rgba(0,0,0,.3) 100%),url('BGLandingPage/2.jpeg')"></div>
+    <div class="hero-slide" style="background-image:linear-gradient(to right,rgba(0,0,0,.7) 50%,rgba(0,0,0,.3) 100%),url('BGLandingPage/3.jpeg')"></div>
+    <div class="hero-slide" style="background-image:linear-gradient(to right,rgba(0,0,0,.7) 50%,rgba(0,0,0,.3) 100%),url('BGLandingPage/4.jpeg')"></div>
+    <div class="hero-slide" style="background-image:linear-gradient(to right,rgba(0,0,0,.7) 50%,rgba(0,0,0,.3) 100%),url('BGLandingPage/5.jpeg')"></div>
+    <div class="hero-slide" style="background-image:linear-gradient(to right,rgba(0,0,0,.7) 50%,rgba(0,0,0,.3) 100%),url('BGLandingPage/6.jpeg')"></div>
+    <div class="hero-slide" style="background-image:linear-gradient(to right,rgba(0,0,0,.7) 50%,rgba(0,0,0,.3) 100%),url('BGLandingPage/7.jpeg')"></div>
+    <div class="hero-slide" style="background-image:linear-gradient(to right,rgba(0,0,0,.7) 50%,rgba(0,0,0,.3) 100%),url('BGLandingPage/8.jpeg')"></div>
+    <div class="hero-slide" style="background-image:linear-gradient(to right,rgba(0,0,0,.7) 50%,rgba(0,0,0,.3) 100%),url('BGLandingPage/9.jpeg')"></div>
+    <div class="hero-slide" style="background-image:linear-gradient(to right,rgba(0,0,0,.7) 50%,rgba(0,0,0,.3) 100%),url('BGLandingPage/10.jpeg')"></div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-label">Capturing Every Moment</p>
+    <h1 class="hero-title">Every Moment<br>Deserves to <em>Last</em></h1>
+    <p class="hero-desc">Professional photography and videography services that preserve memories, tell stories and create timeless experiences.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book a Session</button>
+      <button class="btn-outline" onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})">View Portfolio</button>
+    </div>
+  </div>
+  <div class="hero-dots" id="heroDots">
+    <div class="hero-dot active" onclick="goSlide(0)"></div>
+    <div class="hero-dot" onclick="goSlide(1)"></div>
+    <div class="hero-dot" onclick="goSlide(2)"></div>
+    <div class="hero-dot" onclick="goSlide(3)"></div>
+    <div class="hero-dot" onclick="goSlide(4)"></div>
+    <div class="hero-dot" onclick="goSlide(5)"></div>
+    <div class="hero-dot" onclick="goSlide(6)"></div>
+    <div class="hero-dot" onclick="goSlide(7)"></div>
+    <div class="hero-dot" onclick="goSlide(8)"></div>
+    <div class="hero-dot" onclick="goSlide(9)"></div>
+  </div>
+  <div class="hero-scroll">
+    <span class="scroll-line"></span>
+    <span>Scroll to explore</span>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- ABOUT -->
+<section class="section about" id="about">
+  <div class="about-grid">
+    <div class="reveal">
+      <p class="section-eyebrow">Our Story</p>
+      <h2 class="section-title">We Photograph<br><em>Life Itself</em></h2>
+      <p class="section-body">StewdioOne is an art photography studio. We do more than just take stunning and memorable pictures — we tell stories, whether it is a sparkling office-get-together, a thrilling baby shower, or something else.</p>
+      <p class="section-body">Born in Yaoundé, we bring our most heartfelt passions to every occasion. The images we take filter down to the smallest, finest details, making us a studio that stands apart.</p>
+      <div class="stats-row">
+        <div class="stat-item">
+          <span class="stat-num"><span class="counter" data-target="500">0</span>+</span>
+          <span class="stat-label">Sessions Completed</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num"><span class="counter" data-target="15">0</span>+</span>
+          <span class="stat-label">Years Experience</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num"><span class="counter" data-target="50">0</span>K+</span>
+          <span class="stat-label">Photos Delivered</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num"><span class="counter" data-target="100">0</span>%</span>
+          <span class="stat-label">Client Satisfaction</span>
+        </div>
+      </div>
+    </div>
+    <div class="about-img reveal">
+      <img src="About/jay.jpeg" alt="The man behind the lens — StewdioOne photographer">
+      <p class="about-img-caption">THE MAN BEHIND THE LENS</p>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- SERVICES -->
+<section class="section services" id="services">
+  <div class="services-eyebrow-row reveal">
+    <span class="services-eyebrow-line"></span>
+    <span class="services-eyebrow-text">Our Services</span>
+  </div>
+  <h2 class="section-title reveal">What We<br><em>Offer</em></h2>
+  <div class="services-grid">
+    <div class="service-card reveal" onclick="openServicePage('Wedding Photography')" style="background-image:url('portfolio\ Images/Wedding/Cintha.jpeg');background-size:cover;background-position:center top;cursor:pointer">
+      <div class="service-card-content">
+        <h3>Wedding Photography</h3>
+        <p>Cinematic storytelling for your most important day. Full coverage from preparations to reception.</p>
+      </div>
+    </div>
+    <div class="service-card reveal" onclick="openServicePage('Studio Session')" style="background-image:url('./portfolio\ Images/Studio/18.jpeg');background-size:cover;background-position:center top;cursor:pointer">
+      <div class="service-card-content">
+        <h3>Studio Session</h3>
+        <p>Professional studio photos with expert lighting and retouching just for you.</p>
+      </div>
+    </div>
+    <div class="service-card reveal" onclick="openServicePage('Family & Group Sessions')" style="background-image:url('Family&Group/DMB.jpeg');background-size:cover;background-position:center;cursor:pointer">
+      <div class="service-card-content">
+        <h3>Family &amp; Group sessions</h3>
+        <p>Beautiful group and or family photos that celebrates connection, love and bonds that matters most.</p>
+      </div>
+    </div>
+    <div class="service-card reveal" onclick="openServicePage('Pre-Wedding Shoots')" style="background-image:url('joan.jpeg');background-size:cover;background-position:center top;cursor:pointer">
+      <div class="service-card-content">
+        <h3>Pre-Wedding shoots</h3>
+        <p>Romantic Engagements and pre-wedding sessions in both studio and stunning locations around Cameroon.</p>
+      </div>
+    </div>
+    <div class="service-card reveal" onclick="openServicePage('Birthday Coverage')" style="background-image:url('portfolio\ Images/Events/leila.jpeg');background-size:cover;background-position:center;cursor:pointer">
+      <div class="service-card-content">
+        <h3>Birthday Coverage</h3>
+        <p>Celebrate Life's Milestones with stunning birthday/ Graduation and event photography coverage.</p>
+      </div>
+    </div>
+    <div class="service-card reveal" onclick="openServicePage('Burial Coverage')" style="background-image:url('https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=800&q=80');background-size:cover;background-position:center top;cursor:pointer">
+      <div class="service-card-content">
+        <h3>Burial Coverage</h3>
+        <p>Capturing one of life's most hurtful moments, the tears and joy for timeless memories.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- PACKAGES -->
+<section class="section packages" id="packages">
+  <div class="reveal">
+    <div class="packages-eyebrow-row">
+      <span class="packages-eyebrow-line"></span>
+      <span class="packages-eyebrow-text">Exclusive Collections</span>
+    </div>
+    <h2 class="section-title" style="font-size:clamp(2.4rem,4vw,3.4rem)">Wedding Packages</h2>
+    <p class="packages-subtitle">Every love story deserves a collection as unique as the couple. Choose the experience that reflects your vision.</p>
+  </div>
+
+  <div class="packages-grid">
+
+    <!-- BRONZE -->
+    <div class="pkg-card reveal">
+      <div class="pkg-preview">
+        <div class="pkg-name">Bronze</div>
+        <p class="pkg-tagline">Essential wedding coverage for intimate celebrations.</p>
+        <div class="pkg-price-row">
+          <span class="pkg-price">350,000</span><span class="pkg-currency">FCFA</span>
+        </div>
+        <div class="pkg-divider"></div>
+        <ul class="pkg-features-preview">
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Full coverage (single day)</li>
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Edited soft-copy pictures</li>
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Full wedding video on 8GB flash</li>
+        </ul>
+        <ul class="pkg-features-extra">
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Online gallery for viewing and downloads</li>
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>100 printed copies</li>
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Picture delivery: 72 hours</li>
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Video delivery: 21 working days</li>
+        </ul>
+        <div class="pkg-hint">
+          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          Hover to see all inclusions
+        </div>
+      </div>
+      <button class="pkg-btn" onclick="selectPackage('Bronze — 350,000 FCFA')">Inquire More</button>
+    </div>
+
+    <!-- SILVER -->
+    <div class="pkg-card reveal">
+      <div class="pkg-preview">
+        <div class="pkg-name">Silver</div>
+        <p class="pkg-tagline">Extended coverage with premium keepsakes.</p>
+        <div class="pkg-price-row">
+          <span class="pkg-price">500,000</span><span class="pkg-currency">FCFA</span>
+        </div>
+        <div class="pkg-divider"></div>
+        <ul class="pkg-features-preview">
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Full coverage (2 days)</li>
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Edited soft-copy pictures</li>
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Full wedding video</li>
+        </ul>
+        <ul class="pkg-features-extra">
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Delivered in 8GB flash drive</li>
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Online gallery</li>
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Small synthetic photobook (50 pages / 150 pictures)</li>
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>1 framed enlargement</li>
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Picture delivery: 72 hours</li>
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Video delivery: 21 working days</li>
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Photobook delivery: 60 days after selection</li>
+        </ul>
+        <div class="pkg-hint">
+          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          Hover to see all inclusions
+        </div>
+      </div>
+      <button class="pkg-btn" onclick="selectPackage('Silver — 500,000 FCFA')">Inquire More</button>
+    </div>
+
+    <!-- GOLD (FEATURED) -->
+    <div class="pkg-card featured reveal">
+      <div class="pkg-badge">Most Popular</div>
+      <div class="pkg-preview">
+        <div class="pkg-name">Gold</div>
+        <p class="pkg-tagline">Complete luxury experience with drone coverage.</p>
+        <div class="pkg-price-row">
+          <span class="pkg-price">1,000,000</span><span class="pkg-currency">FCFA</span>
+        </div>
+        <div class="pkg-divider"></div>
+        <ul class="pkg-features-preview">
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Full wedding coverage</li>
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Pre-wedding shoot</li>
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Bridal shower coverage</li>
+        </ul>
+        <ul class="pkg-features-extra">
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Edited soft-copy pictures</li>
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Social media teaser videos</li>
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Full wedding video</li>
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Online gallery</li>
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Personalized digital album (250 pictures)</li>
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Large synthetic photobook (100 pages / 250+ pictures)</li>
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>3 enlargements</li>
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Drone coverage (single day)</li>
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Pictures: 48 hours · Videos: 7 days</li>
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Photobook: 60 days after</li>
+        </ul>
+        <div class="pkg-hint">
+          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          Hover to see all inclusions
+        </div>
+      </div>
+      <button class="pkg-btn" onclick="selectPackage('Gold — 1,000,000 FCFA')">Inquire More</button>
+    </div>
+
+    <!-- PRESTIGE -->
+    <div class="pkg-card reveal">
+      <div class="pkg-preview">
+        <div class="pkg-name">Prestige</div>
+        <p class="pkg-tagline">Ultra-premium white-glove experience for extraordinary celebrations.</p>
+        <div class="pkg-price-row">
+          <span class="pkg-price">1,500,000</span><span class="pkg-currency">FCFA</span>
+        </div>
+        <div class="pkg-divider"></div>
+        <ul class="pkg-features-preview">
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Full wedding coverage (all phases)</li>
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Pre-wedding + Bridal shower</li>
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>1 highlight video per phase</li>
+        </ul>
+        <ul class="pkg-features-extra">
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>4× 32GB flash drives</li>
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Lifetime online gallery</li>
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>3 synthetic photobooks</li>
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>2 large albums (100 pages / 250–300 images each)</li>
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>1 small album (50 pages / 100–150 images)</li>
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>6 framed enlargements</li>
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Full drone coverage</li>
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Pictures: 24 hrs · Videos: 7 days</li>
+          <li><svg class="pkg-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Enlargements: 3 days · Photobook: 30 days</li>
+        </ul>
+        <div class="pkg-hint">
+          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          Hover to see all inclusions
+        </div>
+      </div>
+      <button class="pkg-btn" onclick="selectPackage('Prestige — 1,500,000 FCFA')">Inquire More</button>
+    </div>
+
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- ADDONS -->
+<section class="section addons" id="addons">
+  <div class="reveal">
+    <h2 class="section-title" style="font-size:clamp(2.4rem,4vw,3.4rem)">Add-Ons</h2>
+    <p class="addons-subtitle">Customize your experience with premium enhancements tailored to your vision.</p>
+  </div>
+  <div class="addons-grid" id="addonsGrid">
+
+    <div class="addon-card reveal" data-addon="Out-of-City Events — 100,000 FCFA+">
+      <div class="addon-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div class="addon-top-row">
+        <svg class="addon-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span class="addon-price-tag"><strong>100,000</strong>FCFA+</span>
+      </div>
+      <div class="addon-name">Out-of-City Events</div>
+      <p class="addon-desc">Travel coverage for events outside Yaoundé. Pricing varies by location.</p>
+    </div>
+
+    <div class="addon-card reveal" data-addon="Enlargements — 15,000 FCFA+">
+      <div class="addon-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div class="addon-top-row">
+        <svg class="addon-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        <span class="addon-price-tag"><strong>15,000</strong>FCFA+</span>
+      </div>
+      <div class="addon-name">Enlargements</div>
+      <p class="addon-desc">High-quality framed enlargements for wall display and keepsakes.</p>
+    </div>
+
+    <div class="addon-card reveal" data-addon="Synthetic Photobook — 100,000 FCFA+">
+      <div class="addon-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div class="addon-top-row">
+        <svg class="addon-icon" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        <span class="addon-price-tag"><strong>100,000</strong>FCFA+</span>
+      </div>
+      <div class="addon-name">Synthetic Photobook</div>
+      <p class="addon-desc">Premium synthetic leather photobook with professional layout design.</p>
+    </div>
+
+    <div class="addon-card reveal" data-addon="360 Photobooth — 150,000 FCFA+">
+      <div class="addon-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div class="addon-top-row">
+        <svg class="addon-icon" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        <span class="addon-price-tag"><strong>150,000</strong>FCFA+</span>
+      </div>
+      <div class="addon-name">360 Photobooth</div>
+      <p class="addon-desc">Interactive 360-degree photobooth experience for 6 hours of event coverage.</p>
+    </div>
+
+    <div class="addon-card reveal" data-addon="Drone Coverage — 100,000 FCFA+">
+      <div class="addon-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div class="addon-top-row">
+        <svg class="addon-icon" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        <span class="addon-price-tag"><strong>100,000</strong>FCFA+</span>
+      </div>
+      <div class="addon-name">Drone Coverage</div>
+      <p class="addon-desc">Full-day aerial cinematography and photography for breathtaking perspectives.</p>
+    </div>
+
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- PHOTO STUDIO SESSION -->
+<section class="section studio-session" id="sessions">
+  <div class="reveal">
+    <div class="studio-eyebrow-row">
+      <span class="studio-eyebrow-line"></span>
+      <span class="studio-eyebrow-text">Exclusive/Collections</span>
+    </div>
+    <h2 class="studio-title">Photo Studio Session</h2>
+    <p class="studio-subtitle">Professional studio portraits with expert lighting, unlimited retouched images, and a seamless experience.</p>
+    <!-- Tabs -->
+    <div class="studio-tabs">
+      <button class="studio-tab active" onclick="switchStudioTab(this,'individual')">Individual Sessions</button>
+      <button class="studio-tab" onclick="switchStudioTab(this,'group')">Family &amp; Group</button>
+    </div>
+  </div>
+
+  <!-- Individual Sessions Panel -->
+  <div class="studio-panel active" id="panel-individual">
+    <div class="studio-tiers reveal">
+      <div class="studio-tier" onclick="selectStudioTier(this,'10,000 FCFA — 1 Outfit')">
+        <span class="studio-tier-price">10,000</span>
+        <span class="studio-tier-currency">FCFA</span>
+        <div class="studio-tier-divider"></div>
+        <span class="studio-tier-label">1 Outfit</span>
+      </div>
+      <div class="studio-tier" onclick="selectStudioTier(this,'20,000 FCFA — 2 Outfit')">
+        <span class="studio-tier-price">20,000</span>
+        <span class="studio-tier-currency">FCFA</span>
+        <div class="studio-tier-divider"></div>
+        <span class="studio-tier-label">2 Outfits</span>
+      </div>
+      <div class="studio-tier" onclick="selectStudioTier(this,'25,000 FCFA — 3 Outfits')">
+        <span class="studio-tier-price">25,000</span>
+        <span class="studio-tier-currency">FCFA</span>
+        <div class="studio-tier-divider"></div>
+        <span class="studio-tier-label">3 Outfits</span>
+      </div>
+      <div class="studio-tier" onclick="selectStudioTier(this,'35,000 FCFA — 4 Outfits')">
+        <span class="studio-tier-price">35,000</span>
+        <span class="studio-tier-currency">FCFA</span>
+        <div class="studio-tier-divider"></div>
+        <span class="studio-tier-label">4 Outfits</span>
+      </div>
+      <div class="studio-tier" onclick="selectStudioTier(this,'40,000 FCFA — 5 Outfits')">
+        <span class="studio-tier-price">40,000</span>
+        <span class="studio-tier-currency">FCFA</span>
+        <div class="studio-tier-divider"></div>
+        <span class="studio-tier-label">5 Outfits</span>
+      </div>
+      <div class="studio-tier" onclick="selectStudioTier(this,'50,000 FCFA — 6 Outfits')">
+        <span class="studio-tier-price">50,000</span>
+        <span class="studio-tier-currency">FCFA</span>
+        <div class="studio-tier-divider"></div>
+        <span class="studio-tier-label">6 Outfits</span>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <h3 class="studio-addons-title">Session Add-Ons</h3>
+      <div class="studio-addons-grid">
+        <div class="studio-addon" onclick="toggleStudioAddon(this,'Outdoor shoots in Yaounde — +10,000 FCFA')">
+          <span class="studio-addon-name">Outdoor shoots in Yaounde</span>
+          <span class="studio-addon-price">+10,000 FCFA</span>
+        </div>
+        <div class="studio-addon" onclick="toggleStudioAddon(this,'MakeUp Session — +10,000 FCFA')">
+          <span class="studio-addon-name">MakeUp Session</span>
+          <span class="studio-addon-price">+10,000 FCFA</span>
+        </div>
+      </div>
+      <div class="studio-note">
+        <div class="studio-note-icon">i</div>
+        <span>Unlimited professionally retouched images via download link.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Family & Group Panel -->
+  <div class="studio-panel" id="panel-group">
+    <div class="studio-tiers reveal" style="grid-template-columns:repeat(4,1fr)">
+      <div class="studio-tier" onclick="selectStudioTier(this,'20,000 FCFA — 1 Outfit')">
+        <span class="studio-tier-price">20,000</span>
+        <span class="studio-tier-currency">FCFA</span>
+        <div class="studio-tier-divider"></div>
+        <span class="studio-tier-label">1 Outfit</span>
+      </div>
+      <div class="studio-tier" onclick="selectStudioTier(this,'35,000 FCFA — 2 Outfits')">
+        <span class="studio-tier-price">35,000</span>
+        <span class="studio-tier-currency">FCFA</span>
+        <div class="studio-tier-divider"></div>
+        <span class="studio-tier-label">2 Outfits</span>
+      </div>
+      <div class="studio-tier" onclick="selectStudioTier(this,'50,000 FCFA — 3 Outfits')">
+        <span class="studio-tier-price">50,000</span>
+        <span class="studio-tier-currency">FCFA</span>
+        <div class="studio-tier-divider"></div>
+        <span class="studio-tier-label">3 Outfits</span>
+      </div>
+      <div class="studio-tier" onclick="selectStudioTier(this,'70,000 FCFA — 4 Outfits')">
+        <span class="studio-tier-price">70,000</span>
+        <span class="studio-tier-currency">FCFA</span>
+        <div class="studio-tier-divider"></div>
+        <span class="studio-tier-label">4 Outfits</span>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <h3 class="studio-addons-title">Session Add-Ons</h3>
+      <div class="studio-addons-grid">
+        <div class="studio-addon" onclick="toggleStudioAddon(this,'Outdoor shoots in Yaounde — +10,000 FCFA')">
+          <span class="studio-addon-name">Outdoor shoots in Yaounde</span>
+          <span class="studio-addon-price">+10,000 FCFA</span>
+        </div>
+        <div class="studio-addon" onclick="toggleStudioAddon(this,'MakeUp Session — +10,000 FCFA')">
+          <span class="studio-addon-name">MakeUp Session</span>
+          <span class="studio-addon-price">+10,000 FCFA</span>
+        </div>
+      </div>
+      <div class="studio-note">
+        <div class="studio-note-icon">i</div>
+        <span>Unlimited professionally retouched images via download link.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- PORTFOLIO -->
+<section class="portfolio" id="portfolio">
+  <div class="portfolio-header reveal">
+    <div>
+      <p class="section-eyebrow" style="color:var(--gold)">Our Work</p>
+      <h2 class="section-title" style="color:var(--white)">Port<em style="color:var(--gold)">folio</em></h2>
+    </div>
+    <div class="portfolio-filters">
+      <button class="filter-btn active" onclick="filterPortfolio(this,'all')">All</button>
+      <button class="filter-btn" onclick="filterPortfolio(this,'wedding')">Weddings</button>
+      <button class="filter-btn" onclick="filterPortfolio(this,'portrait')">Portraits</button>
+      <button class="filter-btn" onclick="filterPortfolio(this,'fashion')">Studio</button>
+      <button class="filter-btn" onclick="filterPortfolio(this,'event')">Events</button>
+    </div>
+  </div>
+  <div class="portfolio-grid" id="portfolioGrid">
+    <div class="portfolio-item" data-cat="portrait" onclick="openLightbox(0)">
+      <img src="portfolio%20Images/Portraits/bloodsis.jpeg" alt="Portrait">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="portrait" onclick="openLightbox(1)">
+      <img src="portfolio%20Images/Portraits/baby.jpeg" alt="Portrait">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="portrait" onclick="openLightbox(2)">
+      <img src="portfolio%20Images/Portraits/bloodsis1.jpeg" alt="Portrait">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="portrait" onclick="openLightbox(3)">
+      <img src="portfolio%20Images/Portraits/Bosslady.jpeg" alt="Portrait">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="portrait" onclick="openLightbox(4)">
+      <img src="portfolio%20Images/Portraits/bossman.jpeg" alt="Portrait">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="portrait" onclick="openLightbox(5)">
+      <img src="portfolio%20Images/Portraits/bossman1.jpeg" alt="Portrait">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="portrait" onclick="openLightbox(6)">
+      <img src="portfolio%20Images/Portraits/boyHoodie.jpeg" alt="Portrait">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="portrait" onclick="openLightbox(7)">
+      <img src="portfolio%20Images/Portraits/boysenator.jpeg" alt="Portrait">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="portrait" onclick="openLightbox(8)">
+      <img src="portfolio%20Images/Portraits/whiteMama.jpeg" alt="Portrait">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="portrait" onclick="openLightbox(9)">
+      <img src="portfolio%20Images/Portraits/smiley.jpeg" alt="Portrait">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="portrait" onclick="openLightbox(10)">
+      <img src="portfolio%20Images/Portraits/rednotice.jpeg" alt="Portrait">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="portrait" onclick="openLightbox(11)">
+      <img src="portfolio%20Images/Portraits/redmama.jpeg" alt="Portrait">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="portrait" onclick="openLightbox(12)">
+      <img src="portfolio%20Images/Portraits/Priscille4.jpeg" alt="Portrait">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="portrait" onclick="openLightbox(13)">
+      <img src="portfolio%20Images/Portraits/Priscille3.jpeg" alt="Portrait">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="portrait" onclick="openLightbox(14)">
+      <img src="portfolio%20Images/Portraits/Priscille.jpeg" alt="Portrait">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="portrait" onclick="openLightbox(15)">
+      <img src="portfolio%20Images/Portraits/port2.jpeg" alt="Portrait">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="portrait" onclick="openLightbox(16)">
+      <img src="portfolio%20Images/Portraits/port.jpeg" alt="Portrait">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="portrait" onclick="openLightbox(17)">
+      <img src="portfolio%20Images/Portraits/Oldmummy.jpeg" alt="Portrait">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(18)">
+      <img src="portfolio%20Images/Wedding/1.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(19)">
+      <img src="portfolio%20Images/Wedding/10.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(20)">
+      <img src="portfolio%20Images/Wedding/2.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(21)">
+      <img src="portfolio%20Images/Wedding/3.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(22)">
+      <img src="portfolio%20Images/Wedding/4.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(23)">
+      <img src="portfolio%20Images/Wedding/5.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(24)">
+      <img src="portfolio%20Images/Wedding/6.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(25)">
+      <img src="portfolio%20Images/Wedding/7.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(26)">
+      <img src="portfolio%20Images/Wedding/8.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(27)">
+      <img src="portfolio%20Images/Wedding/9.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(28)">
+      <img src="portfolio%20Images/Wedding/allen%24leslie.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(29)">
+      <img src="portfolio%20Images/Wedding/allen%24leslie1.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(30)">
+      <img src="portfolio%20Images/Wedding/allen%26leslie.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(31)">
+      <img src="portfolio%20Images/Wedding/brytte.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(32)">
+      <img src="portfolio%20Images/Wedding/bwuti.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(33)">
+      <img src="portfolio%20Images/Wedding/Cintha.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(34)">
+      <img src="portfolio%20Images/Wedding/Derick%24Giselle.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(35)">
+      <img src="portfolio%20Images/Wedding/dolphine.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(36)">
+      <img src="portfolio%20Images/Wedding/dop%24rudy.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(37)">
+      <img src="portfolio%20Images/Wedding/eddy.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(38)">
+      <img src="portfolio%20Images/Wedding/flawless.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(39)">
+      <img src="portfolio%20Images/Wedding/flawless1.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(40)">
+      <img src="portfolio%20Images/Wedding/Gissele.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(41)">
+      <img src="portfolio%20Images/Wedding/inaris.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(42)">
+      <img src="portfolio%20Images/Wedding/Inaris1.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(43)">
+      <img src="portfolio%20Images/Wedding/Inaris3.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(44)">
+      <img src="portfolio%20Images/Wedding/k.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(45)">
+      <img src="portfolio%20Images/Wedding/Kar.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(46)">
+      <img src="portfolio%20Images/Wedding/Kareen.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(47)">
+      <img src="portfolio%20Images/Wedding/Kareen1.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="event" onclick="openLightbox(48)">
+      <img src="portfolio%20Images/Events/bd.jpeg" alt="Event photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="event" onclick="openLightbox(49)">
+      <img src="portfolio%20Images/Events/Christelle.jpeg" alt="Event photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="event" onclick="openLightbox(50)">
+      <img src="portfolio%20Images/Events/dadBD.jpeg" alt="Event photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="event" onclick="openLightbox(51)">
+      <img src="portfolio%20Images/Events/dadBD1.jpeg" alt="Event photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="event" onclick="openLightbox(52)">
+      <img src="portfolio%20Images/Events/engagement.jpeg" alt="Event photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="event" onclick="openLightbox(53)">
+      <img src="portfolio%20Images/Events/friend.jpeg" alt="Event photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="event" onclick="openLightbox(54)">
+      <img src="portfolio%20Images/Events/Jose.jpeg" alt="Event photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="event" onclick="openLightbox(55)">
+      <img src="portfolio%20Images/Events/leila.jpeg" alt="Event photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="event" onclick="openLightbox(56)">
+      <img src="portfolio%20Images/Events/mbah.jpeg" alt="Event photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="event" onclick="openLightbox(57)">
+      <img src="portfolio%20Images/Events/teclaire.jpeg" alt="Event photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="event" onclick="openLightbox(58)">
+      <img src="portfolio%20Images/Events/Unknown.jpeg" alt="Event photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="event" onclick="openLightbox(59)">
+      <img src="portfolio%20Images/Events/unknown1.jpeg" alt="Event photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(60)">
+      <img src="portfolio%20Images/Studio/1.jpeg" alt="Studio photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(61)">
+      <img src="portfolio%20Images/Studio/2.jpeg" alt="Studio photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(62)">
+      <img src="portfolio%20Images/Studio/3.jpeg" alt="Studio photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(63)">
+      <img src="portfolio%20Images/Studio/4.jpeg" alt="Studio photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(64)">
+      <img src="portfolio%20Images/Studio/5.jpeg" alt="Studio photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(65)">
+      <img src="portfolio%20Images/Studio/6.jpeg" alt="Studio photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(66)">
+      <img src="portfolio%20Images/Studio/7.jpeg" alt="Studio photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(67)">
+      <img src="portfolio%20Images/Studio/8.jpeg" alt="Studio photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(68)">
+      <img src="portfolio%20Images/Studio/9.jpeg" alt="Studio photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(69)">
+      <img src="portfolio%20Images/Studio/10.jpeg" alt="Studio photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(70)">
+      <img src="portfolio%20Images/Studio/11.jpeg" alt="Studio photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(71)">
+      <img src="portfolio%20Images/Studio/12.jpeg" alt="Studio photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(72)">
+      <img src="portfolio%20Images/Studio/13.jpeg" alt="Studio photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(73)">
+      <img src="portfolio%20Images/Studio/14.jpeg" alt="Studio photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(74)">
+      <img src="portfolio%20Images/Studio/15.jpeg" alt="Studio photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(75)">
+      <img src="portfolio%20Images/Studio/16.jpeg" alt="Studio photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(76)">
+      <img src="portfolio%20Images/Studio/17.jpeg" alt="Studio photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(77)">
+      <img src="portfolio%20Images/Studio/18.jpeg" alt="Studio photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(78)">
+      <img src="portfolio%20Images/Studio/19.jpeg" alt="Studio photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(79)">
+      <img src="portfolio%20Images/Studio/20.jpeg" alt="Studio photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(80)">
+      <img src="portfolio%20Images/Studio/21.jpeg" alt="Studio photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(81)">
+      <img src="portfolio%20Images/Studio/22.jpeg" alt="Studio photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(82)">
+      <img src="portfolio%20Images/Studio/23.jpeg" alt="Studio photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(83)">
+      <img src="portfolio%20Images/Studio/24.jpeg" alt="Studio photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(84)">
+      <img src="portfolio%20Images/Studio/25.jpeg" alt="Studio photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(85)">
+      <img src="portfolio%20Images/Studio/26.jpeg" alt="Studio photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(86)">
+      <img src="portfolio%20Images/Studio/27.jpeg" alt="Studio photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(87)">
+      <img src="portfolio%20Images/Studio/28.jpeg" alt="Studio photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(88)">
+      <img src="portfolio%20Images/Studio/29.jpeg" alt="Studio photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(89)">
+      <img src="portfolio%20Images/Studio/30.jpeg" alt="Studio photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(90)">
+      <img src="portfolio%20Images/Studio/31.jpeg" alt="Studio photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(91)">
+      <img src="portfolio%20Images/Studio/32.jpeg" alt="Studio photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(92)">
+      <img src="portfolio%20Images/Studio/33.jpeg" alt="Studio photography">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">×</button>
+  <button class="lightbox-prev" onclick="prevLightbox()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+  <img class="lightbox-img" id="lightboxImg" src="" alt="Portfolio image">
+  <button class="lightbox-next" onclick="nextLightbox()"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
+</div>
+
+<div class="gold-divider"></div>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="reveal">
+    <div class="testimonials-eyebrow-row">
+      <span class="testimonials-eyebrow-line"></span>
+      <span class="testimonials-eyebrow-text">Kind Words</span>
+    </div>
+    <div class="testimonials-heading">
+      <span class="t-line1">Love letters</span>
+      <span class="t-line2">from our clients</span>
+    </div>
+    <p class="testimonials-subtitle">Nothing speaks louder than the words of those we've had the honor to serve.</p>
+  </div>
+
+  <div class="testimonials-viewport reveal">
+    <div class="testimonials-track" id="testimonialsTrack">
+
+      <!-- Page 1 -->
+      <div class="t-page">
+        <div class="t-card">
+          <div class="t-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div class="t-name">Amelia &amp; Jean-Claude</div>
+          <p class="t-quote">"Man you did a great job, you capture every soul and perfect angle of our day, your work caught emotions that we will live to preserve. looking at the the images with such big smiles on our faces."</p>
+          <div class="t-meta">wedding photography 2025</div>
+        </div>
+        <div class="t-card">
+          <div class="t-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div class="t-name">Sophie &amp; Martin</div>
+          <p class="t-quote">"Man you did a great job, you capture every soul and perfect angle of our day, your work caught emotions that we will live to preserve. looking at the the images with such big smiles on our faces."</p>
+          <div class="t-meta">wedding photography 2025</div>
+        </div>
+      </div>
+
+      <!-- Page 2 -->
+      <div class="t-page">
+        <div class="t-card">
+          <div class="t-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div class="t-name">Marcus &amp; Adaeze</div>
+          <p class="t-quote">"We're so grateful for the images — they captured the raw emotion of our relationship so beautifully. These are photographs we will treasure for generations to come."</p>
+          <div class="t-meta">couple session 2025</div>
+        </div>
+        <div class="t-card">
+          <div class="t-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div class="t-name">Christine Mbarga</div>
+          <p class="t-quote">"Our annual corporate shoot was elevated to a completely new standard. Professional, creative, and effortlessly put-together. I recommend StewdioOne without any hesitation."</p>
+          <div class="t-meta">corporate photography 2025</div>
+        </div>
+      </div>
+
+      <!-- Page 3 -->
+      <div class="t-page">
+        <div class="t-card">
+          <div class="t-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div class="t-name">Isabelle Ngo</div>
+          <p class="t-quote">"The studio session was an absolute dream. The lighting, the direction, the final images — everything felt intentional and elevated. I've never felt more confident in front of a camera."</p>
+          <div class="t-meta">studio session 2025</div>
+        </div>
+        <div class="t-card">
+          <div class="t-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div class="t-name">The Bello Family</div>
+          <p class="t-quote">"Such a warm and welcoming team. They made the whole family feel so at ease. The photos came out stunning — every expression, every laugh perfectly preserved."</p>
+          <div class="t-meta">family session 2025</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="testimonials-dots" id="tDots">
+    <button class="t-dot active" onclick="goTestimonial(0)" aria-label="Page 1"></button>
+    <button class="t-dot" onclick="goTestimonial(1)" aria-label="Page 2"></button>
+    <button class="t-dot" onclick="goTestimonial(2)" aria-label="Page 3"></button>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- BOOKING -->
+<section class="booking" id="booking">
+  <p class="section-eyebrow reveal" style="color:var(--gold)">Reserve Your Date</p>
+  <h2 class="section-title reveal" style="color:var(--white)">Let's Create<br><em style="color:var(--gold)">Together</em></h2>
+  <div class="booking-grid">
+    <div class="booking-info reveal">
+      <h3>Book Your Session</h3>
+      <p>Fill in the details below and we'll be in touch within 24 hours to confirm your booking and discuss your vision.</p>
+      <div class="booking-info-items">
+        <div class="booking-info-item">
+          <div class="info-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div class="info-text"><strong>Studio Location</strong><span>Yaoundé, Cameroon</span></div>
+        </div>
+        <div class="booking-info-item">
+          <div class="info-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div class="info-text"><strong>Phone & WhatsApp</strong><span>+237 654 383 926</span></div>
+        </div>
+        <div class="booking-info-item">
+          <div class="info-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div class="info-text"><strong>Email</strong><span>stanleymbajingtata@gmail.com</span></div>
+        </div>
+        <div class="booking-info-item">
+          <div class="info-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div class="info-text"><strong>Working Hours</strong><span>Mon–Sat, 9am – 7pm</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <form class="booking-form" id="bookingForm" onsubmit="submitBooking(event)">
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" id="bName" placeholder="Your full name" required>
+        </div>
+        <div class="form-group">
+          <label>Email Address *</label>
+          <input type="email" id="bEmail" placeholder="your@email.com" required>
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" id="bPhone" placeholder="+237 ...">
+        </div>
+        <div class="form-group">
+          <label>Session Type</label>
+          <select id="bSession">
+            <option value="">Select session type</option>
+            <option>Wedding</option>
+            <option>Engagement</option>
+            <option>Birthday</option>
+            <option>Graduation</option>
+            <option>Corporate</option>
+            <option>Family</option>
+            <option>Fashion</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Preferred Date *</label>
+          <input type="date" id="bDate" required>
+        </div>
+        <div class="form-group">
+          <label>Preferred Time</label>
+          <input type="time" id="bTime">
+        </div>
+        <div class="form-group form-full">
+          <label>Package</label>
+          <select id="bPackage">
+            <option value="">Select a package</option>
+            <option>Bronze — 350,000 FCFA</option>
+            <option>Silver — 500,000 FCFA</option>
+            <option>Gold — 1,000,000 FCFA</option>
+            <option>Prestige — Custom</option>
+          </select>
+        </div>
+        <div class="form-group form-full form-addons">
+          <label>Selected Add-Ons</label>
+          <input type="text" id="bAddons" placeholder="Click add-ons above to select" readonly>
+        </div>
+        <div class="form-group form-full">
+          <label>Event Location</label>
+          <input type="text" id="bLocation" placeholder="City or venue">
+        </div>
+        <div class="form-group form-full">
+          <label>Special Notes</label>
+          <textarea id="bNotes" placeholder="Tell us about your vision, any special requests..."></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Send Booking Request →</button>
+        <div class="success-msg" id="bookingSuccess">
+          <h3>✓ Booking Received!</h3>
+          <p>Thank you for reaching out. We'll confirm your session within 24 hours.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <p class="section-eyebrow reveal">Get In Touch</p>
+  <h2 class="section-title reveal">Let's Start a <em>Conversation</em></h2>
+  <div class="contact-grid">
+    <div class="reveal">
+      <div class="contact-details">
+        <h3>Find Us <em>Here</em></h3>
+        <div class="contact-items">
+          <div class="contact-item">
+            <div class="c-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div>
+              <span class="c-label">Address</span>
+              <span class="c-val">Bastos Quarter, Yaoundé<br>Centre Region, Cameroon</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="c-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+            <div>
+              <span class="c-label">Phone</span>
+              <span class="c-val">+237 654 383 926</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="c-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div>
+              <span class="c-label">Email</span>
+              <span class="c-val">stanleymbajingtata@gmail.com</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="c-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <div>
+              <span class="c-label">Working Hours</span>
+              <span class="c-val">Monday – Saturday<br>9:00 AM – 7:00 PM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="contact-card">
+        <h3 class="contact-card-title">Choose Your Preferred Contact Method</h3>
+        <p class="contact-card-subtitle">We're available to answer your questions. Contact us instantly using your preferred method.</p>
+        <div class="contact-actions">
+          <a class="contact-cta primary" href="tel:+237654383926">
+            <span class="icon">📞</span>
+            Call Us
+          </a>
+          <a class="contact-cta secondary" href="https://wa.me/237654383926" target="_blank" rel="noopener noreferrer">
+            <span class="icon">💬</span>
+            WhatsApp
+          </a>
+        </div>
+        <p class="contact-note">We typically respond within a few minutes during business hours.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-watermark">STEWDIOONE</div>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo">STEWDIO<span>ONE</span></a>
+      <p style="margin-top:1rem">Moments become art. We photograph life itself — with elegance, intention, and an eye for the extraordinary.</p>
+      <div class="social-links" style="margin-top:1.5rem">
+        <a class="social-link" href="#" aria-label="Instagram">IG</a>
+        <a class="social-link" href="#" aria-label="Facebook">FB</a>
+        <a class="social-link" href="#" aria-label="TikTok">TK</a>
+        <a class="social-link" href="#" aria-label="YouTube">YT</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#packages">Packages</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#booking">Book Session</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#">FAQs</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Newsletter</h4>
+      <p style="font-size:.78rem;color:rgba(255,255,255,.4);line-height:1.7;margin-bottom:1rem">Subscribe for tips, stories, and exclusive offers from the studio.</p>
+      <div class="newsletter-form">
+        <input type="email" placeholder="your@email.com">
+        <button type="button">Subscribe</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 <a href="#">STEWDIOONE</a>. All rights reserved.</span>
+    <span class="footer-copy">Crafted with elegance in Yaoundé</span>
+  </div>
+</footer>
+
+<!-- SERVICE DETAIL PAGE OVERLAY -->
+<div class="service-page" id="servicePage">
+
+  <!-- Back -->
+  <div class="sp-back-bar">
+    <button class="sp-back-btn" onclick="closeServicePage()">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      Back
+    </button>
+  </div>
+
+  <!-- Hero -->
+  <div class="sp-hero" id="spHero">
+    <div class="sp-hero-bg" id="spHeroBg"></div>
+    <div class="sp-hero-content">
+      <div class="sp-breadcrumb">STEWDIOONE / <span>SERVICES</span></div>
+      <h1 class="sp-service-title" id="spTitle">Wedding Photography</h1>
+      <p class="sp-service-desc" id="spDesc">Cinematic storytelling for your most important day. Full coverage from preparations to reception, capturing every sacred moment with artistry and emotion.</p>
+    </div>
+  </div>
+
+  <div class="sp-divider"></div>
+
+  <!-- Recent Sessions -->
+  <div class="sp-sessions">
+    <div class="sp-sessions-eyebrow">
+      <span class="sp-sessions-line"></span>
+      <span class="sp-sessions-label">Client / Stories</span>
+    </div>
+    <h2 class="sp-sessions-title">Recent Sessions</h2>
+
+    <div class="sp-grid" id="spGrid">
+      <!-- populated by JS -->
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="sp-cta">
+    <h2 class="sp-cta-title">Ready to Create Your Story?</h2>
+    <p class="sp-cta-subtitle">Every great story begins with a single moment. Let us help you capture yours with the artistry it deserves.</p>
+    <div class="sp-cta-btns">
+      <button class="sp-cta-link" onclick="closeServicePage();setTimeout(()=>document.getElementById('booking').scrollIntoView({behavior:'smooth'}),400)">
+        Book Your Date
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+      <button class="sp-cta-link" onclick="closeServicePage();setTimeout(()=>document.getElementById('services').scrollIntoView({behavior:'smooth'}),400)">
+        Explore More Services
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<!-- PORTFOLIO DETAIL PAGE -->
+<div class="portfolio-detail" id="portfolioDetail">
+  <div class="portfolio-detail-inner">
+    <div class="pd-back-bar">
+      <button class="pd-back-btn" onclick="closePortfolioDetail()">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to Portfolio
+      </button>
+    </div>
+    <div class="pd-hero">
+      <div class="pd-hero-bg" id="pdHeroBg"></div>
+      <div class="pd-hero-content">
+        <div class="pd-breadcrumb"><span id="pdServiceLabel">Portfolio</span></div>
+        <h1 class="pd-heading" id="pdHeading">Session Title</h1>
+        <p class="pd-description" id="pdDescription"></p>
+        <div class="pd-meta">
+          <span><strong>Date:</strong> <span id="pdDate"></span></span>
+          <span><strong>Location:</strong> <span id="pdLocation"></span></span>
+        </div>
+        <div class="pd-story" id="pdStory"></div>
+        <span class="pd-count" id="pdCount">0 Photos</span>
+      </div>
+    </div>
+
+    <div class="pd-section">
+      <h2>Gallery</h2>
+      <div class="pd-gallery" id="pdGallery"></div>
+    </div>
+
+    <div class="pd-section">
+      <h2>You May Also Like</h2>
+      <div class="pd-related" id="pdRelated"></div>
+    </div>
+
+    <div class="pd-cta-row">
+      <button class="pd-cta-btn primary" onclick="closePortfolioDetail();setTimeout(()=>document.getElementById('booking').scrollIntoView({behavior:'smooth'}),200)">Book This Session</button>
+      <button class="pd-cta-btn secondary" onclick="closePortfolioDetail()">Return to Portfolio</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// NAV SCROLL
+window.addEventListener('scroll',()=>{
+  const nav=document.getElementById('navbar');
+  nav.classList.toggle('scrolled',window.scrollY>80);
+});
+
+// HAMBURGER
+document.getElementById('hamburger').addEventListener('click',()=>{
+  document.getElementById('mobileMenu').classList.add('open');
+});
+document.getElementById('mobileClose').addEventListener('click',()=>{
+  document.getElementById('mobileMenu').classList.remove('open');
+});
+function closeMobile(){document.getElementById('mobileMenu').classList.remove('open')}
+
+// HERO SLIDER
+let currentSlide=0;
+const slides=document.querySelectorAll('.hero-slide');
+const heroDots=document.querySelectorAll('.hero-dot');
+function goSlide(n){
+  slides[currentSlide].classList.remove('active');
+  heroDots[currentSlide].classList.remove('active');
+  currentSlide=(n+slides.length)%slides.length;
+  slides[currentSlide].classList.add('active');
+  heroDots[currentSlide].classList.add('active');
+}
+setInterval(()=>goSlide(currentSlide+1),5000);
+
+// SCROLL REVEAL
+const revealEls=document.querySelectorAll('.reveal');
+const revealObs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:.12});
+revealEls.forEach(el=>revealObs.observe(el));
+
+// COUNTER ANIMATION
+const counters=document.querySelectorAll('.counter');
+const counterObs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const el=e.target;
+      const target=+el.dataset.target;
+      const duration=1800;
+      const step=target/60;
+      let current=0;
+      const timer=setInterval(()=>{
+        current+=step;
+        if(current>=target){current=target;clearInterval(timer);}
+        el.textContent=Math.floor(current);
+      },duration/60);
+      counterObs.unobserve(el);
+    }
+  });
+},{threshold:.5});
+counters.forEach(c=>counterObs.observe(c));
+
+// PORTFOLIO FILTER & LIGHTBOX
+const portfolioImgs=[
+  'portfolio%20Images/Portraits/bloodsis.jpeg',
+  'portfolio%20Images/Portraits/baby.jpeg',
+  'portfolio%20Images/Portraits/bloodsis1.jpeg',
+  'portfolio%20Images/Portraits/Bosslady.jpeg',
+  'portfolio%20Images/Portraits/bossman.jpeg',
+  'portfolio%20Images/Portraits/bossman1.jpeg',
+  'portfolio%20Images/Portraits/boyHoodie.jpeg',
+  'portfolio%20Images/Portraits/boysenator.jpeg',
+  'portfolio%20Images/Portraits/whiteMama.jpeg',
+  'portfolio%20Images/Portraits/smiley.jpeg',
+  'portfolio%20Images/Portraits/rednotice.jpeg',
+  'portfolio%20Images/Portraits/redmama.jpeg',
+  'portfolio%20Images/Portraits/Priscille4.jpeg',
+  'portfolio%20Images/Portraits/Priscille3.jpeg',
+  'portfolio%20Images/Portraits/Priscille.jpeg',
+  'portfolio%20Images/Portraits/port2.jpeg',
+  'portfolio%20Images/Portraits/port.jpeg',
+  'portfolio%20Images/Portraits/Oldmummy.jpeg',
+  'portfolio%20Images/Wedding/1.jpeg',
+  'portfolio%20Images/Wedding/10.jpeg',
+  'portfolio%20Images/Wedding/2.jpeg',
+  'portfolio%20Images/Wedding/3.jpeg',
+  'portfolio%20Images/Wedding/4.jpeg',
+  'portfolio%20Images/Wedding/5.jpeg',
+  'portfolio%20Images/Wedding/6.jpeg',
+  'portfolio%20Images/Wedding/7.jpeg',
+  'portfolio%20Images/Wedding/8.jpeg',
+  'portfolio%20Images/Wedding/9.jpeg',
+  'portfolio%20Images/Wedding/allen%24leslie.jpeg',
+  'portfolio%20Images/Wedding/allen%24leslie1.jpeg',
+  'portfolio%20Images/Wedding/allen%26leslie.jpeg',
+  'portfolio%20Images/Wedding/brytte.jpeg',
+  'portfolio%20Images/Wedding/bwuti.jpeg',
+  'portfolio%20Images/Wedding/Cintha.jpeg',
+  'portfolio%20Images/Wedding/Derick%24Giselle.jpeg',
+  'portfolio%20Images/Wedding/dolphine.jpeg',
+  'portfolio%20Images/Wedding/dop%24rudy.jpeg',
+  'portfolio%20Images/Wedding/eddy.jpeg',
+  'portfolio%20Images/Wedding/flawless.jpeg',
+  'portfolio%20Images/Wedding/flawless1.jpeg',
+  'portfolio%20Images/Wedding/Gissele.jpeg',
+  'portfolio%20Images/Wedding/inaris.jpeg',
+  'portfolio%20Images/Wedding/Inaris1.jpeg',
+  'portfolio%20Images/Wedding/Inaris3.jpeg',
+  'portfolio%20Images/Wedding/k.jpeg',
+  'portfolio%20Images/Wedding/Kar.jpeg',
+  'portfolio%20Images/Wedding/Kareen.jpeg',
+  'portfolio%20Images/Wedding/Kareen1.jpeg',
+  'portfolio%20Images/Wedding/KB.jpeg',
+  'portfolio%20Images/Wedding/lang.jpeg',
+  'portfolio%20Images/Wedding/Leo%24wendy.jpeg',
+  'portfolio%20Images/Wedding/leo.jpeg',
+  'portfolio%20Images/Wedding/lovebirds.jpeg',
+  'portfolio%20Images/Wedding/M%24M.jpeg',
+  'portfolio%20Images/Wedding/Marc%24Marion.jpeg',
+  'portfolio%20Images/Wedding/mbolo.jpeg',
+  'portfolio%20Images/Wedding/mbw.jpeg',
+  'portfolio%20Images/Wedding/melvis.jpeg',
+  'portfolio%20Images/Wedding/melvis1.jpeg',
+  'portfolio%20Images/Wedding/melvis2.jpeg',
+  'portfolio%20Images/Wedding/melvis4.jpeg',
+  'portfolio%20Images/Wedding/Mern.jpeg',
+  'portfolio%20Images/Wedding/mernice.jpeg',
+  'portfolio%20Images/Wedding/mernice1.jpeg',
+  'portfolio%20Images/Wedding/Mernice2.jpeg',
+  'portfolio%20Images/Wedding/Mernice4.jpeg',
+  'portfolio%20Images/Wedding/myriam.jpeg',
+  'portfolio%20Images/Wedding/myriam1.jpeg',
+  'portfolio%20Images/Wedding/remyclarkson.jpeg',
+  'portfolio%20Images/Wedding/Sama.jpeg',
+  'portfolio%20Images/Wedding/Samalang.jpeg',
+  'portfolio%20Images/Wedding/Sama-lang.jpeg',
+  'portfolio%20Images/Wedding/Sama-Lang1.jpeg',
+  'portfolio%20Images/Wedding/stewdioone_1783548056178.jpeg',
+  'portfolio%20Images/Wedding/stewdioone_1783548056476.jpeg',
+  'portfolio%20Images/Wedding/stewdioone_1783548065039.jpeg',
+  'portfolio%20Images/Wedding/stewdioone_1783548073140.jpeg',
+  'portfolio%20Images/Wedding/stewdioone_1783548094440.jpeg',
+  'portfolio%20Images/Wedding/stewdioone_1783548775611.jpeg',
+  'portfolio%20Images/Wedding/stewdioone_1783549065635.jpeg',
+  'portfolio%20Images/Wedding/stewdioone_1783549102032.jpeg',
+  'portfolio%20Images/Wedding/stewdioone_1783549116984.jpeg',
+  'portfolio%20Images/Wedding/stewdioone_1783549564645.jpeg',
+  'portfolio%20Images/Wedding/stewdioone_1783550043939.jpeg',
+  'portfolio%20Images/Wedding/stewdioone_1783551411343.jpeg',
+  'portfolio%20Images/Wedding/stewdioone_1783551708200.jpeg',
+  'portfolio%20Images/Wedding/stewdioone_1783599785233.jpeg',
+  'portfolio%20Images/Wedding/stewdioone_1783603076934.jpeg',
+  'portfolio%20Images/Wedding/stewdioone_1783603078983.jpeg',
+  'portfolio%20Images/Wedding/stewdioone_1783603098996.jpeg',
+  'portfolio%20Images/Wedding/vanessa.jpeg',
+  'portfolio%20Images/Wedding/Yembe.jpeg',
+  'portfolio%20Images/Events/bd.jpeg',
+  'portfolio%20Images/Events/Christelle.jpeg',
+  'portfolio%20Images/Events/dadBD.jpeg',
+  'portfolio%20Images/Events/dadBD1.jpeg',
+  'portfolio%20Images/Events/engagement.jpeg',
+  'portfolio%20Images/Events/friend.jpeg',
+  'portfolio%20Images/Events/Jose.jpeg',
+  'portfolio%20Images/Events/leila.jpeg',
+  'portfolio%20Images/Events/mbah.jpeg',
+  'portfolio%20Images/Events/teclaire.jpeg',
+  'portfolio%20Images/Events/Unknown.jpeg',
+  'portfolio%20Images/Events/unknown1.jpeg',
+  'portfolio%20Images/Studio/1.jpeg',
+  'portfolio%20Images/Studio/2.jpeg',
+  'portfolio%20Images/Studio/3.jpeg',
+  'portfolio%20Images/Studio/4.jpeg',
+  'portfolio%20Images/Studio/5.jpeg',
+  'portfolio%20Images/Studio/6.jpeg',
+  'portfolio%20Images/Studio/7.jpeg',
+  'portfolio%20Images/Studio/8.jpeg',
+  'portfolio%20Images/Studio/9.jpeg',
+  'portfolio%20Images/Studio/10.jpeg',
+  'portfolio%20Images/Studio/11.jpeg',
+  'portfolio%20Images/Studio/12.jpeg',
+  'portfolio%20Images/Studio/13.jpeg',
+  'portfolio%20Images/Studio/14.jpeg',
+  'portfolio%20Images/Studio/15.jpeg',
+  'portfolio%20Images/Studio/16.jpeg',
+  'portfolio%20Images/Studio/17.jpeg',
+  'portfolio%20Images/Studio/18.jpeg',
+  'portfolio%20Images/Studio/19.jpeg',
+  'portfolio%20Images/Studio/20.jpeg',
+  'portfolio%20Images/Studio/21.jpeg',
+  'portfolio%20Images/Studio/22.jpeg',
+  'portfolio%20Images/Studio/23.jpeg',
+  'portfolio%20Images/Studio/24.jpeg',
+  'portfolio%20Images/Studio/25.jpeg',
+  'portfolio%20Images/Studio/26.jpeg',
+  'portfolio%20Images/Studio/27.jpeg',
+  'portfolio%20Images/Studio/28.jpeg',
+  'portfolio%20Images/Studio/29.jpeg',
+  'portfolio%20Images/Studio/30.jpeg',
+  'portfolio%20Images/Studio/31.jpeg',
+  'portfolio%20Images/Studio/32.jpeg',
+  'portfolio%20Images/Studio/33.jpeg',
+];
+let lightboxIdx=0;
+let lightboxImages=[];
+function filterPortfolio(btn,cat){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.portfolio-item').forEach(item=>{
+    item.style.display=(cat==='all'||item.dataset.cat===cat)?'block':'none';
+  });
+}
+function openLightbox(idx, images){
+  lightboxImages = images || portfolioImgs;
+  lightboxIdx = idx;
+  document.getElementById('lightboxImg').src = lightboxImages[idx];
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow='';
+}
+function nextLightbox(){
+  lightboxIdx=(lightboxIdx+1)%lightboxImages.length;
+  document.getElementById('lightboxImg').src=lightboxImages[lightboxIdx];
+}
+function prevLightbox(){
+  lightboxIdx=(lightboxIdx-1+lightboxImages.length)%lightboxImages.length;
+  document.getElementById('lightboxImg').src=lightboxImages[lightboxIdx];
+}
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('lightbox').classList.contains('open')){
+    if(e.key==='ArrowRight')nextLightbox();
+    if(e.key==='ArrowLeft')prevLightbox();
+    if(e.key==='Escape')closeLightbox();
+  }
+  if(document.getElementById('portfolioDetail').classList.contains('open')&&e.key==='Escape')closePortfolioDetail();
+  if(document.getElementById('servicePage').classList.contains('open')&&e.key==='Escape')closeServicePage();
+});
+document.getElementById('lightbox').addEventListener('click',function(e){if(e.target===this)closeLightbox();});
+
+// TESTIMONIALS
+let tIdx=0;const T_PAGES=3;let tTimer=null;
+function goTestimonial(n){
+  tIdx=((n%T_PAGES)+T_PAGES)%T_PAGES;
+  document.getElementById('testimonialsTrack').style.transform=`translateX(${-tIdx*100}%)`;
+  document.querySelectorAll('.t-dot').forEach((d,i)=>d.classList.toggle('active',i===tIdx));
+  resetTTimer();
+}
+function resetTTimer(){clearInterval(tTimer);tTimer=setInterval(()=>goTestimonial(tIdx+1),5500);}
+resetTTimer();
+
+// ADD-ONS
+let selectedAddons=[];
+document.querySelectorAll('.addon-card').forEach(card=>{
+  card.addEventListener('click',()=>{
+    const addon=card.dataset.addon;
+    card.classList.toggle('selected');
+    if(card.classList.contains('selected')){selectedAddons.push(addon);}
+    else{selectedAddons=selectedAddons.filter(a=>a!==addon);}
+    const all=[...selectedAddons,...studioAddons].join(', ');
+    document.getElementById('bAddons').value=all||'';
+  });
+});
+
+// STUDIO SESSION TABS
+function switchStudioTab(btn,panelId){
+  document.querySelectorAll('.studio-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.studio-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('panel-'+panelId).classList.add('active');
+}
+function selectStudioTier(card,value){
+  const panel=card.closest('.studio-panel');
+  panel.querySelectorAll('.studio-tier').forEach(t=>t.classList.remove('selected'));
+  card.classList.add('selected');
+  document.getElementById('bSession').value=value;
+}
+let studioAddons=[];
+function toggleStudioAddon(card,value){
+  card.classList.toggle('selected');
+  if(card.classList.contains('selected')){studioAddons.push(value);}
+  else{studioAddons=studioAddons.filter(a=>a!==value);}
+  const all=[...selectedAddons,...studioAddons].join(', ');
+  document.getElementById('bAddons').value=all||'';
+}
+
+// PACKAGE SELECTION
+function selectPackage(pkg){
+  document.getElementById('bPackage').value=pkg;
+  document.getElementById('booking').scrollIntoView({behavior:'smooth'});
+}
+
+// BOOKING SUBMIT
+function submitBooking(e){
+  e.preventDefault();
+  const form=document.getElementById('bookingForm');
+  const success=document.getElementById('bookingSuccess');
+  form.querySelectorAll('input,select,textarea').forEach(el=>el.style.display='none');
+  form.querySelector('.submit-btn').style.display='none';
+  success.style.display='block';
+}
+
+// CONTACT SUBMIT
+function submitContact(e){
+  e.preventDefault();
+  const btn=e.target.querySelector('.c-submit');
+  btn.textContent='Message Sent ✓';
+  btn.style.background='var(--gold)';
+  btn.style.color='var(--charcoal)';
+  e.target.reset();
+  setTimeout(()=>{btn.textContent='Send Message →';btn.style.background='';btn.style.color='';},3000);
+}
+
+// =====================
+// SERVICE DETAIL PAGE
+// =====================
+const SERVICE_DATA = {
+  'Wedding Photography': {
+    desc: 'Cinematic storytelling for your most important day. Full coverage from preparations to reception, capturing every sacred moment with artistry and emotion.',
+    bg: 'portfolio%20Images/Wedding/Mernice2.jpeg',
+    sessions: [
+      { id:1, name:'Bella & Benison', date:'March 15, 2026', location:'Yaoundé', img:'portfolio%20Images/Wedding/1.jpeg', featured:true, description:'An unforgettable day filled with love, laughter, and timeless memories. Every moment was captured with soft light, genuine emotion, and elegant storytelling.' },
+      { id:2, name:'Cynthia & Jean', date:'March 15, 2026', location:'Yaoundé', img:'portfolio%20Images/Wedding/2.jpeg', featured:false, description:'A refined portrait of intimate celebration, where every detail from the dress to the first dance was beautifully preserved.' },
+      { id:3, name:'Doris & Donald', date:'March 15, 2026', location:'Yaoundé', img:'portfolio%20Images/Wedding/3.jpeg', featured:false, description:'Soft golden light, stunning floral design, and heartfelt moments created a wedding gallery that feels both timeless and cinematic.' },
+      { id:4, name:'Beltha & Nathan', date:'March 15, 2026', location:'Yaoundé', img:'portfolio%20Images/Wedding/4.jpeg', featured:false, description:'Every intimate exchange and elegant portrait was recorded to reflect a day of refined beauty and emotional connection.' },
+      { id:5, name:'Mary & Dickson', date:'March 15, 2026', location:'Yaoundé', img:'portfolio%20Images/Wedding/5.jpeg', featured:false, description:'A sophisticated celebration captured with grace, where the love story unfolds through light, movement, and genuine moments.' },
+      { id:6, name:'Clara & Robert', date:'March 15, 2026', location:'Yaoundé', img:'portfolio%20Images/Wedding/6.jpeg', featured:false, description:'A luminous story of refined romance, captured with a luxurious color palette and a gentle, editorial style.' },
+      { name:'Cynthia & Jean', date:'March 15, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1519741497674-611481863552?w=700&q=80', featured:false },
+      { name:'Doris & Donald', date:'March 15, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=700&q=80', featured:false },
+      { name:'Beltha & Nathan', date:'March 15, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=700&q=80', featured:false },
+      { name:'Mary & Dickson', date:'March 15, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=700&q=80', featured:false },
+      { name:'Clara & Robert', date:'March 15, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=700&q=80', featured:false },
+    ]
+  },
+  'Studio Session': {
+    desc: 'Professional studio portraits with expert lighting and unlimited retouched images, designed for individual expression and group storytelling.',
+    bg: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=1600&q=80',
+    sessions: [
+      { name:'Sophie L.', date:'April 2, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=700&q=80', featured:true },
+      { name:'Marcus T.', date:'April 8, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1504703395950-b89145a5425b?w=700&q=80', featured:false },
+      { name:'Christine M.', date:'April 12, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1488161628813-04466f872be2?w=700&q=80', featured:false },
+      { name:'Isabelle N.', date:'May 1, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=700&q=80', featured:false },
+      { name:'David K.', date:'May 10, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=700&q=80', featured:false },
+      { name:'Amara B.', date:'May 18, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1520975661595-6453be3f7070?w=700&q=80', featured:false },
+    ]
+  },
+  'Family & Group Sessions': {
+    desc: 'Beautiful group and family portraits celebrating connection, love and bonds. Every expression preserved in stunning detail.',
+    bg: 'https://images.unsplash.com/photo-1491013516836-7db643ee125a?w=1600&q=80',
+    sessions: [
+      { name:'The Bello Family', date:'March 20, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1491013516836-7db643ee125a?w=700&q=80', featured:true },
+      { name:'The Ngo Family', date:'April 5, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=700&q=80', featured:false },
+      { name:'The Mbarga Group', date:'April 19, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=700&q=80', featured:false },
+      { name:'The Fon Family', date:'May 3, 2026', location:'Buea', img:'https://images.unsplash.com/photo-1581952976147-5a2d15560349?w=700&q=80', featured:false },
+      { name:'Celebration Group', date:'May 14, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=700&q=80', featured:false },
+      { name:'The Nguema Family', date:'May 22, 2026', location:'Douala', img:'https://images.unsplash.com/photo-1511895426328-dc8714191011?w=700&q=80', featured:false },
+    ]
+  },
+  'Pre-Wedding Shoots': {
+    desc: 'Romantic engagements and pre-wedding sessions in both studio and stunning locations around Cameroon. Tell the beginning of your love story.',
+    bg: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&q=80',
+    sessions: [
+      { name:'Clara & Paul', date:'February 14, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1519741497674-611481863552?w=700&q=80', featured:true },
+      { name:'Nadia & Eric', date:'March 1, 2026', location:'Kribi', img:'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=700&q=80', featured:false },
+      { name:'Joyce & Sam', date:'March 22, 2026', location:'Bafoussam', img:'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=700&q=80', featured:false },
+      { name:'Lena & Marc', date:'April 6, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=700&q=80', featured:false },
+      { name:'Diane & Victor', date:'April 28, 2026', location:'Douala', img:'https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=700&q=80', featured:false },
+      { name:'Flore & Kevin', date:'May 9, 2026', location:'Limbe', img:'https://images.unsplash.com/photo-1606800052052-a08af7148866?w=700&q=80', featured:false },
+    ]
+  },
+  'Birthday Coverage': {
+    desc: 'Celebrate life\'s milestones with stunning birthday, graduation and event photography that preserves every laugh, tear and milestone moment.',
+    bg: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=1600&q=80',
+    sessions: [
+      { name:'Christelle — 30th', date:'January 18, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=700&q=80', featured:true },
+      { name:'Emmanuel — Graduation', date:'February 5, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1627556704302-624286467c65?w=700&q=80', featured:false },
+      { name:'Rina — Sweet 16', date:'February 28, 2026', location:'Douala', img:'https://images.unsplash.com/photo-1504703395950-b89145a5425b?w=700&q=80', featured:false },
+      { name:'Alain — 40th', date:'March 12, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=700&q=80', featured:false },
+      { name:'Mireille — Graduation', date:'April 3, 2026', location:'Buea', img:'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=700&q=80', featured:false },
+      { name:'Kevin — 25th', date:'April 20, 2026', location:'Bafoussam', img:'https://images.unsplash.com/photo-1488161628813-04466f872be2?w=700&q=80', featured:false },
+    ]
+  },
+  'Burial Coverage': {
+    desc: 'Capturing one of life\'s most profound moments with sensitivity and care — the tears, the joy and the love that make these moments timeless.',
+    bg: 'https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=1600&q=80',
+    sessions: [
+      { name:'The Atangana Family', date:'January 10, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=700&q=80', featured:true },
+      { name:'The Ekwueme Family', date:'February 2, 2026', location:'Douala', img:'https://images.unsplash.com/photo-1491013516836-7db643ee125a?w=700&q=80', featured:false },
+      { name:'The Mbida Family', date:'February 22, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=700&q=80', featured:false },
+      { name:'The Ondoa Family', date:'March 8, 2026', location:'Bafia', img:'https://images.unsplash.com/photo-1581952976147-5a2d15560349?w=700&q=80', featured:false },
+      { name:'The Nkeng Family', date:'April 1, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1511895426328-dc8714191011?w=700&q=80', featured:false },
+      { name:'The Fouda Family', date:'April 24, 2026', location:'Mbalmayo', img:'https://images.unsplash.com/photo-1504703395950-b89145a5425b?w=700&q=80', featured:false },
+    ]
+  }
+};
+
+const PORTFOLIO_SESSIONS = [];
+const PORTFOLIO_GALLERIES = {
+  1: ['portfolio%20Images/Wedding/1.jpeg','portfolio%20Images/Wedding/7.jpeg','portfolio%20Images/Wedding/8.jpeg','portfolio%20Images/Wedding/9.jpeg','portfolio%20Images/Wedding/10.jpeg'],
+  2: ['portfolio%20Images/Wedding/2.jpeg','portfolio%20Images/Wedding/11.jpeg','portfolio%20Images/Wedding/12.jpeg','portfolio%20Images/Wedding/13.jpeg','portfolio%20Images/Wedding/14.jpeg'],
+  3: ['portfolio%20Images/Wedding/3.jpeg','portfolio%20Images/Wedding/15.jpeg','portfolio%20Images/Wedding/16.jpeg','portfolio%20Images/Wedding/17.jpeg','portfolio%20Images/Wedding/18.jpeg'],
+  4: ['portfolio%20Images/Wedding/4.jpeg','portfolio%20Images/Wedding/19.jpeg','portfolio%20Images/Wedding/20.jpeg','portfolio%20Images/Wedding/21.jpeg','portfolio%20Images/Wedding/22.jpeg'],
+  5: ['portfolio%20Images/Wedding/5.jpeg','portfolio%20Images/Wedding/23.jpeg','portfolio%20Images/Wedding/24.jpeg','portfolio%20Images/Wedding/25.jpeg','portfolio%20Images/Wedding/26.jpeg'],
+  6: ['portfolio%20Images/Wedding/6.jpeg','portfolio%20Images/Wedding/27.jpeg','portfolio%20Images/Wedding/28.jpeg','portfolio%20Images/Wedding/29.jpeg','portfolio%20Images/Wedding/30.jpeg']
+};
+var detailGalleryImages = [];
+
+function buildPortfolioSessions(){
+  const slugMap = {};
+  Object.entries(SERVICE_DATA).forEach(([service,data]) => {
+    data.sessions.forEach(item => {
+      const baseSlug = `${service} ${item.name}`
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g,'-')
+        .replace(/^-+|-+$/g,'');
+      const slug = slugMap[baseSlug] ? `${baseSlug}-${slugMap[baseSlug] + 1}` : baseSlug;
+      slugMap[baseSlug] = (slugMap[baseSlug] || 0) + 1;
+      const gallery = PORTFOLIO_GALLERIES[item.id] || [item.img];
+      PORTFOLIO_SESSIONS.push({
+        id:item.id || `${service}-${item.name}`,
+        slug,
+        title:item.name,
+        date:item.date,
+        location:item.location,
+        description:item.description || '',
+        coverImage:item.img,
+        galleryImages:gallery,
+        service,
+        story:`${item.description || 'A beautiful session captured with elegance and care.'} The day was shaped by intimate moments, cinematic details, and a celebration of love that felt both timeless and luxurious.`
+      });
+    });
+  });
+}
+
+buildPortfolioSessions();
+
+function openPortfolioDetail(slug){
+  const session = PORTFOLIO_SESSIONS.find(item => item.slug === slug);
+  if(!session) return;
+  closeServicePage();
+  const detail = document.getElementById('portfolioDetail');
+  document.getElementById('pdHeroBg').style.backgroundImage = `url('${session.coverImage}')`;
+  document.getElementById('pdServiceLabel').textContent = `${session.service}`;
+  document.getElementById('pdHeading').textContent = session.title;
+  document.getElementById('pdDescription').textContent = session.description;
+  document.getElementById('pdDate').textContent = session.date;
+  document.getElementById('pdLocation').textContent = session.location;
+  document.getElementById('pdStory').innerHTML = session.story.split('.')
+    .filter(Boolean)
+    .map(p => `<p>${p.trim()}.</p>`)
+    .join('');
+  document.getElementById('pdCount').textContent = `${session.galleryImages.length} Photos`;
+  detailGalleryImages = session.galleryImages;
+  document.getElementById('pdGallery').innerHTML = session.galleryImages.map((img, index) => `
+      <button class="pd-thumb" onclick="openLightbox(${index}, detailGalleryImages)">
+        <img src="${img}" alt="${session.title} photo ${index+1}" loading="lazy">
+      </button>
+    `).join('');
+  const related = PORTFOLIO_SESSIONS.filter(item => item.service === session.service && item.slug !== session.slug).slice(0,3);
+  document.getElementById('pdRelated').innerHTML = related.map(item => `
+      <div class="pd-related-card" onclick="openPortfolioDetail('${item.slug}')">
+        <img src="${item.coverImage}" alt="${item.title}">
+        <div class="pd-related-body">
+          <div class="pd-related-title">${item.title}</div>
+          <div class="pd-related-subtitle">${item.location}</div>
+        </div>
+      </div>
+    `).join('');
+  detail.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  const pageTitle = `${session.title} | ${session.service} | STEWDIOONE`;
+  document.title = pageTitle;
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if(metaDesc){
+    metaDesc.content = `${session.description} Captured in ${session.location} on ${session.date}.`;
+  }
+  window.location.hash = `portfolio/${slug}`;
+}
+
+function closePortfolioDetail(){
+  const detail = document.getElementById('portfolioDetail');
+  if(!detail.classList.contains('open')) return;
+  detail.classList.remove('open');
+  document.body.style.overflow = '';
+  document.title = 'STEWDIOONE — Luxury Photography & Videography';
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if(metaDesc){
+    metaDesc.content = 'STEWDIOONE — Premium photography and videography services that preserve memories, tell stories and create timeless experiences.';
+  }
+  history.replaceState(null,'',window.location.pathname + window.location.search);
+}
+
+function checkHash(){
+  if(window.location.hash.startsWith('#portfolio/')){
+    const slug = window.location.hash.replace('#portfolio/','');
+    openPortfolioDetail(slug);
+  }
+}
+
+window.addEventListener('hashchange', checkHash);
+checkHash();
+
+function openServicePage(serviceName){
+  const data = SERVICE_DATA[serviceName];
+  if(!data) return;
+
+  // populate content
+  document.getElementById('spTitle').textContent = serviceName;
+  document.getElementById('spDesc').textContent = data.desc;
+  document.getElementById('spHeroBg').style.backgroundImage = `url('${data.bg}')`;
+
+  // build session cards
+  const grid = document.getElementById('spGrid');
+  grid.innerHTML = data.sessions.map((s, i) => {
+    const slug = s.name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+    const card = s.featured ? 'sp-card featured' : 'sp-card';
+    const body = s.featured ? `
+        <div class="sp-card-overlay">
+          <div>
+            <div class="sp-card-name">${s.name}</div>
+            <div class="sp-card-meta">
+              <span><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>${s.date}</span>
+              <span><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${s.location}</span>
+            </div>
+          </div>
+        </div>` : `
+        <div class="sp-card-body">
+          <div class="sp-card-name">${s.name}</div>
+          <div class="sp-card-meta">
+            <span><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>${s.date}</span>
+            <span><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${s.location}</span>
+          </div>
+        </div>`;
+    return `
+      <div class="${card}" onclick="openPortfolioDetail('${slug}')">
+        <img class="sp-card-img" src="${s.img}" alt="${s.name}" loading="lazy">
+        ${body}
+      </div>`;
+  }).join('');
+
+  // open overlay
+  const page = document.getElementById('servicePage');
+  page.classList.add('open');
+  page.scrollTop = 0;
+  document.body.style.overflow = 'hidden';
+}
+
+function closeServicePage(){
+  document.getElementById('servicePage').classList.remove('open');
+  document.body.style.overflow = '';
+}
+</script>
+</body>
+</html>

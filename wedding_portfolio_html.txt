@@ -1,0 +1,296 @@
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(18)">
+      <img src="portfolio%20Images/Wedding/1.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(19)">
+      <img src="portfolio%20Images/Wedding/10.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(20)">
+      <img src="portfolio%20Images/Wedding/2.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(21)">
+      <img src="portfolio%20Images/Wedding/3.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(22)">
+      <img src="portfolio%20Images/Wedding/4.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(23)">
+      <img src="portfolio%20Images/Wedding/5.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(24)">
+      <img src="portfolio%20Images/Wedding/6.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(25)">
+      <img src="portfolio%20Images/Wedding/7.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(26)">
+      <img src="portfolio%20Images/Wedding/8.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(27)">
+      <img src="portfolio%20Images/Wedding/9.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(28)">
+      <img src="portfolio%20Images/Wedding/allen%24leslie.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(29)">
+      <img src="portfolio%20Images/Wedding/allen%24leslie1.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(30)">
+      <img src="portfolio%20Images/Wedding/allen%26leslie.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(31)">
+      <img src="portfolio%20Images/Wedding/brytte.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(32)">
+      <img src="portfolio%20Images/Wedding/bwuti.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(33)">
+      <img src="portfolio%20Images/Wedding/Cintha.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(34)">
+      <img src="portfolio%20Images/Wedding/Derick%24Giselle.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(35)">
+      <img src="portfolio%20Images/Wedding/dolphine.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(36)">
+      <img src="portfolio%20Images/Wedding/dop%24rudy.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(37)">
+      <img src="portfolio%20Images/Wedding/eddy.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(38)">
+      <img src="portfolio%20Images/Wedding/flawless.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(39)">
+      <img src="portfolio%20Images/Wedding/flawless1.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(40)">
+      <img src="portfolio%20Images/Wedding/Gissele.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(41)">
+      <img src="portfolio%20Images/Wedding/inaris.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(42)">
+      <img src="portfolio%20Images/Wedding/Inaris1.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(43)">
+      <img src="portfolio%20Images/Wedding/Inaris3.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(44)">
+      <img src="portfolio%20Images/Wedding/k.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(45)">
+      <img src="portfolio%20Images/Wedding/Kar.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(46)">
+      <img src="portfolio%20Images/Wedding/Kareen.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(47)">
+      <img src="portfolio%20Images/Wedding/Kareen1.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(48)">
+      <img src="portfolio%20Images/Wedding/KB.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(49)">
+      <img src="portfolio%20Images/Wedding/lang.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(50)">
+      <img src="portfolio%20Images/Wedding/Leo%24wendy.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(51)">
+      <img src="portfolio%20Images/Wedding/leo.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(52)">
+      <img src="portfolio%20Images/Wedding/lovebirds.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(53)">
+      <img src="portfolio%20Images/Wedding/M%24M.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(54)">
+      <img src="portfolio%20Images/Wedding/Marc%24Marion.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(55)">
+      <img src="portfolio%20Images/Wedding/mbolo.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(56)">
+      <img src="portfolio%20Images/Wedding/mbw.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(57)">
+      <img src="portfolio%20Images/Wedding/melvis.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(58)">
+      <img src="portfolio%20Images/Wedding/melvis1.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(59)">
+      <img src="portfolio%20Images/Wedding/melvis2.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(60)">
+      <img src="portfolio%20Images/Wedding/melvis4.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(61)">
+      <img src="portfolio%20Images/Wedding/Mern.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(62)">
+      <img src="portfolio%20Images/Wedding/mernice.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(63)">
+      <img src="portfolio%20Images/Wedding/mernice1.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(64)">
+      <img src="portfolio%20Images/Wedding/Mernice2.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(65)">
+      <img src="portfolio%20Images/Wedding/Mernice4.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(66)">
+      <img src="portfolio%20Images/Wedding/myriam.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(67)">
+      <img src="portfolio%20Images/Wedding/myriam1.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(68)">
+      <img src="portfolio%20Images/Wedding/remyclarkson.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(69)">
+      <img src="portfolio%20Images/Wedding/Sama.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(70)">
+      <img src="portfolio%20Images/Wedding/Samalang.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(71)">
+      <img src="portfolio%20Images/Wedding/Sama-lang.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(72)">
+      <img src="portfolio%20Images/Wedding/Sama-Lang1.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(73)">
+      <img src="portfolio%20Images/Wedding/stewdioone_1783548056178.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(74)">
+      <img src="portfolio%20Images/Wedding/stewdioone_1783548056476.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(75)">
+      <img src="portfolio%20Images/Wedding/stewdioone_1783548065039.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(76)">
+      <img src="portfolio%20Images/Wedding/stewdioone_1783548073140.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(77)">
+      <img src="portfolio%20Images/Wedding/stewdioone_1783548094440.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(78)">
+      <img src="portfolio%20Images/Wedding/stewdioone_1783548775611.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(79)">
+      <img src="portfolio%20Images/Wedding/stewdioone_1783549065635.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(80)">
+      <img src="portfolio%20Images/Wedding/stewdioone_1783549102032.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(81)">
+      <img src="portfolio%20Images/Wedding/stewdioone_1783549116984.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(82)">
+      <img src="portfolio%20Images/Wedding/stewdioone_1783549564645.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(83)">
+      <img src="portfolio%20Images/Wedding/stewdioone_1783550043939.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(84)">
+      <img src="portfolio%20Images/Wedding/stewdioone_1783551411343.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(85)">
+      <img src="portfolio%20Images/Wedding/stewdioone_1783551708200.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(86)">
+      <img src="portfolio%20Images/Wedding/stewdioone_1783599785233.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(87)">
+      <img src="portfolio%20Images/Wedding/stewdioone_1783603076934.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(88)">
+      <img src="portfolio%20Images/Wedding/stewdioone_1783603078983.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(89)">
+      <img src="portfolio%20Images/Wedding/stewdioone_1783603098996.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(90)">
+      <img src="portfolio%20Images/Wedding/vanessa.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(91)">
+      <img src="portfolio%20Images/Wedding/Yembe.jpeg" alt="Wedding">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>
