@@ -89,26 +89,143 @@ transition:all .3s
 .nav-cta:hover{
 background:var(--gold-light)
 }
+/* ---- HAMBURGER BUTTON ---- */
 .nav-hamburger{
-display:none;
-background:none;
-border:none;
-cursor:pointer;
-flex-direction:column;
-gap:5px
+  display:none;
+  background:none;border:none;
+  cursor:pointer;
+  width:36px;height:36px;
+  flex-direction:column;align-items:center;justify-content:center;
+  gap:0;padding:0;position:relative;flex-shrink:0;
+  aria-expanded:false;
 }
-.nav-hamburger span{
-width:24px;
-height:1.5px;
-background:var(--white);
-display:block;
-transition:all .3s
+/* Three bars — morphing to ✕ */
+.nav-hamburger .bar{
+  display:block;
+  width:22px;height:1.5px;
+  background:var(--white);
+  border-radius:2px;
+  position:absolute;
+  left:50%;transform:translateX(-50%);
+  transition:transform .3s cubic-bezier(.4,0,.2,1),
+             opacity .25s ease,
+             top .3s cubic-bezier(.4,0,.2,1),
+             width .3s ease;
 }
-.mobile-menu{display:none;position:fixed;inset:0;background:var(--charcoal);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:2rem}
-.mobile-menu.open{display:flex}
-.mobile-menu a{font-family:var(--serif);font-size:2rem;color:var(--white);letter-spacing:.05em}
-.mobile-menu a:hover{color:var(--gold)}
-.mobile-close{position:absolute;top:1.5rem;right:2rem;background:none;border:none;color:var(--white);font-size:2rem;cursor:pointer}
+.nav-hamburger .bar:nth-child(1){top:10px}
+.nav-hamburger .bar:nth-child(2){top:18px;opacity:1}
+.nav-hamburger .bar:nth-child(3){top:26px}
+
+/* Open state — morph to × */
+.nav-hamburger.is-open .bar:nth-child(1){
+  top:18px;transform:translateX(-50%) rotate(45deg);
+}
+.nav-hamburger.is-open .bar:nth-child(2){
+  opacity:0;transform:translateX(-50%) scaleX(0);
+}
+.nav-hamburger.is-open .bar:nth-child(3){
+  top:18px;transform:translateX(-50%) rotate(-45deg);
+}
+
+/* ---- MOBILE MENU ---- */
+.mobile-menu{
+  display:flex;           /* always in DOM — visibility controlled by transform */
+  flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:0;
+  position:fixed;
+  top:0;left:0;right:0;bottom:0;
+  background:rgba(20,18,16,.97);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  z-index:998;
+  /* Hidden by default */
+  opacity:0;
+  pointer-events:none;
+  transform:translateY(-12px) scale(.98);
+  transition:opacity .28s ease-in-out,
+             transform .28s cubic-bezier(.4,0,.2,1),
+             pointer-events 0s .28s;
+}
+.mobile-menu.open{
+  opacity:1;
+  pointer-events:all;
+  transform:translateY(0) scale(1);
+  transition:opacity .28s ease-in-out,
+             transform .28s cubic-bezier(.4,0,.2,1),
+             pointer-events 0s 0s;
+}
+
+/* Nav links */
+.mobile-menu a{
+  font-family:var(--serif);
+  font-size:clamp(1.6rem,6vw,2.2rem);
+  color:rgba(255,255,255,.75);
+  letter-spacing:.04em;
+  padding:.55rem 0;
+  position:relative;
+  transition:color .22s ease,transform .22s ease;
+  text-decoration:none;
+}
+.mobile-menu a::after{
+  content:'';
+  position:absolute;left:0;bottom:-2px;
+  width:0;height:1px;
+  background:var(--gold);
+  transition:width .28s ease;
+}
+.mobile-menu a:hover,
+.mobile-menu a:focus-visible{
+  color:var(--gold);
+  transform:translateX(6px);
+  outline:none;
+}
+.mobile-menu a:hover::after{width:100%}
+
+/* Book Session CTA inside menu */
+.mobile-menu .mob-cta{
+  margin-top:1.8rem;
+  background:var(--gold);
+  color:var(--charcoal) !important;
+  font-family:var(--sans) !important;
+  font-size:.72rem !important;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  font-weight:600;
+  padding:.85rem 2.4rem;
+  border-radius:3px;
+  transform:none !important;
+}
+.mobile-menu .mob-cta::after{display:none}
+.mobile-menu .mob-cta:hover{
+  background:var(--gold-light) !important;
+  transform:translateY(-2px) !important;
+}
+
+/* Staggered link entrance */
+.mobile-menu.open a{
+  animation:mobLinkIn .32s ease both;
+}
+.mobile-menu.open a:nth-child(1){animation-delay:.06s}
+.mobile-menu.open a:nth-child(2){animation-delay:.1s}
+.mobile-menu.open a:nth-child(3){animation-delay:.14s}
+.mobile-menu.open a:nth-child(4){animation-delay:.18s}
+.mobile-menu.open a:nth-child(5){animation-delay:.22s}
+.mobile-menu.open a:nth-child(6){animation-delay:.26s}
+@keyframes mobLinkIn{
+  from{opacity:0;transform:translateY(16px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* Close hint at bottom */
+.mob-close-hint{
+  position:absolute;bottom:2.5rem;
+  font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(255,255,255,.2);
+  display:flex;align-items:center;gap:.5rem;
+  pointer-events:none;
+}
+.mob-close-hint svg{width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:1.5}
 
 /* HERO */
 .hero{height:100vh;position:relative;overflow:hidden;display:flex;align-items:center}
@@ -1067,20 +1184,31 @@ footer{background:var(--charcoal-mid);padding:5rem 4rem 2rem;position:relative;o
     <li><a href="#contact">Contact</a></li>
   </ul>
   <button class="nav-cta" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book Session</button>
-  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
-    <span></span><span></span><span></span>
+  <button
+    class="nav-hamburger"
+    id="hamburger"
+    aria-label="Open navigation menu"
+    aria-expanded="false"
+    aria-controls="mobileMenu"
+  >
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
   </button>
 </nav>
 
 <!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobileMenu">
-  <button class="mobile-close" id="mobileClose" aria-label="Close menu">×</button>
-  <a href="#about" onclick="closeMobile()">About</a>
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Navigation menu" aria-modal="true">
+  <a href="#about"    onclick="closeMobile()">About</a>
   <a href="#services" onclick="closeMobile()">Services</a>
   <a href="#packages" onclick="closeMobile()">Packages</a>
   <a href="#portfolio" onclick="closeMobile()">Portfolio</a>
-  <a href="#contact" onclick="closeMobile()">Contact</a>
-  <a href="#booking" onclick="closeMobile()" style="color:var(--gold)">Book Session</a>
+  <a href="#contact"  onclick="closeMobile()">Contact</a>
+  <a href="#booking"  onclick="closeMobile()" class="mob-cta">Book Session</a>
+  <div class="mob-close-hint">
+    <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    Tap outside or press Esc to close
+  </div>
 </div>
 
 <!-- HERO -->
@@ -1562,375 +1690,375 @@ footer{background:var(--charcoal-mid);padding:5rem 4rem 2rem;position:relative;o
     </div>
   </div>
   <div class="portfolio-grid" id="portfolioGrid">
-    <div class="portfolio-item" data-cat="portrait" onclick="openLightbox(0)">
+    <div class="portfolio-item" data-cat="portrait" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Portraits/bloodsis.jpeg" alt="Portrait">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="portrait" onclick="openLightbox(1)">
+    <div class="portfolio-item" data-cat="portrait" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Portraits/baby.jpeg" alt="Portrait">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="portrait" onclick="openLightbox(2)">
+    <div class="portfolio-item" data-cat="portrait" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Portraits/bloodsis1.jpeg" alt="Portrait">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="portrait" onclick="openLightbox(3)">
+    <div class="portfolio-item" data-cat="portrait" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Portraits/Bosslady.jpeg" alt="Portrait">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="portrait" onclick="openLightbox(4)">
+    <div class="portfolio-item" data-cat="portrait" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Portraits/bossman.jpeg" alt="Portrait">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="portrait" onclick="openLightbox(5)">
+    <div class="portfolio-item" data-cat="portrait" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Portraits/bossman1.jpeg" alt="Portrait">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="portrait" onclick="openLightbox(6)">
+    <div class="portfolio-item" data-cat="portrait" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Portraits/boyHoodie.jpeg" alt="Portrait">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="portrait" onclick="openLightbox(7)">
+    <div class="portfolio-item" data-cat="portrait" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Portraits/boysenator.jpeg" alt="Portrait">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="portrait" onclick="openLightbox(8)">
+    <div class="portfolio-item" data-cat="portrait" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Portraits/whiteMama.jpeg" alt="Portrait">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="portrait" onclick="openLightbox(9)">
+    <div class="portfolio-item" data-cat="portrait" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Portraits/smiley.jpeg" alt="Portrait">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="portrait" onclick="openLightbox(10)">
+    <div class="portfolio-item" data-cat="portrait" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Portraits/rednotice.jpeg" alt="Portrait">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="portrait" onclick="openLightbox(11)">
+    <div class="portfolio-item" data-cat="portrait" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Portraits/redmama.jpeg" alt="Portrait">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="portrait" onclick="openLightbox(12)">
+    <div class="portfolio-item" data-cat="portrait" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Portraits/Priscille4.jpeg" alt="Portrait">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="portrait" onclick="openLightbox(13)">
+    <div class="portfolio-item" data-cat="portrait" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Portraits/Priscille3.jpeg" alt="Portrait">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="portrait" onclick="openLightbox(14)">
+    <div class="portfolio-item" data-cat="portrait" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Portraits/Priscille.jpeg" alt="Portrait">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="portrait" onclick="openLightbox(15)">
+    <div class="portfolio-item" data-cat="portrait" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Portraits/port2.jpeg" alt="Portrait">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="portrait" onclick="openLightbox(16)">
+    <div class="portfolio-item" data-cat="portrait" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Portraits/port.jpeg" alt="Portrait">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="portrait" onclick="openLightbox(17)">
+    <div class="portfolio-item" data-cat="portrait" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Portraits/Oldmummy.jpeg" alt="Portrait">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(18)">
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Wedding/1.jpeg" alt="Wedding">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(19)">
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Wedding/10.jpeg" alt="Wedding">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(20)">
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Wedding/2.jpeg" alt="Wedding">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(21)">
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Wedding/3.jpeg" alt="Wedding">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(22)">
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Wedding/4.jpeg" alt="Wedding">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(23)">
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Wedding/5.jpeg" alt="Wedding">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(24)">
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Wedding/6.jpeg" alt="Wedding">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(25)">
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Wedding/7.jpeg" alt="Wedding">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(26)">
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Wedding/8.jpeg" alt="Wedding">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(27)">
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Wedding/9.jpeg" alt="Wedding">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(28)">
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Wedding/allen%24leslie.jpeg" alt="Wedding">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(29)">
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Wedding/allen%24leslie1.jpeg" alt="Wedding">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(30)">
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Wedding/allen%26leslie.jpeg" alt="Wedding">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(31)">
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Wedding/brytte.jpeg" alt="Wedding">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(32)">
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Wedding/bwuti.jpeg" alt="Wedding">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(33)">
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Wedding/Cintha.jpeg" alt="Wedding">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(34)">
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Wedding/Derick%24Giselle.jpeg" alt="Wedding">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(35)">
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Wedding/dolphine.jpeg" alt="Wedding">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(36)">
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Wedding/dop%24rudy.jpeg" alt="Wedding">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(37)">
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Wedding/eddy.jpeg" alt="Wedding">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(38)">
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Wedding/flawless.jpeg" alt="Wedding">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(39)">
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Wedding/flawless1.jpeg" alt="Wedding">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(40)">
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Wedding/Gissele.jpeg" alt="Wedding">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(41)">
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Wedding/inaris.jpeg" alt="Wedding">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(42)">
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Wedding/Inaris1.jpeg" alt="Wedding">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(43)">
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Wedding/Inaris3.jpeg" alt="Wedding">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(44)">
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Wedding/k.jpeg" alt="Wedding">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(45)">
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Wedding/Kar.jpeg" alt="Wedding">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(46)">
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Wedding/Kareen.jpeg" alt="Wedding">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="wedding" onclick="openLightbox(47)">
+    <div class="portfolio-item" data-cat="wedding" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Wedding/Kareen1.jpeg" alt="Wedding">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="event" onclick="openLightbox(48)">
+    <div class="portfolio-item" data-cat="event" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Events/bd.jpeg" alt="Event photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="event" onclick="openLightbox(49)">
+    <div class="portfolio-item" data-cat="event" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Events/Christelle.jpeg" alt="Event photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="event" onclick="openLightbox(50)">
+    <div class="portfolio-item" data-cat="event" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Events/dadBD.jpeg" alt="Event photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="event" onclick="openLightbox(51)">
+    <div class="portfolio-item" data-cat="event" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Events/dadBD1.jpeg" alt="Event photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="event" onclick="openLightbox(52)">
+    <div class="portfolio-item" data-cat="event" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Events/engagement.jpeg" alt="Event photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="event" onclick="openLightbox(53)">
+    <div class="portfolio-item" data-cat="event" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Events/friend.jpeg" alt="Event photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="event" onclick="openLightbox(54)">
+    <div class="portfolio-item" data-cat="event" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Events/Jose.jpeg" alt="Event photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="event" onclick="openLightbox(55)">
+    <div class="portfolio-item" data-cat="event" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Events/leila.jpeg" alt="Event photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="event" onclick="openLightbox(56)">
+    <div class="portfolio-item" data-cat="event" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Events/mbah.jpeg" alt="Event photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="event" onclick="openLightbox(57)">
+    <div class="portfolio-item" data-cat="event" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Events/teclaire.jpeg" alt="Event photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="event" onclick="openLightbox(58)">
+    <div class="portfolio-item" data-cat="event" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Events/Unknown.jpeg" alt="Event photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="event" onclick="openLightbox(59)">
+    <div class="portfolio-item" data-cat="event" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Events/unknown1.jpeg" alt="Event photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(60)">
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Studio/1.jpeg" alt="Studio photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(61)">
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Studio/2.jpeg" alt="Studio photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(62)">
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Studio/3.jpeg" alt="Studio photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(63)">
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Studio/4.jpeg" alt="Studio photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(64)">
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Studio/5.jpeg" alt="Studio photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(65)">
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Studio/6.jpeg" alt="Studio photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(66)">
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Studio/7.jpeg" alt="Studio photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(67)">
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Studio/8.jpeg" alt="Studio photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(68)">
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Studio/9.jpeg" alt="Studio photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(69)">
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Studio/10.jpeg" alt="Studio photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(70)">
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Studio/11.jpeg" alt="Studio photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(71)">
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Studio/12.jpeg" alt="Studio photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(72)">
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Studio/13.jpeg" alt="Studio photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(73)">
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Studio/14.jpeg" alt="Studio photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(74)">
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Studio/15.jpeg" alt="Studio photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(75)">
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Studio/16.jpeg" alt="Studio photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(76)">
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Studio/17.jpeg" alt="Studio photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(77)">
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Studio/18.jpeg" alt="Studio photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(78)">
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Studio/19.jpeg" alt="Studio photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(79)">
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Studio/20.jpeg" alt="Studio photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(80)">
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Studio/21.jpeg" alt="Studio photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(81)">
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Studio/22.jpeg" alt="Studio photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(82)">
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Studio/23.jpeg" alt="Studio photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(83)">
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Studio/24.jpeg" alt="Studio photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(84)">
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Studio/25.jpeg" alt="Studio photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(85)">
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Studio/26.jpeg" alt="Studio photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(86)">
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Studio/27.jpeg" alt="Studio photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(87)">
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Studio/28.jpeg" alt="Studio photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(88)">
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Studio/29.jpeg" alt="Studio photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(89)">
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Studio/30.jpeg" alt="Studio photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(90)">
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Studio/31.jpeg" alt="Studio photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(91)">
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Studio/32.jpeg" alt="Studio photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
-    <div class="portfolio-item" data-cat="fashion" onclick="openLightbox(92)">
+    <div class="portfolio-item" data-cat="fashion" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Studio/33.jpeg" alt="Studio photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
@@ -2400,14 +2528,61 @@ window.addEventListener('scroll',()=>{
   nav.classList.toggle('scrolled',window.scrollY>80);
 });
 
-// HAMBURGER
-document.getElementById('hamburger').addEventListener('click',()=>{
-  document.getElementById('mobileMenu').classList.add('open');
+// =============================================
+// MOBILE NAVIGATION — polished toggle system
+// =============================================
+const hamburger   = document.getElementById('hamburger');
+const mobileMenu  = document.getElementById('mobileMenu');
+
+function openMobile() {
+  mobileMenu.classList.add('open');
+  hamburger.classList.add('is-open');
+  hamburger.setAttribute('aria-expanded', 'true');
+  hamburger.setAttribute('aria-label', 'Close navigation menu');
+  document.body.style.overflow = 'hidden';
+  // Move focus into menu for accessibility
+  const firstLink = mobileMenu.querySelector('a');
+  if(firstLink) setTimeout(() => firstLink.focus(), 50);
+}
+
+function closeMobile() {
+  mobileMenu.classList.remove('open');
+  hamburger.classList.remove('is-open');
+  hamburger.setAttribute('aria-expanded', 'false');
+  hamburger.setAttribute('aria-label', 'Open navigation menu');
+  document.body.style.overflow = '';
+  hamburger.focus();
+}
+
+// Toggle on hamburger click
+hamburger.addEventListener('click', (e) => {
+  e.stopPropagation();
+  mobileMenu.classList.contains('open') ? closeMobile() : openMobile();
 });
-document.getElementById('mobileClose').addEventListener('click',()=>{
-  document.getElementById('mobileMenu').classList.remove('open');
+
+// Close on nav link tap — handled inline via onclick="closeMobile()"
+// (links already have onclick="closeMobile()" in HTML)
+
+// Close when tapping outside the menu
+document.addEventListener('click', (e) => {
+  if(
+    mobileMenu.classList.contains('open') &&
+    !mobileMenu.contains(e.target) &&
+    !hamburger.contains(e.target)
+  ) {
+    closeMobile();
+  }
 });
-function closeMobile(){document.getElementById('mobileMenu').classList.remove('open')}
+
+// Escape key closes mobile menu (merged into main keydown handler below)
+// — handled in the unified keydown listener at bottom of script
+
+// Close menu if viewport resizes to desktop width while menu is open
+window.addEventListener('resize', () => {
+  if(window.innerWidth > 900 && mobileMenu.classList.contains('open')) {
+    closeMobile();
+  }
+});
 
 // HERO SLIDER
 let currentSlide=0;
@@ -2451,147 +2626,9 @@ const counterObs=new IntersectionObserver((entries)=>{
 counters.forEach(c=>counterObs.observe(c));
 
 // PORTFOLIO FILTER & LIGHTBOX
-const portfolioImgs=[
-  'portfolio%20Images/Portraits/bloodsis.jpeg',
-  'portfolio%20Images/Portraits/baby.jpeg',
-  'portfolio%20Images/Portraits/bloodsis1.jpeg',
-  'portfolio%20Images/Portraits/Bosslady.jpeg',
-  'portfolio%20Images/Portraits/bossman.jpeg',
-  'portfolio%20Images/Portraits/bossman1.jpeg',
-  'portfolio%20Images/Portraits/boyHoodie.jpeg',
-  'portfolio%20Images/Portraits/boysenator.jpeg',
-  'portfolio%20Images/Portraits/whiteMama.jpeg',
-  'portfolio%20Images/Portraits/smiley.jpeg',
-  'portfolio%20Images/Portraits/rednotice.jpeg',
-  'portfolio%20Images/Portraits/redmama.jpeg',
-  'portfolio%20Images/Portraits/Priscille4.jpeg',
-  'portfolio%20Images/Portraits/Priscille3.jpeg',
-  'portfolio%20Images/Portraits/Priscille.jpeg',
-  'portfolio%20Images/Portraits/port2.jpeg',
-  'portfolio%20Images/Portraits/port.jpeg',
-  'portfolio%20Images/Portraits/Oldmummy.jpeg',
-  'portfolio%20Images/Wedding/1.jpeg',
-  'portfolio%20Images/Wedding/10.jpeg',
-  'portfolio%20Images/Wedding/2.jpeg',
-  'portfolio%20Images/Wedding/3.jpeg',
-  'portfolio%20Images/Wedding/4.jpeg',
-  'portfolio%20Images/Wedding/5.jpeg',
-  'portfolio%20Images/Wedding/6.jpeg',
-  'portfolio%20Images/Wedding/7.jpeg',
-  'portfolio%20Images/Wedding/8.jpeg',
-  'portfolio%20Images/Wedding/9.jpeg',
-  'portfolio%20Images/Wedding/allen%24leslie.jpeg',
-  'portfolio%20Images/Wedding/allen%24leslie1.jpeg',
-  'portfolio%20Images/Wedding/allen%26leslie.jpeg',
-  'portfolio%20Images/Wedding/brytte.jpeg',
-  'portfolio%20Images/Wedding/bwuti.jpeg',
-  'portfolio%20Images/Wedding/Cintha.jpeg',
-  'portfolio%20Images/Wedding/Derick%24Giselle.jpeg',
-  'portfolio%20Images/Wedding/dolphine.jpeg',
-  'portfolio%20Images/Wedding/dop%24rudy.jpeg',
-  'portfolio%20Images/Wedding/eddy.jpeg',
-  'portfolio%20Images/Wedding/flawless.jpeg',
-  'portfolio%20Images/Wedding/flawless1.jpeg',
-  'portfolio%20Images/Wedding/Gissele.jpeg',
-  'portfolio%20Images/Wedding/inaris.jpeg',
-  'portfolio%20Images/Wedding/Inaris1.jpeg',
-  'portfolio%20Images/Wedding/Inaris3.jpeg',
-  'portfolio%20Images/Wedding/k.jpeg',
-  'portfolio%20Images/Wedding/Kar.jpeg',
-  'portfolio%20Images/Wedding/Kareen.jpeg',
-  'portfolio%20Images/Wedding/Kareen1.jpeg',
-  'portfolio%20Images/Wedding/KB.jpeg',
-  'portfolio%20Images/Wedding/lang.jpeg',
-  'portfolio%20Images/Wedding/Leo%24wendy.jpeg',
-  'portfolio%20Images/Wedding/leo.jpeg',
-  'portfolio%20Images/Wedding/lovebirds.jpeg',
-  'portfolio%20Images/Wedding/M%24M.jpeg',
-  'portfolio%20Images/Wedding/Marc%24Marion.jpeg',
-  'portfolio%20Images/Wedding/mbolo.jpeg',
-  'portfolio%20Images/Wedding/mbw.jpeg',
-  'portfolio%20Images/Wedding/melvis.jpeg',
-  'portfolio%20Images/Wedding/melvis1.jpeg',
-  'portfolio%20Images/Wedding/melvis2.jpeg',
-  'portfolio%20Images/Wedding/melvis4.jpeg',
-  'portfolio%20Images/Wedding/Mern.jpeg',
-  'portfolio%20Images/Wedding/mernice.jpeg',
-  'portfolio%20Images/Wedding/mernice1.jpeg',
-  'portfolio%20Images/Wedding/Mernice2.jpeg',
-  'portfolio%20Images/Wedding/Mernice4.jpeg',
-  'portfolio%20Images/Wedding/myriam.jpeg',
-  'portfolio%20Images/Wedding/myriam1.jpeg',
-  'portfolio%20Images/Wedding/remyclarkson.jpeg',
-  'portfolio%20Images/Wedding/Sama.jpeg',
-  'portfolio%20Images/Wedding/Samalang.jpeg',
-  'portfolio%20Images/Wedding/Sama-lang.jpeg',
-  'portfolio%20Images/Wedding/Sama-Lang1.jpeg',
-  'portfolio%20Images/Wedding/stewdioone_1783548056178.jpeg',
-  'portfolio%20Images/Wedding/stewdioone_1783548056476.jpeg',
-  'portfolio%20Images/Wedding/stewdioone_1783548065039.jpeg',
-  'portfolio%20Images/Wedding/stewdioone_1783548073140.jpeg',
-  'portfolio%20Images/Wedding/stewdioone_1783548094440.jpeg',
-  'portfolio%20Images/Wedding/stewdioone_1783548775611.jpeg',
-  'portfolio%20Images/Wedding/stewdioone_1783549065635.jpeg',
-  'portfolio%20Images/Wedding/stewdioone_1783549102032.jpeg',
-  'portfolio%20Images/Wedding/stewdioone_1783549116984.jpeg',
-  'portfolio%20Images/Wedding/stewdioone_1783549564645.jpeg',
-  'portfolio%20Images/Wedding/stewdioone_1783550043939.jpeg',
-  'portfolio%20Images/Wedding/stewdioone_1783551411343.jpeg',
-  'portfolio%20Images/Wedding/stewdioone_1783551708200.jpeg',
-  'portfolio%20Images/Wedding/stewdioone_1783599785233.jpeg',
-  'portfolio%20Images/Wedding/stewdioone_1783603076934.jpeg',
-  'portfolio%20Images/Wedding/stewdioone_1783603078983.jpeg',
-  'portfolio%20Images/Wedding/stewdioone_1783603098996.jpeg',
-  'portfolio%20Images/Wedding/vanessa.jpeg',
-  'portfolio%20Images/Wedding/Yembe.jpeg',
-  'portfolio%20Images/Events/bd.jpeg',
-  'portfolio%20Images/Events/Christelle.jpeg',
-  'portfolio%20Images/Events/dadBD.jpeg',
-  'portfolio%20Images/Events/dadBD1.jpeg',
-  'portfolio%20Images/Events/engagement.jpeg',
-  'portfolio%20Images/Events/friend.jpeg',
-  'portfolio%20Images/Events/Jose.jpeg',
-  'portfolio%20Images/Events/leila.jpeg',
-  'portfolio%20Images/Events/mbah.jpeg',
-  'portfolio%20Images/Events/teclaire.jpeg',
-  'portfolio%20Images/Events/Unknown.jpeg',
-  'portfolio%20Images/Events/unknown1.jpeg',
-  'portfolio%20Images/Studio/1.jpeg',
-  'portfolio%20Images/Studio/2.jpeg',
-  'portfolio%20Images/Studio/3.jpeg',
-  'portfolio%20Images/Studio/4.jpeg',
-  'portfolio%20Images/Studio/5.jpeg',
-  'portfolio%20Images/Studio/6.jpeg',
-  'portfolio%20Images/Studio/7.jpeg',
-  'portfolio%20Images/Studio/8.jpeg',
-  'portfolio%20Images/Studio/9.jpeg',
-  'portfolio%20Images/Studio/10.jpeg',
-  'portfolio%20Images/Studio/11.jpeg',
-  'portfolio%20Images/Studio/12.jpeg',
-  'portfolio%20Images/Studio/13.jpeg',
-  'portfolio%20Images/Studio/14.jpeg',
-  'portfolio%20Images/Studio/15.jpeg',
-  'portfolio%20Images/Studio/16.jpeg',
-  'portfolio%20Images/Studio/17.jpeg',
-  'portfolio%20Images/Studio/18.jpeg',
-  'portfolio%20Images/Studio/19.jpeg',
-  'portfolio%20Images/Studio/20.jpeg',
-  'portfolio%20Images/Studio/21.jpeg',
-  'portfolio%20Images/Studio/22.jpeg',
-  'portfolio%20Images/Studio/23.jpeg',
-  'portfolio%20Images/Studio/24.jpeg',
-  'portfolio%20Images/Studio/25.jpeg',
-  'portfolio%20Images/Studio/26.jpeg',
-  'portfolio%20Images/Studio/27.jpeg',
-  'portfolio%20Images/Studio/28.jpeg',
-  'portfolio%20Images/Studio/29.jpeg',
-  'portfolio%20Images/Studio/30.jpeg',
-  'portfolio%20Images/Studio/31.jpeg',
-  'portfolio%20Images/Studio/32.jpeg',
-  'portfolio%20Images/Studio/33.jpeg',
-];
 let lightboxIdx=0;
 let lightboxImages=[];
+
 function filterPortfolio(btn,cat){
   document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
@@ -2599,12 +2636,33 @@ function filterPortfolio(btn,cat){
     item.style.display=(cat==='all'||item.dataset.cat===cat)?'block':'none';
   });
 }
-function openLightbox(idx, images){
-  lightboxImages = images || portfolioImgs;
-  lightboxIdx = idx;
-  document.getElementById('lightboxImg').src = lightboxImages[idx];
+
+// Open lightbox from any portfolio-item click — reads src from the img inside the clicked item
+function openLightboxFromItem(el){
+  const img = el.querySelector('img');
+  if(!img) return;
+  const src = img.src; // absolute URL already resolved by browser
+
+  // Build ordered list of all currently-visible portfolio items' image srcs
+  lightboxImages = Array.from(document.querySelectorAll('.portfolio-item'))
+    .filter(item => item.style.display !== 'none')
+    .map(item => item.querySelector('img').src);
+
+  lightboxIdx = lightboxImages.indexOf(src);
+  if(lightboxIdx === -1) lightboxIdx = 0;
+
+  document.getElementById('lightboxImg').src = lightboxImages[lightboxIdx];
   document.getElementById('lightbox').classList.add('open');
-  document.body.style.overflow='hidden';
+  document.body.style.overflow = 'hidden';
+}
+
+function openLightbox(idx, images){
+  // Legacy fallback — kept for any remaining callers
+  lightboxImages = images || lightboxImages;
+  lightboxIdx = idx;
+  document.getElementById('lightboxImg').src = lightboxImages[idx] || '';
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
 }
 function closeLightbox(){
   document.getElementById('lightbox').classList.remove('open');
@@ -2618,15 +2676,6 @@ function prevLightbox(){
   lightboxIdx=(lightboxIdx-1+lightboxImages.length)%lightboxImages.length;
   document.getElementById('lightboxImg').src=lightboxImages[lightboxIdx];
 }
-document.addEventListener('keydown',e=>{
-  if(document.getElementById('lightbox').classList.contains('open')){
-    if(e.key==='ArrowRight')nextLightbox();
-    if(e.key==='ArrowLeft')prevLightbox();
-    if(e.key==='Escape')closeLightbox();
-  }
-  if(document.getElementById('portfolioDetail').classList.contains('open')&&e.key==='Escape')closePortfolioDetail();
-  if(document.getElementById('servicePage').classList.contains('open')&&e.key==='Escape')closeServicePage();
-});
 document.getElementById('lightbox').addEventListener('click',function(e){if(e.target===this)closeLightbox();});
 
 // TESTIMONIALS
@@ -2976,19 +3025,25 @@ function prevAbPhoto() {
 
 // keyboard nav
 document.addEventListener('keydown', e => {
+  // Album lightbox — highest priority
   if(document.getElementById('abLightbox').classList.contains('open')) {
     if(e.key==='ArrowRight') nextAbPhoto();
     if(e.key==='ArrowLeft') prevAbPhoto();
     if(e.key==='Escape') closeAbLightbox();
     return;
   }
-  if(document.getElementById('albumPage').classList.contains('open') && e.key==='Escape') { closeAlbumPage(); return; }
+  // Portfolio lightbox
   if(document.getElementById('lightbox').classList.contains('open')) {
     if(e.key==='ArrowRight') nextLightbox();
     if(e.key==='ArrowLeft') prevLightbox();
     if(e.key==='Escape') closeLightbox();
+    return;
   }
-  if(document.getElementById('servicePage').classList.contains('open') && e.key==='Escape') closeServicePage();
+  if(e.key === 'Escape') {
+    if(document.getElementById('albumPage').classList.contains('open')) { closeAlbumPage(); return; }
+    if(document.getElementById('servicePage').classList.contains('open')) { closeServicePage(); return; }
+    if(mobileMenu.classList.contains('open')) { closeMobile(); return; }
+  }
 });
 
 // hash routing
