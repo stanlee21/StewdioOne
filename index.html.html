@@ -711,44 +711,287 @@ footer{background:var(--charcoal-mid);padding:5rem 4rem 2rem;position:relative;o
 .sp-cta-link svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;transition:transform .25s}
 .sp-cta-link:hover svg{transform:translateX(3px)}
 
-/* portfolio detail */
-.portfolio-detail{position:fixed;inset:0;z-index:2200;overflow:auto;background:rgba(245,240,232,.98);display:none;opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s ease;backdrop-filter:blur(10px)}
-.portfolio-detail.open{display:block;opacity:1;visibility:visible}
-.portfolio-detail-inner{max-width:1280px;margin:0 auto;padding:2.5rem 4rem 4rem}
-.pd-back-bar{display:flex;align-items:center;gap:.85rem;margin-bottom:2rem}
-.pd-back-btn{background:none;border:1px solid rgba(0,0,0,.12);border-radius:999px;color:var(--charcoal);font-family:var(--sans);font-size:.82rem;letter-spacing:.14em;padding:.95rem 1.4rem;cursor:pointer;display:inline-flex;align-items:center;gap:.6rem;transition:all .3s}
-.pd-back-btn:hover{background:rgba(201,168,76,.1);border-color:rgba(201,168,76,.45)}
-.pd-hero{position:relative;display:grid;grid-template-columns:1fr;gap:2rem;padding:3rem 0 2rem;border-bottom:1px solid rgba(0,0,0,.08)}
-.pd-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(.52);transform:scale(1.02);transition:transform .4s ease}
-.pd-hero::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(245,240,232,0) 0%,rgba(245,240,232,.96) 68%)}
-.pd-hero-content{position:relative;z-index:1;max-width:820px}
-.pd-breadcrumb{font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
-.pd-breadcrumb span{color:var(--gold)}
-.pd-heading{font-family:var(--serif);font-size:clamp(2.8rem,5vw,4.5rem);font-weight:300;color:var(--charcoal);margin:0 0 1rem;line-height:1.05}
-.pd-description{font-size:.95rem;color:var(--text-muted);line-height:1.9;max-width:680px;margin-bottom:1.5rem;opacity:.94}
-.pd-story{margin-top:1rem;color:var(--text-muted);line-height:1.9;font-size:.95rem;max-width:720px}
-.pd-meta{display:flex;flex-wrap:wrap;gap:1rem;font-size:.9rem;color:var(--charcoal);margin-bottom:1.3rem}
-.pd-meta span{display:flex;align-items:center;gap:.55rem}
-.pd-count{font-size:.78rem;letter-spacing:.14em;color:var(--text-muted);text-transform:uppercase;margin-bottom:1.75rem;display:block}
-.pd-gallery{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem}
-.pd-thumb{background:none;border:none;padding:0;cursor:pointer;overflow:hidden;border-radius:22px;box-shadow:0 18px 42px rgba(0,0,0,.08);transition:transform .35s ease,box-shadow .35s ease,opacity .35s ease}
-.pd-thumb:hover{transform:translateY(-4px)}
-.pd-thumb img{width:100%;height:100%;aspect-ratio:4/5;object-fit:cover;display:block;border-radius:22px;transition:transform .45s ease}
-.pd-thumb:hover img{transform:scale(1.05)}
-.pd-related{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:1rem}
-.pd-related-card{background:var(--white);border-radius:18px;overflow:hidden;cursor:pointer;transition:transform .3s,box-shadow .3s;box-shadow:0 12px 28px rgba(0,0,0,.08)}
-.pd-related-card:hover{transform:translateY(-4px);box-shadow:0 18px 34px rgba(0,0,0,.12)}
-.pd-related-card img{width:100%;height:190px;object-fit:cover;display:block}
-.pd-related-body{padding:1rem 1.1rem 1.2rem}
-.pd-related-title{font-family:var(--serif);font-size:1rem;color:var(--charcoal);margin-bottom:.45rem}
-.pd-related-subtitle{font-size:.8rem;color:var(--text-muted);line-height:1.6}
-.pd-cta-row{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;margin-top:3rem}
-.pd-cta-btn{font-family:var(--sans);font-size:.85rem;font-weight:700;padding:1rem 1.5rem;border-radius:999px;border:none;cursor:pointer;transition:all .25s}
-.pd-cta-btn.primary{background:var(--charcoal);color:var(--white)}
-.pd-cta-btn.secondary{background:var(--gold);color:var(--charcoal)}
-.pd-cta-btn:hover{opacity:.95}
-@media(max-width:1024px){.pd-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.pd-related{grid-template-columns:1fr 1fr}.portfolio-detail-inner{padding:2rem}.pd-hero{padding:2.5rem 0 1.5rem}}
-@media(max-width:720px){.portfolio-detail-inner{padding:1.5rem 1.2rem 2rem}.pd-gallery{grid-template-columns:1fr}.pd-related{grid-template-columns:1fr}.pd-hero{padding:2rem 0 1rem}.pd-meta{flex-direction:column;align-items:flex-start}.pd-back-bar{flex-wrap:wrap}} 
+/* =============================================
+   ALBUM PAGE — Premium 3rd-level nav
+   ============================================= */
+.album-page{
+  position:fixed;inset:0;z-index:3000;
+  background:var(--cream);
+  overflow-y:auto;
+  opacity:0;pointer-events:none;
+  transform:translateY(24px);
+  transition:opacity .5s cubic-bezier(.4,0,.2,1), transform .5s cubic-bezier(.4,0,.2,1);
+}
+.album-page.open{
+  opacity:1;pointer-events:all;transform:translateY(0);
+}
+
+/* ---- sticky nav bar ---- */
+.ab-nav{
+  position:sticky;top:0;z-index:10;
+  background:rgba(245,240,232,.94);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(201,168,76,.15);
+  padding:.9rem 4rem;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.ab-back{
+  display:inline-flex;align-items:center;gap:.55rem;
+  background:var(--white);border:1px solid rgba(0,0,0,.1);
+  border-radius:99px;padding:.5rem 1.15rem;
+  font-family:var(--sans);font-size:.72rem;letter-spacing:.08em;
+  color:var(--charcoal);cursor:pointer;
+  transition:all .25s;white-space:nowrap;
+}
+.ab-back:hover{background:var(--cream-dark);border-color:rgba(201,168,76,.4)}
+.ab-back svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;flex-shrink:0}
+.ab-breadcrumb{
+  font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--text-muted);text-align:center;
+}
+.ab-breadcrumb b{color:var(--charcoal);font-weight:500}
+.ab-book-btn{
+  background:var(--gold);color:var(--charcoal);
+  border:none;padding:.55rem 1.4rem;
+  font-family:var(--sans);font-size:.68rem;
+  letter-spacing:.16em;text-transform:uppercase;font-weight:500;
+  cursor:pointer;transition:background .25s;border-radius:4px;white-space:nowrap;
+}
+.ab-book-btn:hover{background:var(--gold-light)}
+
+/* ---- hero cover ---- */
+.ab-cover{
+  position:relative;height:72vh;min-height:480px;max-height:700px;
+  overflow:hidden;
+}
+.ab-cover-img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transform:scale(1.04);
+  transition:transform 6s ease;
+}
+.ab-page.open .ab-cover-img{ transform:scale(1); }
+.ab-cover-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(
+    to bottom,
+    rgba(0,0,0,.18) 0%,
+    rgba(0,0,0,.08) 40%,
+    rgba(245,240,232,.0) 60%,
+    rgba(245,240,232,.92) 88%,
+    rgba(245,240,232,1) 100%
+  );
+}
+
+/* ---- hero meta block ---- */
+.ab-hero-meta{
+  padding:2.5rem 4rem 0;
+  max-width:900px;
+}
+.ab-hero-service{
+  font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:.85rem;display:block;
+}
+.ab-hero-title{
+  font-family:var(--serif);
+  font-size:clamp(3rem,6vw,5rem);
+  font-weight:300;color:var(--charcoal);line-height:1.05;
+  margin-bottom:1rem;
+}
+.ab-hero-details{
+  display:flex;flex-wrap:wrap;align-items:center;gap:1.5rem;
+  font-size:.82rem;color:var(--text-muted);margin-bottom:1.1rem;
+}
+.ab-hero-details span{display:flex;align-items:center;gap:.45rem}
+.ab-hero-details svg{width:13px;height:13px;stroke:var(--gold);fill:none;stroke-width:1.8}
+.ab-hero-desc{
+  font-family:var(--serif);
+  font-size:1.05rem;font-weight:300;
+  color:var(--text-muted);line-height:1.9;
+  max-width:680px;font-style:italic;
+  border-left:2px solid var(--gold);
+  padding-left:1.2rem;margin-top:.5rem;
+}
+
+/* ---- gallery header ---- */
+.ab-gallery-header{
+  padding:3.5rem 4rem 1.5rem;
+  display:flex;align-items:flex-end;justify-content:space-between;
+}
+.ab-gallery-title{
+  font-family:var(--serif);font-size:2rem;font-weight:300;color:var(--charcoal);
+}
+.ab-gallery-title em{font-style:italic;color:var(--gold)}
+.ab-gallery-count{
+  font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--text-muted);
+}
+.ab-gallery-divider{
+  height:1px;
+  background:linear-gradient(90deg,rgba(201,168,76,.4),transparent);
+  margin:0 4rem 2.5rem;
+}
+
+/* ---- masonry gallery ---- */
+.ab-masonry{
+  column-count:4;
+  column-gap:20px;
+  padding:0 4rem 1rem;
+}
+.ab-masonry-item{
+  break-inside:avoid;
+  margin-bottom:20px;
+  border-radius:16px;
+  overflow:hidden;
+  position:relative;
+  cursor:pointer;
+  box-shadow:0 6px 24px rgba(0,0,0,.07);
+  transition:transform .4s cubic-bezier(.25,.8,.25,1),
+             box-shadow .4s cubic-bezier(.25,.8,.25,1),
+             opacity .6s ease;
+  opacity:0;
+  transform:translateY(20px);
+}
+.ab-masonry-item.in-view{opacity:1;transform:translateY(0)}
+.ab-masonry-item:hover{
+  transform:translateY(-6px) scale(1.008);
+  box-shadow:0 24px 52px rgba(0,0,0,.14);
+}
+.ab-masonry-item img{
+  width:100%;height:auto;display:block;
+  transition:transform .55s cubic-bezier(.25,.8,.25,1);
+  border-radius:16px;
+}
+.ab-masonry-item:hover img{transform:scale(1.04)}
+.ab-masonry-hover{
+  position:absolute;inset:0;
+  background:rgba(0,0,0,0);
+  border-radius:16px;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .3s;
+}
+.ab-masonry-item:hover .ab-masonry-hover{background:rgba(0,0,0,.22)}
+.ab-zoom-icon{
+  width:42px;height:42px;border-radius:50%;
+  border:1.5px solid rgba(255,255,255,.85);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transform:scale(.8);
+  transition:opacity .3s, transform .3s;
+}
+.ab-masonry-item:hover .ab-zoom-icon{opacity:1;transform:scale(1)}
+.ab-zoom-icon svg{width:16px;height:16px;stroke:var(--white);fill:none;stroke-width:2}
+
+/* ---- fullscreen lightbox ---- */
+.ab-lightbox{
+  position:fixed;inset:0;z-index:5000;
+  background:rgba(8,8,8,.96);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  display:none;align-items:center;justify-content:center;
+  padding:1rem;
+  animation:lbFadeIn .25s ease;
+}
+.ab-lightbox.open{display:flex}
+@keyframes lbFadeIn{from{opacity:0}to{opacity:1}}
+.ab-lb-img{
+  max-height:90vh;max-width:88vw;
+  object-fit:contain;border-radius:6px;
+  box-shadow:0 48px 96px rgba(0,0,0,.7);
+  animation:lbZoom .3s cubic-bezier(.34,1.56,.64,1);
+  user-select:none;-webkit-user-drag:none;
+  pointer-events:none;
+}
+@keyframes lbZoom{from{transform:scale(.94);opacity:.6}to{transform:scale(1);opacity:1}}
+.ab-lb-close{
+  position:absolute;top:1.2rem;right:1.5rem;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);
+  border-radius:50%;width:40px;height:40px;
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,.8);font-size:1.4rem;line-height:1;
+  cursor:pointer;transition:all .2s;
+}
+.ab-lb-close:hover{background:rgba(255,255,255,.2);color:var(--white)}
+.ab-lb-prev,.ab-lb-next{
+  position:absolute;top:50%;transform:translateY(-50%);
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);
+  border-radius:50%;width:52px;height:52px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:all .25s;
+}
+.ab-lb-prev{left:1.2rem}
+.ab-lb-next{right:1.2rem}
+.ab-lb-prev:hover,.ab-lb-next:hover{background:rgba(255,255,255,.18)}
+.ab-lb-prev svg,.ab-lb-next svg{width:22px;height:22px;stroke:rgba(255,255,255,.85);fill:none;stroke-width:1.8}
+.ab-lb-counter{
+  position:absolute;bottom:1.6rem;left:50%;transform:translateX(-50%);
+  font-family:var(--sans);font-size:.7rem;letter-spacing:.18em;
+  color:rgba(255,255,255,.45);white-space:nowrap;
+}
+/* swipe hint */
+.ab-lb-swipe-hint{
+  position:absolute;bottom:3.5rem;left:50%;transform:translateX(-50%);
+  font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(255,255,255,.2);
+}
+
+/* ---- "You May Also Like" ---- */
+.ab-related{padding:4rem 4rem 2rem}
+.ab-related-eyebrow{display:flex;align-items:center;gap:.85rem;margin-bottom:1.2rem}
+.ab-related-line{width:36px;height:1px;background:var(--text-muted)}
+.ab-related-label{font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--text-muted)}
+.ab-related-title{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.4rem);font-weight:300;color:var(--charcoal);margin-bottom:2rem}
+.ab-related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.ab-related-card{
+  border-radius:14px;overflow:hidden;cursor:pointer;
+  background:var(--white);
+  box-shadow:0 8px 28px rgba(0,0,0,.07);
+  transition:transform .35s ease,box-shadow .35s ease;
+  border:1px solid rgba(201,168,76,.12);
+}
+.ab-related-card:hover{transform:translateY(-5px);box-shadow:0 20px 44px rgba(0,0,0,.12)}
+.ab-related-card img{width:100%;height:200px;object-fit:cover;display:block;transition:transform .5s ease}
+.ab-related-card:hover img{transform:scale(1.04)}
+.ab-related-body{padding:1.1rem 1.2rem 1.3rem}
+.ab-related-name{font-family:var(--serif);font-size:1.05rem;color:var(--charcoal);margin-bottom:.3rem}
+.ab-related-sub{font-size:.72rem;color:var(--text-muted);display:flex;align-items:center;gap:.4rem}
+.ab-related-sub svg{width:10px;height:10px;stroke:var(--gold);fill:none;stroke-width:2;flex-shrink:0}
+
+/* ---- bottom CTA ---- */
+.ab-bottom-cta{
+  margin:2rem 4rem 4rem;
+  background:var(--charcoal);border-radius:16px;
+  padding:3.5rem 4rem;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:2rem;flex-wrap:wrap;
+}
+.ab-bottom-cta-text h3{font-family:var(--serif);font-size:2rem;font-weight:300;color:var(--white);margin-bottom:.4rem}
+.ab-bottom-cta-text p{font-size:.85rem;color:rgba(255,255,255,.5);line-height:1.7}
+.ab-bottom-cta-btn{
+  background:var(--gold);color:var(--charcoal);border:none;
+  padding:1rem 2.5rem;font-family:var(--sans);font-size:.75rem;
+  letter-spacing:.18em;text-transform:uppercase;font-weight:500;
+  cursor:pointer;transition:all .3s;border-radius:4px;white-space:nowrap;flex-shrink:0;
+}
+.ab-bottom-cta-btn:hover{background:var(--gold-light);transform:translateY(-2px)}
+
+/* ---- responsive ---- */
+@media(max-width:1100px){.ab-masonry{column-count:3}}
+@media(max-width:900px){
+  .ab-nav,.ab-hero-meta,.ab-gallery-header,.ab-masonry,.ab-related,.ab-bottom-cta{padding-left:2rem;padding-right:2rem}
+  .ab-gallery-divider{margin-left:2rem;margin-right:2rem}
+  .ab-masonry{column-count:2}
+  .ab-related-grid{grid-template-columns:1fr 1fr}
+  .ab-bottom-cta{padding:2.5rem 2rem}
+}
+@media(max-width:600px){
+  .ab-masonry{column-count:1}
+  .ab-related-grid{grid-template-columns:1fr}
+  .ab-hero-title{font-size:2.6rem}
+  .ab-lb-prev{left:.4rem}
+  .ab-lb-next{right:.4rem}
+  .ab-bottom-cta{flex-direction:column;align-items:flex-start}
+  .ab-nav{padding:.8rem 1.2rem}
+  .ab-breadcrumb{display:none}
+}
 
 /* responsive */
 @media(max-width:900px){
@@ -2074,45 +2317,80 @@ footer{background:var(--charcoal-mid);padding:5rem 4rem 2rem;position:relative;o
 
 </div>
 
-<!-- PORTFOLIO DETAIL PAGE -->
-<div class="portfolio-detail" id="portfolioDetail">
-  <div class="portfolio-detail-inner">
-    <div class="pd-back-bar">
-      <button class="pd-back-btn" onclick="closePortfolioDetail()">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="15 18 9 12 15 6"/></svg>
-        Back to Portfolio
-      </button>
-    </div>
-    <div class="pd-hero">
-      <div class="pd-hero-bg" id="pdHeroBg"></div>
-      <div class="pd-hero-content">
-        <div class="pd-breadcrumb"><span id="pdServiceLabel">Portfolio</span></div>
-        <h1 class="pd-heading" id="pdHeading">Session Title</h1>
-        <p class="pd-description" id="pdDescription"></p>
-        <div class="pd-meta">
-          <span><strong>Date:</strong> <span id="pdDate"></span></span>
-          <span><strong>Location:</strong> <span id="pdLocation"></span></span>
-        </div>
-        <div class="pd-story" id="pdStory"></div>
-        <span class="pd-count" id="pdCount">0 Photos</span>
-      </div>
-    </div>
+<!-- ALBUM PAGE — 3rd level navigation -->
+<div class="album-page" id="albumPage">
 
-    <div class="pd-section">
-      <h2>Gallery</h2>
-      <div class="pd-gallery" id="pdGallery"></div>
+  <!-- Sticky nav bar -->
+  <div class="ab-nav">
+    <button class="ab-back" id="abBackBtn" onclick="closeAlbumPage()">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      Back to Sessions
+    </button>
+    <div class="ab-breadcrumb" id="abBreadcrumb">
+      STEWDIOONE &nbsp;/&nbsp; <span id="abBreadService"></span> &nbsp;/&nbsp; <b id="abBreadTitle"></b>
     </div>
-
-    <div class="pd-section">
-      <h2>You May Also Like</h2>
-      <div class="pd-related" id="pdRelated"></div>
-    </div>
-
-    <div class="pd-cta-row">
-      <button class="pd-cta-btn primary" onclick="closePortfolioDetail();setTimeout(()=>document.getElementById('booking').scrollIntoView({behavior:'smooth'}),200)">Book This Session</button>
-      <button class="pd-cta-btn secondary" onclick="closePortfolioDetail()">Return to Portfolio</button>
-    </div>
+    <button class="ab-book-btn" onclick="closeAlbumPage();closeServicePage();setTimeout(()=>document.getElementById('booking').scrollIntoView({behavior:'smooth'}),400)">
+      Book Session
+    </button>
   </div>
+
+  <!-- Cover image -->
+  <div class="ab-cover">
+    <img class="ab-cover-img" id="abCoverImg" src="" alt="">
+    <div class="ab-cover-overlay"></div>
+  </div>
+
+  <!-- Hero meta -->
+  <div class="ab-hero-meta">
+    <span class="ab-hero-service" id="abService"></span>
+    <h1 class="ab-hero-title" id="abTitle"></h1>
+    <div class="ab-hero-details" id="abDetails"></div>
+    <p class="ab-hero-desc" id="abDesc"></p>
+  </div>
+
+  <!-- Gallery header -->
+  <div class="ab-gallery-header">
+    <div>
+      <div class="ab-gallery-title">Gallery<em>.</em></div>
+    </div>
+    <div class="ab-gallery-count" id="abCount"></div>
+  </div>
+  <div class="ab-gallery-divider"></div>
+
+  <!-- Masonry gallery -->
+  <div class="ab-masonry" id="abMasonry"></div>
+
+  <!-- You May Also Like -->
+  <div class="ab-related">
+    <div class="ab-related-eyebrow">
+      <span class="ab-related-line"></span>
+      <span class="ab-related-label">More Sessions</span>
+    </div>
+    <div class="ab-related-title">You May Also Like</div>
+    <div class="ab-related-grid" id="abRelated"></div>
+  </div>
+
+  <!-- Bottom CTA -->
+  <div class="ab-bottom-cta">
+    <div class="ab-bottom-cta-text">
+      <h3>Ready to Create Your Story?</h3>
+      <p>Let us preserve your most important moments with the same artistry and care.</p>
+    </div>
+    <button class="ab-bottom-cta-btn" onclick="closeAlbumPage();closeServicePage();setTimeout(()=>document.getElementById('booking').scrollIntoView({behavior:'smooth'}),400)">
+      Book a Session →
+    </button>
+  </div>
+
+</div>
+
+<!-- Album lightbox -->
+<div class="ab-lightbox" id="abLightbox">
+  <button class="ab-lb-close" onclick="closeAbLightbox()">×</button>
+  <button class="ab-lb-prev" onclick="prevAbPhoto()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+  <img class="ab-lb-img" id="abLbImg" src="" alt="" draggable="false">
+  <button class="ab-lb-next" onclick="nextAbPhoto()"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
+  <div class="ab-lb-counter" id="abLbCounter"></div>
+  <div class="ab-lb-swipe-hint">Swipe or use arrow keys to navigate</div>
 </div>
 
 <script>
@@ -2424,243 +2702,354 @@ function submitContact(e){
   setTimeout(()=>{btn.textContent='Send Message →';btn.style.background='';btn.style.color='';},3000);
 }
 
-// =====================
-// SERVICE DETAIL PAGE
-// =====================
+// =============================================
+// DATA — SERVICE_DATA with PORTFOLIO_GALLERIES
+// =============================================
 const SERVICE_DATA = {
   'Wedding Photography': {
     desc: 'Cinematic storytelling for your most important day. Full coverage from preparations to reception, capturing every sacred moment with artistry and emotion.',
     bg: 'portfolio%20Images/Wedding/Mernice2.jpeg',
     sessions: [
-      { id:1, name:'Bella & Benison', date:'March 15, 2026', location:'Yaoundé', img:'portfolio%20Images/Wedding/1.jpeg', featured:true, description:'An unforgettable day filled with love, laughter, and timeless memories. Every moment was captured with soft light, genuine emotion, and elegant storytelling.' },
-      { id:2, name:'Cynthia & Jean', date:'March 15, 2026', location:'Yaoundé', img:'portfolio%20Images/Wedding/2.jpeg', featured:false, description:'A refined portrait of intimate celebration, where every detail from the dress to the first dance was beautifully preserved.' },
-      { id:3, name:'Doris & Donald', date:'March 15, 2026', location:'Yaoundé', img:'portfolio%20Images/Wedding/3.jpeg', featured:false, description:'Soft golden light, stunning floral design, and heartfelt moments created a wedding gallery that feels both timeless and cinematic.' },
-      { id:4, name:'Beltha & Nathan', date:'March 15, 2026', location:'Yaoundé', img:'portfolio%20Images/Wedding/4.jpeg', featured:false, description:'Every intimate exchange and elegant portrait was recorded to reflect a day of refined beauty and emotional connection.' },
-      { id:5, name:'Mary & Dickson', date:'March 15, 2026', location:'Yaoundé', img:'portfolio%20Images/Wedding/5.jpeg', featured:false, description:'A sophisticated celebration captured with grace, where the love story unfolds through light, movement, and genuine moments.' },
-      { id:6, name:'Clara & Robert', date:'March 15, 2026', location:'Yaoundé', img:'portfolio%20Images/Wedding/6.jpeg', featured:false, description:'A luminous story of refined romance, captured with a luxurious color palette and a gentle, editorial style.' },
-      { name:'Cynthia & Jean', date:'March 15, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1519741497674-611481863552?w=700&q=80', featured:false },
-      { name:'Doris & Donald', date:'March 15, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=700&q=80', featured:false },
-      { name:'Beltha & Nathan', date:'March 15, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=700&q=80', featured:false },
-      { name:'Mary & Dickson', date:'March 15, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=700&q=80', featured:false },
-      { name:'Clara & Robert', date:'March 15, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=700&q=80', featured:false },
+      { id:1, slug:'bella-benison', name:'Bella & Benison', date:'March 15, 2026', location:'Yaoundé, Cameroon', img:'portfolio%20Images/Wedding/1.jpeg', featured:true, description:'An unforgettable day filled with love, laughter, and timeless memories. Every moment was captured with soft light, genuine emotion, and elegant storytelling.' },
+      { id:2, slug:'cynthia-jean', name:'Cynthia & Jean', date:'April 3, 2026', location:'Yaoundé, Cameroon', img:'portfolio%20Images/Wedding/2.jpeg', featured:false, description:'A refined portrait of intimate celebration, where every detail from the dress to the first dance was beautifully preserved.' },
+      { id:3, slug:'doris-donald', name:'Doris & Donald', date:'May 18, 2026', location:'Douala, Cameroon', img:'portfolio%20Images/Wedding/3.jpeg', featured:false, description:'Soft golden light, stunning floral design, and heartfelt moments created a wedding gallery that feels both timeless and cinematic.' },
+      { id:4, slug:'beltha-nathan', name:'Beltha & Nathan', date:'January 22, 2026', location:'Yaoundé, Cameroon', img:'portfolio%20Images/Wedding/4.jpeg', featured:false, description:'Every intimate exchange and elegant portrait was recorded to reflect a day of refined beauty and emotional connection.' },
+      { id:5, slug:'mary-dickson', name:'Mary & Dickson', date:'February 14, 2026', location:'Bafoussam, Cameroon', img:'portfolio%20Images/Wedding/5.jpeg', featured:false, description:'A sophisticated celebration captured with grace, where the love story unfolds through light, movement, and genuine moments.' },
+      { id:6, slug:'clara-robert', name:'Clara & Robert', date:'March 28, 2026', location:'Kribi, Cameroon', img:'portfolio%20Images/Wedding/6.jpeg', featured:false, description:'A luminous story of refined romance, captured with a luxurious color palette and a gentle, editorial style.' },
     ]
   },
   'Studio Session': {
     desc: 'Professional studio portraits with expert lighting and unlimited retouched images, designed for individual expression and group storytelling.',
-    bg: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=1600&q=80',
+    bg: 'portfolio%20Images/Studio/18.jpeg',
     sessions: [
-      { name:'Sophie L.', date:'April 2, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=700&q=80', featured:true },
-      { name:'Marcus T.', date:'April 8, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1504703395950-b89145a5425b?w=700&q=80', featured:false },
-      { name:'Christine M.', date:'April 12, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1488161628813-04466f872be2?w=700&q=80', featured:false },
-      { name:'Isabelle N.', date:'May 1, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=700&q=80', featured:false },
-      { name:'David K.', date:'May 10, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=700&q=80', featured:false },
-      { name:'Amara B.', date:'May 18, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1520975661595-6453be3f7070?w=700&q=80', featured:false },
+      { id:'studio-1', slug:'studio-amara', name:'Amara B.', date:'May 18, 2026', location:'Yaoundé, Cameroon', img:'portfolio%20Images/Studio/1.jpeg', featured:true, description:'A bold editorial studio session that captured personality, poise, and a striking sense of personal identity through expert lighting.' },
+      { id:'studio-2', slug:'studio-david', name:'David K.', date:'May 10, 2026', location:'Yaoundé, Cameroon', img:'portfolio%20Images/Studio/6.jpeg', featured:false, description:'Clean lines, dynamic lighting and a confident presence — a studio session that delivered polished professional portraits.' },
+      { id:'studio-3', slug:'studio-isabelle', name:'Isabelle N.', date:'May 1, 2026', location:'Yaoundé, Cameroon', img:'portfolio%20Images/Studio/11.jpeg', featured:false, description:'Soft, ethereal tones and precise retouching brought out the best of every expression in this intimate studio portrait session.' },
+      { id:'studio-4', slug:'studio-christine', name:'Christine M.', date:'April 12, 2026', location:'Yaoundé, Cameroon', img:'portfolio%20Images/Studio/16.jpeg', featured:false, description:'A sophisticated studio session with warm tones and editorial direction that produced standout personal branding imagery.' },
+      { id:'studio-5', slug:'studio-marcus', name:'Marcus T.', date:'April 8, 2026', location:'Yaoundé, Cameroon', img:'portfolio%20Images/Studio/21.jpeg', featured:false, description:'Sharp, confident and professional — a portrait session designed to communicate authority and individuality.' },
+      { id:'studio-6', slug:'studio-sophie', name:'Sophie L.', date:'April 2, 2026', location:'Yaoundé, Cameroon', img:'portfolio%20Images/Studio/26.jpeg', featured:false, description:'Elegant, soft and beautifully lit — a studio session that felt effortless and delivered stunning results.' },
     ]
   },
   'Family & Group Sessions': {
     desc: 'Beautiful group and family portraits celebrating connection, love and bonds. Every expression preserved in stunning detail.',
-    bg: 'https://images.unsplash.com/photo-1491013516836-7db643ee125a?w=1600&q=80',
+    bg: 'Family&Group/DMB.jpeg',
     sessions: [
-      { name:'The Bello Family', date:'March 20, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1491013516836-7db643ee125a?w=700&q=80', featured:true },
-      { name:'The Ngo Family', date:'April 5, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=700&q=80', featured:false },
-      { name:'The Mbarga Group', date:'April 19, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=700&q=80', featured:false },
-      { name:'The Fon Family', date:'May 3, 2026', location:'Buea', img:'https://images.unsplash.com/photo-1581952976147-5a2d15560349?w=700&q=80', featured:false },
-      { name:'Celebration Group', date:'May 14, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=700&q=80', featured:false },
-      { name:'The Nguema Family', date:'May 22, 2026', location:'Douala', img:'https://images.unsplash.com/photo-1511895426328-dc8714191011?w=700&q=80', featured:false },
+      { id:'fam-1', slug:'family-bello', name:'The Bello Family', date:'March 20, 2026', location:'Yaoundé, Cameroon', img:'Family&Group/DMB.jpeg', featured:true, description:'A warm family gathering brought to life through joyful expressions, candid laughter, and beautiful natural light portraits.' },
+      { id:'fam-2', slug:'family-ngo', name:'The Ngo Family', date:'April 5, 2026', location:'Yaoundé, Cameroon', img:'Family&Group/DMB.jpeg', featured:false, description:'A vibrant group session that captured the bond, energy and love of a wonderful family coming together.' },
+      { id:'fam-3', slug:'family-mbarga', name:'The Mbarga Group', date:'April 19, 2026', location:'Yaoundé, Cameroon', img:'Family&Group/DMB.jpeg', featured:false, description:'An emotional and celebratory family portrait session that preserved the joy of togetherness in timeless images.' },
+      { id:'fam-4', slug:'family-fon', name:'The Fon Family', date:'May 3, 2026', location:'Buea, Cameroon', img:'Family&Group/DMB.jpeg', featured:false, description:'Natural, candid and full of heart — this family session captured every smile, hug and genuine moment of connection.' },
+      { id:'fam-5', slug:'family-celebration', name:'DMB Celebration', date:'May 14, 2026', location:'Yaoundé, Cameroon', img:'Family&Group/DMB.jpeg', featured:false, description:'A large group celebration photographed with care, ensuring every face and relationship was honoured in the final images.' },
+      { id:'fam-6', slug:'family-nguema', name:'The Nguema Family', date:'May 22, 2026', location:'Douala, Cameroon', img:'Family&Group/DMB.jpeg', featured:false, description:'Rich colours, genuine emotion and a warm family dynamic — this session delivered a gallery of memories to last a lifetime.' },
     ]
   },
   'Pre-Wedding Shoots': {
     desc: 'Romantic engagements and pre-wedding sessions in both studio and stunning locations around Cameroon. Tell the beginning of your love story.',
-    bg: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&q=80',
+    bg: 'joan.jpeg',
     sessions: [
-      { name:'Clara & Paul', date:'February 14, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1519741497674-611481863552?w=700&q=80', featured:true },
-      { name:'Nadia & Eric', date:'March 1, 2026', location:'Kribi', img:'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=700&q=80', featured:false },
-      { name:'Joyce & Sam', date:'March 22, 2026', location:'Bafoussam', img:'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=700&q=80', featured:false },
-      { name:'Lena & Marc', date:'April 6, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=700&q=80', featured:false },
-      { name:'Diane & Victor', date:'April 28, 2026', location:'Douala', img:'https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=700&q=80', featured:false },
-      { name:'Flore & Kevin', date:'May 9, 2026', location:'Limbe', img:'https://images.unsplash.com/photo-1606800052052-a08af7148866?w=700&q=80', featured:false },
+      { id:'pw-1', slug:'prewedding-clara-paul', name:'Clara & Paul', date:'February 14, 2026', location:'Yaoundé, Cameroon', img:'joan.jpeg', featured:true, description:'A romantic sunrise session that celebrated the beginning of a beautiful love story through soft light and genuine connection.' },
+      { id:'pw-2', slug:'prewedding-nadia-eric', name:'Nadia & Eric', date:'March 1, 2026', location:'Kribi, Cameroon', img:'joan.jpeg', featured:false, description:'Set against the breathtaking Kribi coastline, this pre-wedding shoot captured intimacy, joy and a love story in full bloom.' },
+      { id:'pw-3', slug:'prewedding-joyce-sam', name:'Joyce & Sam', date:'March 22, 2026', location:'Bafoussam, Cameroon', img:'joan.jpeg', featured:false, description:'Lush green highlands, warm golden light and an undeniable chemistry made this session feel like a cinematic love story.' },
+      { id:'pw-4', slug:'prewedding-lena-marc', name:'Lena & Marc', date:'April 6, 2026', location:'Yaoundé, Cameroon', img:'joan.jpeg', featured:false, description:'An elegant urban engagement session that balanced editorial style with authentic moments of tenderness and romance.' },
+      { id:'pw-5', slug:'prewedding-diane-victor', name:'Diane & Victor', date:'April 28, 2026', location:'Douala, Cameroon', img:'joan.jpeg', featured:false, description:'Dramatic lighting, a stunning location and a couple radiating love created a pre-wedding gallery of extraordinary depth.' },
+      { id:'pw-6', slug:'prewedding-flore-kevin', name:'Flore & Kevin', date:'May 9, 2026', location:'Limbe, Cameroon', img:'joan.jpeg', featured:false, description:'Volcanic coastline drama met tender romance in this visually striking pre-wedding session on the Limbe shore.' },
     ]
   },
   'Birthday Coverage': {
     desc: 'Celebrate life\'s milestones with stunning birthday, graduation and event photography that preserves every laugh, tear and milestone moment.',
-    bg: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=1600&q=80',
+    bg: 'portfolio%20Images/Events/leila.jpeg',
     sessions: [
-      { name:'Christelle — 30th', date:'January 18, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=700&q=80', featured:true },
-      { name:'Emmanuel — Graduation', date:'February 5, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1627556704302-624286467c65?w=700&q=80', featured:false },
-      { name:'Rina — Sweet 16', date:'February 28, 2026', location:'Douala', img:'https://images.unsplash.com/photo-1504703395950-b89145a5425b?w=700&q=80', featured:false },
-      { name:'Alain — 40th', date:'March 12, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=700&q=80', featured:false },
-      { name:'Mireille — Graduation', date:'April 3, 2026', location:'Buea', img:'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=700&q=80', featured:false },
-      { name:'Kevin — 25th', date:'April 20, 2026', location:'Bafoussam', img:'https://images.unsplash.com/photo-1488161628813-04466f872be2?w=700&q=80', featured:false },
+      { id:'bd-1', slug:'birthday-christelle', name:'Christelle — 30th', date:'January 18, 2026', location:'Yaoundé, Cameroon', img:'portfolio%20Images/Events/Christelle.jpeg', featured:true, description:'A milestone 30th birthday celebration captured with elegance, vibrant energy and genuine joy from start to finish.' },
+      { id:'bd-2', slug:'birthday-leila', name:'Leila — Sweet 18', date:'February 5, 2026', location:'Yaoundé, Cameroon', img:'portfolio%20Images/Events/leila.jpeg', featured:false, description:'A radiant coming-of-age celebration photographed with warmth and style, preserving every magical moment of this special night.' },
+      { id:'bd-3', slug:'birthday-dad', name:'Dad\'s Birthday', date:'February 28, 2026', location:'Douala, Cameroon', img:'portfolio%20Images/Events/dadBD.jpeg', featured:false, description:'A heartfelt birthday gathering filled with family, laughter and love — all captured in beautiful, emotive detail.' },
+      { id:'bd-4', slug:'birthday-jose', name:'Jose — Celebration', date:'March 12, 2026', location:'Yaoundé, Cameroon', img:'portfolio%20Images/Events/Jose.jpeg', featured:false, description:'An exuberant birthday event captured with cinematic energy, vibrant colours and genuine celebration at every turn.' },
+      { id:'bd-5', slug:'birthday-teclaire', name:'Teclaire — Milestone', date:'April 3, 2026', location:'Buea, Cameroon', img:'portfolio%20Images/Events/teclaire.jpeg', featured:false, description:'Soft, warm and full of emotion — a milestone birthday preserved through careful, intimate documentary photography.' },
+      { id:'bd-6', slug:'birthday-mbah', name:'Mbah — Celebration', date:'April 20, 2026', location:'Bafoussam, Cameroon', img:'portfolio%20Images/Events/mbah.jpeg', featured:false, description:'A lively birthday celebration captured with energy, personality and an eye for the candid, joyful moments that define a great party.' },
     ]
   },
   'Burial Coverage': {
     desc: 'Capturing one of life\'s most profound moments with sensitivity and care — the tears, the joy and the love that make these moments timeless.',
     bg: 'https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=1600&q=80',
     sessions: [
-      { name:'The Atangana Family', date:'January 10, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=700&q=80', featured:true },
-      { name:'The Ekwueme Family', date:'February 2, 2026', location:'Douala', img:'https://images.unsplash.com/photo-1491013516836-7db643ee125a?w=700&q=80', featured:false },
-      { name:'The Mbida Family', date:'February 22, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=700&q=80', featured:false },
-      { name:'The Ondoa Family', date:'March 8, 2026', location:'Bafia', img:'https://images.unsplash.com/photo-1581952976147-5a2d15560349?w=700&q=80', featured:false },
-      { name:'The Nkeng Family', date:'April 1, 2026', location:'Yaoundé', img:'https://images.unsplash.com/photo-1511895426328-dc8714191011?w=700&q=80', featured:false },
-      { name:'The Fouda Family', date:'April 24, 2026', location:'Mbalmayo', img:'https://images.unsplash.com/photo-1504703395950-b89145a5425b?w=700&q=80', featured:false },
+      { id:'bur-1', slug:'burial-atangana', name:'The Atangana Family', date:'January 10, 2026', location:'Yaoundé, Cameroon', img:'https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=700&q=80', featured:true, description:'A deeply respectful and sensitive coverage that honoured the life of a beloved family member with grace and care.' },
+      { id:'bur-2', slug:'burial-ekwueme', name:'The Ekwueme Family', date:'February 2, 2026', location:'Douala, Cameroon', img:'https://images.unsplash.com/photo-1491013516836-7db643ee125a?w=700&q=80', featured:false, description:'Compassionate documentation of a meaningful farewell, capturing the community\'s love and the family\'s strength.' },
+      { id:'bur-3', slug:'burial-mbida', name:'The Mbida Family', date:'February 22, 2026', location:'Yaoundé, Cameroon', img:'https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=700&q=80', featured:false, description:'A tender and dignified coverage that preserved the memories, faces and emotions of a profound farewell ceremony.' },
+      { id:'bur-4', slug:'burial-ondoa', name:'The Ondoa Family', date:'March 8, 2026', location:'Bafia, Cameroon', img:'https://images.unsplash.com/photo-1581952976147-5a2d15560349?w=700&q=80', featured:false, description:'With sensitivity and respect, every tear, every embrace and every tribute was quietly and beautifully documented.' },
+      { id:'bur-5', slug:'burial-nkeng', name:'The Nkeng Family', date:'April 1, 2026', location:'Yaoundé, Cameroon', img:'https://images.unsplash.com/photo-1511895426328-dc8714191011?w=700&q=80', featured:false, description:'A moving photographic record of love, remembrance and the bonds that endure even in life\'s most difficult moments.' },
+      { id:'bur-6', slug:'burial-fouda', name:'The Fouda Family', date:'April 24, 2026', location:'Mbalmayo, Cameroon', img:'https://images.unsplash.com/photo-1504703395950-b89145a5425b?w=700&q=80', featured:false, description:'Quiet, composed and full of humanity — a burial coverage that honoured a life well lived through careful, empathetic photography.' },
     ]
   }
 };
 
-const PORTFOLIO_SESSIONS = [];
-const PORTFOLIO_GALLERIES = {
-  1: ['portfolio%20Images/Wedding/1.jpeg','portfolio%20Images/Wedding/7.jpeg','portfolio%20Images/Wedding/8.jpeg','portfolio%20Images/Wedding/9.jpeg','portfolio%20Images/Wedding/10.jpeg'],
-  2: ['portfolio%20Images/Wedding/2.jpeg','portfolio%20Images/Wedding/11.jpeg','portfolio%20Images/Wedding/12.jpeg','portfolio%20Images/Wedding/13.jpeg','portfolio%20Images/Wedding/14.jpeg'],
-  3: ['portfolio%20Images/Wedding/3.jpeg','portfolio%20Images/Wedding/15.jpeg','portfolio%20Images/Wedding/16.jpeg','portfolio%20Images/Wedding/17.jpeg','portfolio%20Images/Wedding/18.jpeg'],
-  4: ['portfolio%20Images/Wedding/4.jpeg','portfolio%20Images/Wedding/19.jpeg','portfolio%20Images/Wedding/20.jpeg','portfolio%20Images/Wedding/21.jpeg','portfolio%20Images/Wedding/22.jpeg'],
-  5: ['portfolio%20Images/Wedding/5.jpeg','portfolio%20Images/Wedding/23.jpeg','portfolio%20Images/Wedding/24.jpeg','portfolio%20Images/Wedding/25.jpeg','portfolio%20Images/Wedding/26.jpeg'],
-  6: ['portfolio%20Images/Wedding/6.jpeg','portfolio%20Images/Wedding/27.jpeg','portfolio%20Images/Wedding/28.jpeg','portfolio%20Images/Wedding/29.jpeg','portfolio%20Images/Wedding/30.jpeg']
+// Album galleries — maps session slug → array of image paths
+const ALBUM_GALLERIES = {
+  // Wedding Photography
+  'bella-benison':   ['portfolio%20Images/Wedding/1.jpeg','portfolio%20Images/Wedding/7.jpeg','portfolio%20Images/Wedding/8.jpeg','portfolio%20Images/Wedding/9.jpeg','portfolio%20Images/Wedding/10.jpeg','portfolio%20Images/Wedding/lang.jpeg','portfolio%20Images/Wedding/lovebirds.jpeg','portfolio%20Images/Wedding/mbolo.jpeg'],
+  'cynthia-jean':    ['portfolio%20Images/Wedding/2.jpeg','portfolio%20Images/Wedding/11.jpeg','portfolio%20Images/Wedding/12.jpeg','portfolio%20Images/Wedding/13.jpeg','portfolio%20Images/Wedding/14.jpeg','portfolio%20Images/Wedding/Cintha.jpeg','portfolio%20Images/Wedding/M%24M.jpeg','portfolio%20Images/Wedding/marc%24marion.jpeg'],
+  'doris-donald':    ['portfolio%20Images/Wedding/3.jpeg','portfolio%20Images/Wedding/15.jpeg','portfolio%20Images/Wedding/16.jpeg','portfolio%20Images/Wedding/17.jpeg','portfolio%20Images/Wedding/18.jpeg','portfolio%20Images/Wedding/dop%24rudy.jpeg','portfolio%20Images/Wedding/dolphine.jpeg','portfolio%20Images/Wedding/eddy.jpeg'],
+  'beltha-nathan':   ['portfolio%20Images/Wedding/4.jpeg','portfolio%20Images/Wedding/19.jpeg','portfolio%20Images/Wedding/20.jpeg','portfolio%20Images/Wedding/21.jpeg','portfolio%20Images/Wedding/22.jpeg','portfolio%20Images/Wedding/Mernice2.jpeg','portfolio%20Images/Wedding/mernice1.jpeg','portfolio%20Images/Wedding/Mernice4.jpeg'],
+  'mary-dickson':    ['portfolio%20Images/Wedding/5.jpeg','portfolio%20Images/Wedding/23.jpeg','portfolio%20Images/Wedding/24.jpeg','portfolio%20Images/Wedding/25.jpeg','portfolio%20Images/Wedding/26.jpeg','portfolio%20Images/Wedding/melvis.jpeg','portfolio%20Images/Wedding/melvis1.jpeg','portfolio%20Images/Wedding/melvis2.jpeg'],
+  'clara-robert':    ['portfolio%20Images/Wedding/6.jpeg','portfolio%20Images/Wedding/27.jpeg','portfolio%20Images/Wedding/28.jpeg','portfolio%20Images/Wedding/29.jpeg','portfolio%20Images/Wedding/30.jpeg','portfolio%20Images/Wedding/inaris.jpeg','portfolio%20Images/Wedding/Inaris1.jpeg','portfolio%20Images/Wedding/Inaris3.jpeg'],
+  // Studio
+  'studio-amara':    ['portfolio%20Images/Studio/1.jpeg','portfolio%20Images/Studio/2.jpeg','portfolio%20Images/Studio/3.jpeg','portfolio%20Images/Studio/4.jpeg','portfolio%20Images/Studio/5.jpeg','portfolio%20Images/Studio/6.jpeg'],
+  'studio-david':    ['portfolio%20Images/Studio/7.jpeg','portfolio%20Images/Studio/8.jpeg','portfolio%20Images/Studio/9.jpeg','portfolio%20Images/Studio/10.jpeg','portfolio%20Images/Studio/11.jpeg','portfolio%20Images/Studio/12.jpeg'],
+  'studio-isabelle': ['portfolio%20Images/Studio/13.jpeg','portfolio%20Images/Studio/14.jpeg','portfolio%20Images/Studio/15.jpeg','portfolio%20Images/Studio/16.jpeg','portfolio%20Images/Studio/17.jpeg','portfolio%20Images/Studio/18.jpeg'],
+  'studio-christine':['portfolio%20Images/Studio/19.jpeg','portfolio%20Images/Studio/20.jpeg','portfolio%20Images/Studio/21.jpeg','portfolio%20Images/Studio/22.jpeg','portfolio%20Images/Studio/23.jpeg','portfolio%20Images/Studio/24.jpeg'],
+  'studio-marcus':   ['portfolio%20Images/Studio/25.jpeg','portfolio%20Images/Studio/26.jpeg','portfolio%20Images/Studio/27.jpeg','portfolio%20Images/Studio/28.jpeg','portfolio%20Images/Studio/29.jpeg','portfolio%20Images/Studio/30.jpeg'],
+  'studio-sophie':   ['portfolio%20Images/Studio/31.jpeg','portfolio%20Images/Studio/32.jpeg','portfolio%20Images/Studio/33.jpeg','portfolio%20Images/Studio/1.jpeg','portfolio%20Images/Studio/2.jpeg','portfolio%20Images/Studio/3.jpeg'],
+  // Family & Group — use same bg image set for now
+  'family-bello':    ['Family&Group/DMB.jpeg','Family&Group/DMB.jpeg','Family&Group/DMB.jpeg','Family&Group/DMB.jpeg'],
+  'family-ngo':      ['Family&Group/DMB.jpeg','Family&Group/DMB.jpeg','Family&Group/DMB.jpeg','Family&Group/DMB.jpeg'],
+  'family-mbarga':   ['Family&Group/DMB.jpeg','Family&Group/DMB.jpeg','Family&Group/DMB.jpeg','Family&Group/DMB.jpeg'],
+  'family-fon':      ['Family&Group/DMB.jpeg','Family&Group/DMB.jpeg','Family&Group/DMB.jpeg'],
+  'family-celebration':['Family&Group/DMB.jpeg','Family&Group/DMB.jpeg','Family&Group/DMB.jpeg'],
+  'family-nguema':   ['Family&Group/DMB.jpeg','Family&Group/DMB.jpeg','Family&Group/DMB.jpeg'],
+  // Birthday
+  'birthday-christelle':['portfolio%20Images/Events/Christelle.jpeg','portfolio%20Images/Events/bd.jpeg','portfolio%20Images/Events/friend.jpeg','portfolio%20Images/Events/Unknown.jpeg','portfolio%20Images/Events/unknown1.jpeg'],
+  'birthday-leila':     ['portfolio%20Images/Events/leila.jpeg','portfolio%20Images/Events/bd.jpeg','portfolio%20Images/Events/engagement.jpeg','portfolio%20Images/Events/teclaire.jpeg'],
+  'birthday-dad':       ['portfolio%20Images/Events/dadBD.jpeg','portfolio%20Images/Events/dadBD1.jpeg','portfolio%20Images/Events/bd.jpeg','portfolio%20Images/Events/mbah.jpeg'],
+  'birthday-jose':      ['portfolio%20Images/Events/Jose.jpeg','portfolio%20Images/Events/friend.jpeg','portfolio%20Images/Events/Unknown.jpeg','portfolio%20Images/Events/bd.jpeg'],
+  'birthday-teclaire':  ['portfolio%20Images/Events/teclaire.jpeg','portfolio%20Images/Events/Christelle.jpeg','portfolio%20Images/Events/engagement.jpeg','portfolio%20Images/Events/unknown1.jpeg'],
+  'birthday-mbah':      ['portfolio%20Images/Events/mbah.jpeg','portfolio%20Images/Events/dadBD1.jpeg','portfolio%20Images/Events/Jose.jpeg','portfolio%20Images/Events/friend.jpeg'],
+  // Pre-wedding — placeholder (real images can be added later)
+  'prewedding-clara-paul':   ['joan.jpeg','portfolio%20Images/Wedding/lovebirds.jpeg','portfolio%20Images/Wedding/lang.jpeg'],
+  'prewedding-nadia-eric':   ['joan.jpeg','portfolio%20Images/Wedding/M%24M.jpeg','portfolio%20Images/Wedding/eddy.jpeg'],
+  'prewedding-joyce-sam':    ['joan.jpeg','portfolio%20Images/Wedding/Cintha.jpeg','portfolio%20Images/Wedding/dop%24rudy.jpeg'],
+  'prewedding-lena-marc':    ['joan.jpeg','portfolio%20Images/Wedding/inaris.jpeg','portfolio%20Images/Wedding/melvis.jpeg'],
+  'prewedding-diane-victor': ['joan.jpeg','portfolio%20Images/Wedding/Mernice2.jpeg','portfolio%20Images/Wedding/mernice1.jpeg'],
+  'prewedding-flore-kevin':  ['joan.jpeg','portfolio%20Images/Wedding/Inaris1.jpeg','portfolio%20Images/Wedding/Inaris3.jpeg'],
+  // Burial — placeholder
+  'burial-atangana': ['https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=800&q=80','https://images.unsplash.com/photo-1491013516836-7db643ee125a?w=800&q=80'],
+  'burial-ekwueme':  ['https://images.unsplash.com/photo-1491013516836-7db643ee125a?w=800&q=80','https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=800&q=80'],
+  'burial-mbida':    ['https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=800&q=80','https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=800&q=80'],
+  'burial-ondoa':    ['https://images.unsplash.com/photo-1581952976147-5a2d15560349?w=800&q=80','https://images.unsplash.com/photo-1511895426328-dc8714191011?w=800&q=80'],
+  'burial-nkeng':    ['https://images.unsplash.com/photo-1511895426328-dc8714191011?w=800&q=80','https://images.unsplash.com/photo-1581952976147-5a2d15560349?w=800&q=80'],
+  'burial-fouda':    ['https://images.unsplash.com/photo-1504703395950-b89145a5425b?w=800&q=80','https://images.unsplash.com/photo-1491013516836-7db643ee125a?w=800&q=80'],
 };
-var detailGalleryImages = [];
 
-function buildPortfolioSessions(){
-  const slugMap = {};
-  Object.entries(SERVICE_DATA).forEach(([service,data]) => {
-    data.sessions.forEach(item => {
-      const baseSlug = `${service} ${item.name}`
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g,'-')
-        .replace(/^-+|-+$/g,'');
-      const slug = slugMap[baseSlug] ? `${baseSlug}-${slugMap[baseSlug] + 1}` : baseSlug;
-      slugMap[baseSlug] = (slugMap[baseSlug] || 0) + 1;
-      const gallery = PORTFOLIO_GALLERIES[item.id] || [item.img];
-      PORTFOLIO_SESSIONS.push({
-        id:item.id || `${service}-${item.name}`,
-        slug,
-        title:item.name,
-        date:item.date,
-        location:item.location,
-        description:item.description || '',
-        coverImage:item.img,
-        galleryImages:gallery,
-        service,
-        story:`${item.description || 'A beautiful session captured with elegance and care.'} The day was shaped by intimate moments, cinematic details, and a celebration of love that felt both timeless and luxurious.`
-      });
-    });
+// Build flat session list for URL routing
+const ALL_SESSIONS = [];
+Object.entries(SERVICE_DATA).forEach(([service, data]) => {
+  data.sessions.forEach(s => {
+    ALL_SESSIONS.push({...s, service, images: ALBUM_GALLERIES[s.slug] || [s.img]});
   });
-}
+});
 
-buildPortfolioSessions();
+function slugify(str){ return str.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,''); }
 
-function openPortfolioDetail(slug){
-  const session = PORTFOLIO_SESSIONS.find(item => item.slug === slug);
+// =============================================
+// ALBUM PAGE — open / close / render
+// =============================================
+let currentAlbumSession = null;
+let abLbPhotos = [];
+let abLbIdx = 0;
+
+// Intersection observer for masonry fade-in
+const masonryObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in-view'); });
+}, {threshold: 0.08});
+
+function openAlbumPage(slug, fromServiceName) {
+  const session = ALL_SESSIONS.find(s => s.slug === slug);
   if(!session) return;
-  closeServicePage();
-  const detail = document.getElementById('portfolioDetail');
-  document.getElementById('pdHeroBg').style.backgroundImage = `url('${session.coverImage}')`;
-  document.getElementById('pdServiceLabel').textContent = `${session.service}`;
-  document.getElementById('pdHeading').textContent = session.title;
-  document.getElementById('pdDescription').textContent = session.description;
-  document.getElementById('pdDate').textContent = session.date;
-  document.getElementById('pdLocation').textContent = session.location;
-  document.getElementById('pdStory').innerHTML = session.story.split('.')
-    .filter(Boolean)
-    .map(p => `<p>${p.trim()}.</p>`)
-    .join('');
-  document.getElementById('pdCount').textContent = `${session.galleryImages.length} Photos`;
-  detailGalleryImages = session.galleryImages;
-  document.getElementById('pdGallery').innerHTML = session.galleryImages.map((img, index) => `
-      <button class="pd-thumb" onclick="openLightbox(${index}, detailGalleryImages)">
-        <img src="${img}" alt="${session.title} photo ${index+1}" loading="lazy">
-      </button>
-    `).join('');
-  const related = PORTFOLIO_SESSIONS.filter(item => item.service === session.service && item.slug !== session.slug).slice(0,3);
-  document.getElementById('pdRelated').innerHTML = related.map(item => `
-      <div class="pd-related-card" onclick="openPortfolioDetail('${item.slug}')">
-        <img src="${item.coverImage}" alt="${item.title}">
-        <div class="pd-related-body">
-          <div class="pd-related-title">${item.title}</div>
-          <div class="pd-related-subtitle">${item.location}</div>
+  currentAlbumSession = session;
+  abLbPhotos = session.images;
+
+  // breadcrumb
+  document.getElementById('abBreadService').textContent = session.service;
+  document.getElementById('abBreadTitle').textContent = session.name;
+
+  // back button label
+  document.getElementById('abBackBtn').innerHTML = `<svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg> Back to Sessions`;
+
+  // cover
+  document.getElementById('abCoverImg').src = session.img;
+  document.getElementById('abCoverImg').alt = session.name;
+
+  // meta
+  document.getElementById('abService').textContent = session.service;
+  document.getElementById('abTitle').textContent = session.name;
+  document.getElementById('abDesc').textContent = session.description || '';
+  document.getElementById('abDetails').innerHTML = `
+    <span><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>${session.date}</span>
+    <span><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${session.location}</span>
+  `;
+
+  // photo count
+  document.getElementById('abCount').textContent = `${session.images.length} Photo${session.images.length !== 1 ? 's' : ''}`;
+
+  // masonry gallery
+  const masonry = document.getElementById('abMasonry');
+  masonry.innerHTML = session.images.map((url, i) => `
+    <div class="ab-masonry-item" onclick="openAbLightbox(${i})">
+      <img src="${url}" alt="${session.name} — photo ${i+1}" loading="lazy">
+      <div class="ab-masonry-hover">
+        <div class="ab-zoom-icon">
+          <svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
         </div>
       </div>
-    `).join('');
-  detail.classList.add('open');
+    </div>`).join('');
+
+  // observe each masonry item for scroll fade-in
+  masonry.querySelectorAll('.ab-masonry-item').forEach((el, i) => {
+    el.style.transitionDelay = `${Math.min(i * 60, 400)}ms`;
+    masonryObs.observe(el);
+  });
+
+  // "You May Also Like" — 3 sessions from same service, excluding self
+  const serviceData = SERVICE_DATA[session.service];
+  const related = (serviceData ? serviceData.sessions : [])
+    .filter(s => s.slug !== slug)
+    .slice(0, 3);
+  document.getElementById('abRelated').innerHTML = related.length
+    ? related.map(s => `
+        <div class="ab-related-card" onclick="openAlbumPage('${s.slug}','${session.service}')">
+          <img src="${s.img}" alt="${s.name}" loading="lazy">
+          <div class="ab-related-body">
+            <div class="ab-related-name">${s.name}</div>
+            <div class="ab-related-sub">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              ${s.location}
+            </div>
+          </div>
+        </div>`).join('')
+    : '<p style="color:var(--text-muted);font-size:.85rem">More sessions coming soon.</p>';
+
+  // URL + SEO
+  const urlSlug = `/services/${slugify(session.service)}/${slug}`;
+  history.pushState({album: slug, service: session.service}, session.name, `#${urlSlug}`);
+  document.title = `${session.name} | ${session.service} | STEWDIOONE`;
+
+  // open
+  const page = document.getElementById('albumPage');
+  page.classList.add('open');
+  page.scrollTop = 0;
   document.body.style.overflow = 'hidden';
-  const pageTitle = `${session.title} | ${session.service} | STEWDIOONE`;
-  document.title = pageTitle;
-  const metaDesc = document.querySelector('meta[name="description"]');
-  if(metaDesc){
-    metaDesc.content = `${session.description} Captured in ${session.location} on ${session.date}.`;
-  }
-  window.location.hash = `portfolio/${slug}`;
 }
 
-function closePortfolioDetail(){
-  const detail = document.getElementById('portfolioDetail');
-  if(!detail.classList.contains('open')) return;
-  detail.classList.remove('open');
-  document.body.style.overflow = '';
-  document.title = 'STEWDIOONE — Luxury Photography & Videography';
-  const metaDesc = document.querySelector('meta[name="description"]');
-  if(metaDesc){
-    metaDesc.content = 'STEWDIOONE — Premium photography and videography services that preserve memories, tell stories and create timeless experiences.';
+function closeAlbumPage() {
+  const page = document.getElementById('albumPage');
+  page.classList.remove('open');
+  // unobserve masonry items so they can re-animate next open
+  page.querySelectorAll('.ab-masonry-item').forEach(el => {
+    el.classList.remove('in-view');
+    masonryObs.unobserve(el);
+  });
+  // restore URL to service level if coming from service page
+  if(currentAlbumSession) {
+    const svcSlug = slugify(currentAlbumSession.service);
+    history.replaceState({}, '', `#/services/${svcSlug}`);
+    document.title = 'STEWDIOONE — Luxury Photography & Videography';
   }
-  history.replaceState(null,'',window.location.pathname + window.location.search);
+  document.body.style.overflow = document.getElementById('servicePage').classList.contains('open') ? 'hidden' : '';
 }
 
-function checkHash(){
-  if(window.location.hash.startsWith('#portfolio/')){
-    const slug = window.location.hash.replace('#portfolio/','');
-    openPortfolioDetail(slug);
-  }
+// album lightbox
+function openAbLightbox(idx) {
+  abLbIdx = idx;
+  document.getElementById('abLbImg').src = abLbPhotos[idx];
+  document.getElementById('abLbCounter').textContent = `${idx + 1} / ${abLbPhotos.length}`;
+  document.getElementById('abLightbox').classList.add('open');
+}
+function closeAbLightbox() { document.getElementById('abLightbox').classList.remove('open'); }
+function nextAbPhoto() {
+  abLbIdx = (abLbIdx + 1) % abLbPhotos.length;
+  document.getElementById('abLbImg').src = abLbPhotos[abLbIdx];
+  document.getElementById('abLbCounter').textContent = `${abLbIdx + 1} / ${abLbPhotos.length}`;
+}
+function prevAbPhoto() {
+  abLbIdx = (abLbIdx - 1 + abLbPhotos.length) % abLbPhotos.length;
+  document.getElementById('abLbImg').src = abLbPhotos[abLbIdx];
+  document.getElementById('abLbCounter').textContent = `${abLbIdx + 1} / ${abLbPhotos.length}`;
 }
 
+// swipe support on album lightbox
+(function(){
+  let startX = 0;
+  const lb = document.getElementById('abLightbox');
+  lb.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
+  lb.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - startX;
+    if(Math.abs(dx) > 50) dx < 0 ? nextAbPhoto() : prevAbPhoto();
+  });
+  lb.addEventListener('click', e => { if(e.target === lb) closeAbLightbox(); });
+})();
+
+// keyboard nav
+document.addEventListener('keydown', e => {
+  if(document.getElementById('abLightbox').classList.contains('open')) {
+    if(e.key==='ArrowRight') nextAbPhoto();
+    if(e.key==='ArrowLeft') prevAbPhoto();
+    if(e.key==='Escape') closeAbLightbox();
+    return;
+  }
+  if(document.getElementById('albumPage').classList.contains('open') && e.key==='Escape') { closeAlbumPage(); return; }
+  if(document.getElementById('lightbox').classList.contains('open')) {
+    if(e.key==='ArrowRight') nextLightbox();
+    if(e.key==='ArrowLeft') prevLightbox();
+    if(e.key==='Escape') closeLightbox();
+  }
+  if(document.getElementById('servicePage').classList.contains('open') && e.key==='Escape') closeServicePage();
+});
+
+// hash routing
+function checkHash() {
+  const h = window.location.hash;
+  const m = h.match(/^#\/services\/[^/]+\/([^/]+)$/);
+  if(m) {
+    const slug = m[1];
+    const session = ALL_SESSIONS.find(s => s.slug === slug);
+    if(session) {
+      openServicePage(session.service);
+      setTimeout(() => openAlbumPage(slug, session.service), 50);
+    }
+  }
+}
 window.addEventListener('hashchange', checkHash);
 checkHash();
 
-function openServicePage(serviceName){
+// =============================================
+// SERVICE PAGE
+// =============================================
+function openServicePage(serviceName) {
   const data = SERVICE_DATA[serviceName];
   if(!data) return;
-
-  // populate content
   document.getElementById('spTitle').textContent = serviceName;
   document.getElementById('spDesc').textContent = data.desc;
   document.getElementById('spHeroBg').style.backgroundImage = `url('${data.bg}')`;
-
-  // build session cards
   const grid = document.getElementById('spGrid');
-  grid.innerHTML = data.sessions.map((s, i) => {
-    const slug = s.name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
-    const card = s.featured ? 'sp-card featured' : 'sp-card';
-    const body = s.featured ? `
-        <div class="sp-card-overlay">
-          <div>
-            <div class="sp-card-name">${s.name}</div>
-            <div class="sp-card-meta">
-              <span><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>${s.date}</span>
-              <span><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${s.location}</span>
-            </div>
-          </div>
-        </div>` : `
-        <div class="sp-card-body">
-          <div class="sp-card-name">${s.name}</div>
-          <div class="sp-card-meta">
-            <span><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>${s.date}</span>
-            <span><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${s.location}</span>
-          </div>
-        </div>`;
-    return `
-      <div class="${card}" onclick="openPortfolioDetail('${slug}')">
-        <img class="sp-card-img" src="${s.img}" alt="${s.name}" loading="lazy">
-        ${body}
-      </div>`;
+  grid.innerHTML = data.sessions.map(s => {
+    const cls = s.featured ? 'sp-card featured' : 'sp-card';
+    const body = s.featured
+      ? `<div class="sp-card-overlay"><div>
+           <div class="sp-card-name">${s.name}</div>
+           <div class="sp-card-meta">
+             <span><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>${s.date}</span>
+             <span><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${s.location}</span>
+           </div>
+         </div></div>`
+      : `<div class="sp-card-body">
+           <div class="sp-card-name">${s.name}</div>
+           <div class="sp-card-meta">
+             <span><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>${s.date}</span>
+             <span><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${s.location}</span>
+           </div>
+         </div>`;
+    return `<div class="${cls}" onclick="openAlbumPage('${s.slug}','${serviceName}')">
+      <img class="sp-card-img" src="${s.img}" alt="${s.name}" loading="lazy">
+      ${body}
+    </div>`;
   }).join('');
-
-  // open overlay
   const page = document.getElementById('servicePage');
   page.classList.add('open');
   page.scrollTop = 0;
   document.body.style.overflow = 'hidden';
 }
 
-function closeServicePage(){
+function closeServicePage() {
   document.getElementById('servicePage').classList.remove('open');
-  document.body.style.overflow = '';
+  if(!document.getElementById('albumPage').classList.contains('open')) {
+    document.body.style.overflow = '';
+  }
 }
 </script>
 </body>
