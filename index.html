@@ -829,8 +829,184 @@ footer{background:var(--charcoal-mid);padding:5rem 4rem 2rem;position:relative;o
 .sp-cta-link:hover svg{transform:translateX(3px)}
 
 /* =============================================
-   ALBUM PAGE — Premium 3rd-level nav
+   BACK TO TOP BUTTON
    ============================================= */
+.back-to-top{
+  position:fixed;
+  bottom:2.2rem;right:2.2rem;
+  z-index:1500;
+  width:46px;height:46px;
+  background:var(--charcoal);
+  border:1px solid rgba(201,168,76,.35);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+  /* hidden until user scrolls down */
+  opacity:0;
+  pointer-events:none;
+  transform:translateY(12px) scale(.88);
+  transition:opacity .35s ease,
+             transform .35s cubic-bezier(.34,1.56,.64,1),
+             background .25s ease,
+             border-color .25s ease;
+  box-shadow:0 6px 20px rgba(0,0,0,.22);
+}
+.back-to-top.visible{
+  opacity:1;
+  pointer-events:all;
+  transform:translateY(0) scale(1);
+}
+.back-to-top:hover{
+  background:var(--gold);
+  border-color:var(--gold);
+  transform:translateY(-3px) scale(1.06);
+  box-shadow:0 10px 28px rgba(201,168,76,.35);
+}
+.back-to-top svg{
+  width:18px;height:18px;
+  stroke:var(--white);fill:none;stroke-width:2.2;
+  transition:stroke .25s ease;
+}
+.back-to-top:hover svg{stroke:var(--charcoal)}
+
+/* =============================================
+   PORTFOLIO SECTION — preview clip + fade
+   ============================================= */
+.portfolio-grid-wrap{
+  position:relative;
+}
+/* Fade-out gradient at the bottom of the preview */
+.portfolio-grid-wrap::after{
+  content:'';
+  position:absolute;
+  bottom:0;left:0;right:0;
+  height:220px;
+  background:linear-gradient(to bottom, transparent 0%, var(--charcoal) 100%);
+  pointer-events:none;
+  z-index:2;
+}
+/* CTA row below the fade */
+.portfolio-preview-cta{
+  text-align:center;
+  padding:2rem 0 4rem;
+  position:relative;
+  z-index:3;
+}
+.portfolio-view-more{
+  display:inline-flex;align-items:center;gap:.75rem;
+  background:transparent;
+  border:1px solid rgba(201,168,76,.55);
+  color:var(--white);
+  font-family:var(--sans);font-size:.72rem;
+  letter-spacing:.22em;text-transform:uppercase;
+  padding:1rem 2.8rem;
+  cursor:pointer;
+  transition:all .3s ease;
+  position:relative;overflow:hidden;
+}
+.portfolio-view-more::before{
+  content:'';
+  position:absolute;inset:0;
+  background:var(--gold);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .35s cubic-bezier(.4,0,.2,1);
+}
+.portfolio-view-more:hover::before{transform:scaleX(1)}
+.portfolio-view-more span,.portfolio-view-more svg{position:relative;z-index:1}
+.portfolio-view-more:hover{color:var(--charcoal);border-color:var(--gold)}
+.portfolio-view-more svg{
+  width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;
+  transition:transform .25s ease;
+}
+.portfolio-view-more:hover svg{transform:translateX(4px)}
+
+/* =============================================
+   FULL PORTFOLIO PAGE OVERLAY
+   ============================================= */
+.full-portfolio-page{
+  position:fixed;inset:0;z-index:2500;
+  background:var(--charcoal);
+  overflow-y:auto;
+  opacity:0;pointer-events:none;
+  transform:translateY(20px);
+  transition:opacity .45s cubic-bezier(.4,0,.2,1),
+             transform .45s cubic-bezier(.4,0,.2,1);
+}
+.full-portfolio-page.open{
+  opacity:1;pointer-events:all;transform:translateY(0);
+}
+/* sticky top bar */
+.fp-bar{
+  position:sticky;top:0;z-index:10;
+  background:rgba(26,26,26,.95);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,.07);
+  padding:1rem 4rem;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:1.5rem;flex-wrap:wrap;
+}
+.fp-back{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:99px;padding:.45rem 1.1rem;
+  font-family:var(--sans);font-size:.7rem;letter-spacing:.08em;
+  color:rgba(255,255,255,.8);cursor:pointer;transition:all .25s;
+  white-space:nowrap;
+}
+.fp-back:hover{background:rgba(255,255,255,.14);color:var(--white)}
+.fp-back svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2}
+.fp-title{
+  font-family:var(--serif);font-size:1.2rem;font-weight:300;
+  color:var(--white);letter-spacing:.05em;
+}
+.fp-title em{color:var(--gold);font-style:italic}
+/* filters inside full page — same style, dark version */
+.fp-filters{display:flex;gap:1rem;flex-wrap:wrap}
+.fp-filter-btn{
+  background:none;border:none;
+  font-family:var(--sans);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(255,255,255,.4);cursor:pointer;
+  padding:.35rem 0;border-bottom:1px solid transparent;
+  transition:all .3s;
+}
+.fp-filter-btn.active,.fp-filter-btn:hover{
+  color:var(--gold);border-bottom-color:var(--gold);
+}
+/* hero count bar */
+.fp-hero{
+  padding:3rem 4rem 1.5rem;
+  display:flex;align-items:flex-end;justify-content:space-between;
+}
+.fp-hero-left h2{
+  font-family:var(--serif);font-size:clamp(2.4rem,4vw,3.8rem);
+  font-weight:300;color:var(--white);line-height:1.1;
+}
+.fp-hero-left h2 em{color:var(--gold);font-style:italic}
+.fp-hero-left p{
+  font-size:.82rem;color:rgba(255,255,255,.4);
+  margin-top:.5rem;letter-spacing:.04em;
+}
+.fp-photo-count{
+  font-family:var(--serif);font-size:3.5rem;font-weight:300;
+  color:rgba(255,255,255,.08);line-height:1;letter-spacing:-.02em;
+}
+/* grid — same structure as homepage */
+.fp-grid{
+  columns:3;gap:1rem;
+  padding:1rem 4rem 4rem;
+}
+@media(max-width:900px){
+  .fp-bar{padding:.85rem 1.5rem}
+  .fp-hero,.fp-grid{padding-left:1.5rem;padding-right:1.5rem}
+  .fp-grid{columns:2}
+  .fp-filters{display:none} /* filters in bar hidden on mobile — use category pills below */
+}
+@media(max-width:600px){
+  .fp-grid{columns:1}
+  .fp-hero{flex-direction:column;gap:.5rem}
+}
 .album-page{
   position:fixed;inset:0;z-index:3000;
   background:var(--cream);
@@ -1689,7 +1865,8 @@ footer{background:var(--charcoal-mid);padding:5rem 4rem 2rem;position:relative;o
       <button class="filter-btn" onclick="filterPortfolio(this,'event')">Events</button>
     </div>
   </div>
-  <div class="portfolio-grid" id="portfolioGrid">
+  <div class="portfolio-grid-wrap">
+    <div class="portfolio-grid" id="portfolioGrid">
     <div class="portfolio-item" data-cat="portrait" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Portraits/bloodsis.jpeg" alt="Portrait">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
@@ -2062,8 +2239,51 @@ footer{background:var(--charcoal-mid);padding:5rem 4rem 2rem;position:relative;o
       <img src="portfolio%20Images/Studio/33.jpeg" alt="Studio photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
+  </div><!-- end portfolio-grid -->
+  </div><!-- end portfolio-grid-wrap -->
+
+  <!-- View More CTA -->
+  <div class="portfolio-preview-cta reveal">
+    <button class="portfolio-view-more" onclick="openFullPortfolio()">
+      <span>View Full Portfolio</span>
+      <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </button>
   </div>
+
 </section>
+
+<!-- FULL PORTFOLIO PAGE OVERLAY -->
+<div class="full-portfolio-page" id="fullPortfolioPage">
+
+  <!-- Top bar -->
+  <div class="fp-bar">
+    <button class="fp-back" onclick="closeFullPortfolio()">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      Back
+    </button>
+    <div class="fp-title">Port<em>folio</em></div>
+    <div class="fp-filters">
+      <button class="fp-filter-btn active" onclick="fpFilter(this,'all')">All</button>
+      <button class="fp-filter-btn" onclick="fpFilter(this,'wedding')">Weddings</button>
+      <button class="fp-filter-btn" onclick="fpFilter(this,'portrait')">Portraits</button>
+      <button class="fp-filter-btn" onclick="fpFilter(this,'fashion')">Studio</button>
+      <button class="fp-filter-btn" onclick="fpFilter(this,'event')">Events</button>
+    </div>
+  </div>
+
+  <!-- Hero count -->
+  <div class="fp-hero">
+    <div class="fp-hero-left">
+      <h2>Our <em>Work</em></h2>
+      <p id="fpPhotoCount">Loading...</p>
+    </div>
+    <div class="fp-photo-count" id="fpBigCount"></div>
+  </div>
+
+  <!-- Full masonry grid — cloned from homepage -->
+  <div class="fp-grid" id="fpGrid"></div>
+
+</div>
 
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
@@ -2443,6 +2663,11 @@ footer{background:var(--charcoal-mid);padding:5rem 4rem 2rem;position:relative;o
 
 </div>
 
+<!-- BACK TO TOP -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
 <!-- ALBUM PAGE — 3rd level navigation -->
 <div class="album-page" id="albumPage">
 
@@ -2520,10 +2745,13 @@ footer{background:var(--charcoal-mid);padding:5rem 4rem 2rem;position:relative;o
 </div>
 
 <script>
-// NAV SCROLL
+// NAV SCROLL + BACK TO TOP
+const backToTopBtn = document.getElementById('backToTop');
 window.addEventListener('scroll',()=>{
   const nav=document.getElementById('navbar');
   nav.classList.toggle('scrolled',window.scrollY>80);
+  // Show back-to-top after scrolling 400px
+  backToTopBtn.classList.toggle('visible', window.scrollY > 400);
 });
 
 // =============================================
@@ -2635,6 +2863,78 @@ function filterPortfolio(btn,cat){
   });
 }
 
+// Clip homepage portfolio grid to first 9 items on load
+function clipPortfolioPreview() {
+  const items = document.querySelectorAll('#portfolioGrid .portfolio-item');
+  items.forEach((item, i) => {
+    if(i >= 9) item.style.display = 'none';
+  });
+}
+clipPortfolioPreview();
+
+// =============================================
+// FULL PORTFOLIO PAGE
+// =============================================
+function openFullPortfolio() {
+  const page = document.getElementById('fullPortfolioPage');
+  // Clone all portfolio items into the fp-grid
+  const fpGrid = document.getElementById('fpGrid');
+  const sourceItems = document.querySelectorAll('#portfolioGrid .portfolio-item');
+
+  fpGrid.innerHTML = Array.from(sourceItems).map(item => {
+    const img   = item.querySelector('img');
+    const cat   = item.dataset.cat;
+    const src   = img.getAttribute('src');
+    const alt   = img.getAttribute('alt');
+    return `<div class="portfolio-item fp-item" data-cat="${cat}" onclick="openFpLightbox(this)" style="display:block">
+      <img src="${src}" alt="${alt}" loading="lazy">
+      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    </div>`;
+  }).join('');
+
+  updateFpCount();
+  page.classList.add('open');
+  page.scrollTop = 0;
+  document.body.style.overflow = 'hidden';
+}
+
+function closeFullPortfolio() {
+  document.getElementById('fullPortfolioPage').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function updateFpCount() {
+  const visible = document.querySelectorAll('#fpGrid .fp-item[style*="block"], #fpGrid .fp-item:not([style*="none"])').length;
+  const total   = document.querySelectorAll('#fpGrid .fp-item').length;
+  const count   = document.querySelectorAll('#fpGrid .fp-item').length;
+  // count visible
+  const visCount = Array.from(document.querySelectorAll('#fpGrid .fp-item')).filter(el => el.style.display !== 'none').length;
+  document.getElementById('fpPhotoCount').textContent = `${visCount} photo${visCount !== 1 ? 's' : ''}`;
+  document.getElementById('fpBigCount').textContent = visCount;
+}
+
+function fpFilter(btn, cat) {
+  document.querySelectorAll('.fp-filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('#fpGrid .fp-item').forEach(item => {
+    item.style.display = (cat === 'all' || item.dataset.cat === cat) ? 'block' : 'none';
+  });
+  updateFpCount();
+}
+
+// Lightbox inside full portfolio page — reuses the same lightbox element
+function openFpLightbox(el) {
+  const img = el.querySelector('img');
+  if(!img) return;
+  const src = img.src;
+  lightboxImages = Array.from(document.querySelectorAll('#fpGrid .fp-item'))
+    .filter(item => item.style.display !== 'none')
+    .map(item => item.querySelector('img').src);
+  lightboxIdx = lightboxImages.indexOf(src);
+  if(lightboxIdx === -1) lightboxIdx = 0;
+  document.getElementById('lightboxImg').src = lightboxImages[lightboxIdx];
+  document.getElementById('lightbox').classList.add('open');
+}
 // Open lightbox from any portfolio-item click — reads src from the img inside the clicked item
 function openLightboxFromItem(el){
   const img = el.querySelector('img');
@@ -3049,7 +3349,10 @@ document.addEventListener('keydown', e => {
     return;
   }
   if(e.key === 'Escape') {
+    if(document.getElementById('abLightbox').classList.contains('open')) { closeAbLightbox(); return; }
+    if(document.getElementById('lightbox').classList.contains('open')) { closeLightbox(); return; }
     if(document.getElementById('albumPage').classList.contains('open')) { closeAlbumPage(); return; }
+    if(document.getElementById('fullPortfolioPage').classList.contains('open')) { closeFullPortfolio(); return; }
     if(document.getElementById('servicePage').classList.contains('open')) { closeServicePage(); return; }
     if(mobileMenu.classList.contains('open')) { closeMobile(); return; }
   }
