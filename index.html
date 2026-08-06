@@ -1269,49 +1269,6 @@ footer{background:var(--charcoal-mid);padding:5rem 4rem 2rem;position:relative;o
 /* ---- responsive ---- */
 @media(max-width:1100px){.ab-masonry{column-count:3}}
 @media(max-width:900px){
-  .ab-nav,.ab-hero-meta,.ab-gallery-header,.ab-masonry,.ab-related,.ab-bottom-cta{padding-left:2rem;padding-right:2rem}
-  .ab-gallery-divider{margin-left:2rem;margin-right:2rem}
-  .ab-masonry{column-count:2}
-  .ab-related-grid{grid-template-columns:1fr 1fr}
-  .ab-bottom-cta{padding:2.5rem 2rem}
-}
-@media(max-width:600px){
-  .ab-masonry{column-count:1}
-  .ab-related-grid{grid-template-columns:1fr}
-  .ab-hero-title{font-size:2.6rem}
-  .ab-lb-prev{left:.4rem}
-  .ab-lb-next{right:.4rem}
-  .ab-bottom-cta{flex-direction:column;align-items:flex-start}
-  .ab-nav{padding:.8rem 1.2rem}
-  .ab-breadcrumb{display:none}
-}
-
-/* responsive */
-@media(max-width:900px){
-  .sp-back-bar,.sp-hero,.sp-sessions,.sp-divider,.sp-cta{padding-left:2rem;padding-right:2rem}
-  .sp-divider{margin:0 2rem}
-  .sp-grid{grid-template-columns:1fr 1fr}
-}
-@media(max-width:600px){
-  .sp-grid{grid-template-columns:1fr}
-  .sp-cta-btns{flex-direction:column;align-items:center;gap:1.5rem}
-}
-
-
-/* ANIMATIONS */
-@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
-.reveal.visible{opacity:1;transform:none}
-
-/* RESPONSIVE */
-@media(max-width:1100px){
-  .packages-grid{grid-template-columns:repeat(2,1fr)}
-  .addons-grid{grid-template-columns:repeat(3,1fr)}
-  .studio-tiers{grid-template-columns:repeat(3,1fr)}
-  .portfolio-grid{columns:2}
-  .footer-grid{grid-template-columns:1fr 1fr}
-}
-@media(max-width:900px){
   nav{padding:1.25rem 2rem}
   nav.scrolled{padding:.9rem 2rem}
   .nav-links,.nav-cta{display:none}
@@ -1351,7 +1308,7 @@ footer{background:var(--charcoal-mid);padding:5rem 4rem 2rem;position:relative;o
 
 <!-- NAV -->
 <nav id="navbar">
-  <a href="#" class="nav-logo">STEWDIO<span>ONE</span></a>
+  <a href="#" class="nav-logo">STEWDIOONE<span>ONE</span></a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#services">Services</a></li>
@@ -1498,7 +1455,7 @@ footer{background:var(--charcoal-mid);padding:5rem 4rem 2rem;position:relative;o
         <p>Romantic Engagements and pre-wedding sessions in both studio and stunning locations around Cameroon.</p>
       </div>
     </div>
-    <div class="service-card reveal" onclick="openServicePage('Birthday Coverage')" style="background-image:url('portfolio\ Images/Events/leila.jpeg');background-size:cover;background-position:center;cursor:pointer">
+    <div class="service-card reveal" onclick="openServicePage('Birthday Coverage')" style="background-image:url('portfolio%20Images/Events/leila.jpeg');background-size:cover;background-position:center;cursor:pointer">
       <div class="service-card-content">
         <h3>Birthday Coverage</h3>
         <p>Celebrate Life's Milestones with stunning birthday/ Graduation and event photography coverage.</p>
@@ -1711,7 +1668,7 @@ footer{background:var(--charcoal-mid);padding:5rem 4rem 2rem;position:relative;o
     <div class="addon-card reveal" data-addon="Drone Coverage — 100,000 FCFA+">
       <div class="addon-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
       <div class="addon-top-row">
-        <svg class="addon-icon" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        <svg class="addon-icon" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5"/></svg>
         <span class="addon-price-tag"><strong>100,000</strong>FCFA+</span>
       </div>
       <div class="addon-name">Drone Coverage</div>
@@ -2084,10 +2041,6 @@ footer{background:var(--charcoal-mid);padding:5rem 4rem 2rem;position:relative;o
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
     <div class="portfolio-item" data-cat="event" onclick="openLightboxFromItem(this)">
-      <img src="portfolio%20Images/Events/Jose.jpeg" alt="Event photography">
-      <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-    </div>
-    <div class="portfolio-item" data-cat="event" onclick="openLightboxFromItem(this)">
       <img src="portfolio%20Images/Events/leila.jpeg" alt="Event photography">
       <div class="portfolio-item-overlay"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
     </div>
@@ -2437,21 +2390,27 @@ footer{background:var(--charcoal-mid);padding:5rem 4rem 2rem;position:relative;o
     </div>
     <div class="reveal">
       <form class="booking-form" id="bookingForm" onsubmit="submitBooking(event)">
+        <input type="hidden" name="_subject" value="New Booking Request from STEWDIOONE">
+        <input type="hidden" name="_captcha" value="false">
+
         <div class="form-group">
           <label>Full Name *</label>
-          <input type="text" id="bName" placeholder="Your full name" required>
+          <input type="text" id="bName" name="name" placeholder="Your full name" required>
         </div>
+
         <div class="form-group">
           <label>Email Address *</label>
-          <input type="email" id="bEmail" placeholder="your@email.com" required>
+          <input type="email" id="bEmail" name="email" placeholder="your@email.com" required>
         </div>
+
         <div class="form-group">
           <label>Phone Number</label>
-          <input type="tel" id="bPhone" placeholder="+237 ...">
+          <input type="tel" id="bPhone" name="phone" placeholder="+237 ...">
         </div>
+
         <div class="form-group">
           <label>Session Type</label>
-          <select id="bSession">
+          <select id="bSession" name="session">
             <option value="">Select session type</option>
             <option>Wedding</option>
             <option>Engagement</option>
@@ -2461,17 +2420,20 @@ footer{background:var(--charcoal-mid);padding:5rem 4rem 2rem;position:relative;o
             <option>Studio</option>
           </select>
         </div>
+
         <div class="form-group">
           <label>Preferred Date *</label>
-          <input type="date" id="bDate" required>
+          <input type="date" id="bDate" name="date" required>
         </div>
+
         <div class="form-group">
           <label>Preferred Time</label>
-          <input type="time" id="bTime">
+          <input type="time" id="bTime" name="time">
         </div>
+
         <div class="form-group form-full">
           <label>Package</label>
-          <select id="bPackage">
+          <select id="bPackage" name="package">
             <option value="">Select a package</option>
             <option>Bronze — 350,000 FCFA</option>
             <option>Silver — 500,000 FCFA</option>
@@ -2479,24 +2441,29 @@ footer{background:var(--charcoal-mid);padding:5rem 4rem 2rem;position:relative;o
             <option>Prestige — Custom</option>
           </select>
         </div>
+
         <div class="form-group form-full form-addons">
           <label>Selected Add-Ons</label>
           <input type="text" id="bAddons" placeholder="Click add-ons above to select" readonly>
         </div>
+
         <div class="form-group form-full">
           <label>Event Location</label>
-          <input type="text" id="bLocation" placeholder="City or venue">
+          <input type="text" id="bLocation" name="location" placeholder="City or venue">
         </div>
+
         <div class="form-group form-full">
           <label>Special Notes</label>
-          <textarea id="bNotes" placeholder="Tell us about your vision, any special requests..."></textarea>
+          <textarea id="bNotes" name="notes" placeholder="Tell us about your vision..."></textarea>
         </div>
+
         <button type="submit" class="submit-btn">Send Booking Request →</button>
-        <div class="success-msg" id="bookingSuccess">
-          <h3>✓ Booking Received!</h3>
-          <p>Thank you for reaching out. We'll confirm your session within 24 hours.</p>
-        </div>
       </form>
+
+      <div id="bookingSuccess" class="success-msg" style="display:none">
+        <h3>Booking Request Sent</h3>
+        <p>Thanks — we've received your request and will contact you within 24 hours to confirm the details.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -2516,7 +2483,7 @@ footer{background:var(--charcoal-mid);padding:5rem 4rem 2rem;position:relative;o
             <div class="c-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
             <div>
               <span class="c-label">Address</span>
-              <span class="c-val">Bastos Quarter, Yaoundé<br>Centre Region, Cameroon</span>
+              <span class="c-val">Jouvance,Temoin de johova, Yaoundé</span>
             </div>
           </div>
           <div class="contact-item">
@@ -2678,6 +2645,44 @@ footer{background:var(--charcoal-mid);padding:5rem 4rem 2rem;position:relative;o
       Back to Sessions
     </button>
     <div class="ab-breadcrumb" id="abBreadcrumb">
+    <div class="sp-grid" id="spGrid">
+      <!-- populated by JS -->
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="sp-cta">
+    <h2 class="sp-cta-title">Ready to Create Your Story?</h2>
+    <p class="sp-cta-subtitle">Every great story begins with a single moment. Let us help you capture yours with the artistry it deserves.</p>
+    <div class="sp-cta-btns">
+      <button class="sp-cta-link" onclick="closeServicePage();setTimeout(()=>document.getElementById('booking').scrollIntoView({behavior:'smooth'}),400)">
+        Book Your Date
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+      <button class="sp-cta-link" onclick="closeServicePage();setTimeout(()=>document.getElementById('services').scrollIntoView({behavior:'smooth'}),400)">
+        Explore More Services
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<!-- BACK TO TOP -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<!-- ALBUM PAGE — 3rd level navigation -->
+<div class="album-page" id="albumPage">
+
+  <!-- Sticky nav bar -->
+  <div class="ab-nav">
+    <button class="ab-back" id="abBackBtn" onclick="closeAlbumPage()">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      Back to Sessions
+    </button>
+    <div class="ab-breadcrumb" id="abBreadcrumb">
       STEWDIOONE &nbsp;/&nbsp; <span id="abBreadService"></span> &nbsp;/&nbsp; <b id="abBreadTitle"></b>
     </div>
     <button class="ab-book-btn" onclick="closeAlbumPage();closeServicePage();setTimeout(()=>document.getElementById('booking').scrollIntoView({behavior:'smooth'}),400)">
@@ -2744,6 +2749,39 @@ footer{background:var(--charcoal-mid);padding:5rem 4rem 2rem;position:relative;o
   <div class="ab-lb-swipe-hint">Swipe or use arrow keys to navigate</div>
 </div>
 
+<script>
+  // Dynamically load EmailJS SDK and initialize. Logs errors to console for troubleshooting.
+  window._emailjsLoaded = false;
+  window._emailjsLoadError = null;
+  (function loadEmailJs(){
+    const existing = document.querySelector('script[data-emailjs-loader]');
+    if(existing) return;
+    const s = document.createElement('script');
+    s.setAttribute('data-emailjs-loader','1');
+    s.src = 'https://cdn.emailjs.com/sdk/3.2.0/email.min.js';
+    s.async = true;
+    s.onload = function(){
+      try{
+        if(window.emailjs && typeof emailjs.init === 'function'){
+          emailjs.init('N5mPSYzyKjKlR0iFa');
+          window._emailjsLoaded = true;
+          console.log('EmailJS loaded and initialized');
+        } else {
+          window._emailjsLoadError = 'emailjs object missing after load';
+          console.error(window._emailjsLoadError);
+        }
+      }catch(err){
+        window._emailjsLoadError = err;
+        console.error('EmailJS init error', err);
+      }
+    };
+    s.onerror = function(err){
+      window._emailjsLoadError = err || new Error('EmailJS script failed to load');
+      console.error('EmailJS script load error', window._emailjsLoadError);
+    };
+    document.head.appendChild(s);
+  })();
+</script>
 <script>
 // NAV SCROLL + BACK TO TOP
 const backToTopBtn = document.getElementById('backToTop');
@@ -3031,11 +3069,78 @@ function selectPackage(pkg){
 // BOOKING SUBMIT
 function submitBooking(e){
   e.preventDefault();
-  const form=document.getElementById('bookingForm');
-  const success=document.getElementById('bookingSuccess');
-  form.querySelectorAll('input,select,textarea').forEach(el=>el.style.display='none');
-  form.querySelector('.submit-btn').style.display='none';
-  success.style.display='block';
+  const form = document.getElementById('bookingForm');
+  const success = document.getElementById('bookingSuccess');
+  const submitBtn = form.querySelector('.submit-btn');
+
+  submitBtn.disabled = true;
+  const originalBtnText = submitBtn.textContent;
+  submitBtn.textContent = 'Sending…';
+
+  const data = {
+    name: form.name?.value || document.getElementById('bName')?.value || '',
+    email: form.email?.value || document.getElementById('bEmail')?.value || '',
+    phone: form.phone?.value || document.getElementById('bPhone')?.value || '',
+    session: form.session?.value || document.getElementById('bSession')?.value || '',
+    date: form.date?.value || document.getElementById('bDate')?.value || '',
+    time: form.time?.value || document.getElementById('bTime')?.value || '',
+    package: form.package?.value || document.getElementById('bPackage')?.value || '',
+    addons: document.getElementById('bAddons')?.value || '',
+    location: form.location?.value || document.getElementById('bLocation')?.value || '',
+    notes: form.notes?.value || document.getElementById('bNotes')?.value || ''
+  };
+
+  const templateParams = Object.assign({}, data, {subject: 'New Booking Request from STEWDIOONE'});
+
+  function showSuccess(){
+    form.querySelectorAll('input,select,textarea').forEach(el=>el.style.display='none');
+    submitBtn.style.display='none';
+    success.style.display='block';
+    form.reset();
+  }
+
+  // Ensure EmailJS is ready — poll briefly if needed, then send. Do NOT fall back to mailto (prevents opening mail client).
+  let attempts = 0;
+  const trySend = () => {
+    attempts++;
+    if(window.emailjs && typeof emailjs.send === 'function'){
+      try{
+        emailjs.send('service_tn3fifg','template_40sn79n', templateParams)
+          .then(()=>{ showSuccess(); })
+          .catch(err=>{
+            console.error('EmailJS error', err);
+            alert('Sending failed — please try again later or contact us at stanleymbajingtata@gmail.com');
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText;
+          });
+      }catch(err){
+        console.error('EmailJS send exception', err);
+        alert('Sending failed — please try again later.');
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalBtnText;
+      }
+      return;
+    }
+
+    if(attempts < 6){
+      // try again in 300ms (total ~1.8s)
+      setTimeout(trySend, 300);
+      return;
+    }
+
+    // If EmailJS never became available, show inline error and re-enable button — do NOT open mail client.
+    const loadErr = window._emailjsLoadError;
+    console.error('EmailJS not available', loadErr);
+    if(loadErr && loadErr.message) {
+      alert('Email service is not available right now: ' + loadErr.message);
+    } else {
+      alert('Email service is not available right now. Please try again later.');
+    }
+    submitBtn.disabled = false;
+    submitBtn.textContent = originalBtnText;
+  };
+
+  trySend();
 }
 
 // CONTACT SUBMIT
@@ -3058,8 +3163,11 @@ const SERVICE_DATA = {
     bg: 'portfolio%20Images/Wedding/Mernice2.jpeg',
     sessions: [
       { id:1, slug:'bella-benison', name:'Bella & Benison', date:'March 15, 2026', location:'Yaoundé, Cameroon', img:'portfolio%20Images/Wedding/1.jpeg', featured:true, description:'An unforgettable day filled with love, laughter, and timeless memories. Every moment was captured with soft light, genuine emotion, and elegant storytelling.' },
-      { id:2, slug:'cynthia-jean', name:'Cynthia & Jean', date:'April 3, 2026', location:'Yaoundé, Cameroon', img:'portfolio%20Images/Wedding/2.jpeg', featured:false, description:'A refined portrait of intimate celebration, where every detail from the dress to the first dance was beautifully preserved.' },
-      { id:3, slug:'doris-donald', name:'Doris & Donald', date:'May 18, 2026', location:'Douala, Cameroon', img:'portfolio%20Images/Wedding/3.jpeg', featured:false, description:'Soft golden light, stunning floral design, and heartfelt moments created a wedding gallery that feels both timeless and cinematic.' },
+
+      { id:2, slug:'Carinele-Nelson', name:'Carinele & Nelson', date:'April 3, 2025', location:'Yaoundé, Cameroon', img:'portfolio%20Images/Wedding/2.jpeg', featured:false, description:'A refined portrait of intimate celebration, where every detail from the dress to the first dance was beautifully preserved.' },
+
+      { id:3, slug:'Alieh-Tebong', name:'Alieh & Tebong', date:'May 18, 2025', location:'Douala, Cameroon', img:'Alieh & Tebong/1.jpg', featured:false, description:'Soft golden light, stunning floral design, and heartfelt moments created a wedding gallery that feels both timeless and cinematic.' },
+
       { id:4, slug:'beltha-nathan', name:'Beltha & Nathan', date:'January 22, 2026', location:'Yaoundé, Cameroon', img:'portfolio%20Images/Wedding/4.jpeg', featured:false, description:'Every intimate exchange and elegant portrait was recorded to reflect a day of refined beauty and emotional connection.' },
       { id:5, slug:'mary-dickson', name:'Mary & Dickson', date:'February 14, 2026', location:'Bafoussam, Cameroon', img:'portfolio%20Images/Wedding/5.jpeg', featured:false, description:'A sophisticated celebration captured with grace, where the love story unfolds through light, movement, and genuine moments.' },
       { id:6, slug:'clara-robert', name:'Clara & Robert', date:'March 28, 2026', location:'Kribi, Cameroon', img:'portfolio%20Images/Wedding/6.jpeg', featured:false, description:'A luminous story of refined romance, captured with a luxurious color palette and a gentle, editorial style.' },
@@ -3136,11 +3244,15 @@ const SERVICE_DATA = {
 const ALBUM_GALLERIES = {
   // Wedding Photography
   'bella-benison':   ['portfolio%20Images/Wedding/1.jpeg','portfolio%20Images/Wedding/7.jpeg','portfolio%20Images/Wedding/8.jpeg','portfolio%20Images/Wedding/9.jpeg','portfolio%20Images/Wedding/10.jpeg','portfolio%20Images/Wedding/lang.jpeg','portfolio%20Images/Wedding/lovebirds.jpeg','portfolio%20Images/Wedding/mbolo.jpeg'],
-  'cynthia-jean':    ['portfolio%20Images/Wedding/2.jpeg','portfolio%20Images/Wedding/11.jpeg','portfolio%20Images/Wedding/12.jpeg','portfolio%20Images/Wedding/13.jpeg','portfolio%20Images/Wedding/14.jpeg','portfolio%20Images/Wedding/Cintha.jpeg','portfolio%20Images/Wedding/M%24M.jpeg','portfolio%20Images/Wedding/marc%24marion.jpeg'],
-  'doris-donald':    ['portfolio%20Images/Wedding/3.jpeg','portfolio%20Images/Wedding/15.jpeg','portfolio%20Images/Wedding/16.jpeg','portfolio%20Images/Wedding/17.jpeg','portfolio%20Images/Wedding/18.jpeg','portfolio%20Images/Wedding/dop%24rudy.jpeg','portfolio%20Images/Wedding/dolphine.jpeg','portfolio%20Images/Wedding/eddy.jpeg'],
+
+  'Carinele-Nelson':    ['Carinele & Nelson/1.jpeg','Carinele & Nelson/2.jpeg','Carinele & Nelson/3.jpeg','Carinele & Nelson/4.jpeg','Carinele & Nelson/5.jpeg','Carinele & Nelson/6.jpeg','Carinele & Nelson/7.jpeg','Carinele & Nelson/8.jpeg', 'Carinele & Nelson/9.jpeg','Carinele & Nelson/10.jpeg','Carinele & Nelson/11.jpeg','Carinele & Nelson/12.jpeg','Carinele & Nelson/13.jpeg','Carinele & Nelson/14.jpeg','Carinele & Nelson/15.jpeg','Carinele & Nelson/16.jpeg'],
+
+  'Alieh-Tebong':    ['Alieh & Tebong/1.jpg','Alieh & Tebong/2.jpg','Alieh & Tebong/3.jpeg','Alieh & Tebong/4.jpeg','Alieh & Tebong/5.jpeg','Alieh & Tebong/6.jpeg','Alieh & Tebong/7.jpeg','Alieh & Tebong/8.jpeg', 'Alieh & Tebong/9.jpeg','Alieh & Tebong/10.jpeg','Alieh & Tebong/11.jpeg','Alieh & Tebong/12.jpeg','Alieh & Tebong/13.jpeg','Alieh & Tebong/14.jpeg', 'Alieh & Tebong/15.jpeg','Alieh & Tebong/16.jpeg', 'Alieh & Tebong/17.jpeg','Alieh & Tebong/18.jpeg','Alieh & Tebong/19.jpeg','Alieh & Tebong/20.jpeg'],
+
   'beltha-nathan':   ['portfolio%20Images/Wedding/4.jpeg','portfolio%20Images/Wedding/19.jpeg','portfolio%20Images/Wedding/20.jpeg','portfolio%20Images/Wedding/21.jpeg','portfolio%20Images/Wedding/22.jpeg','portfolio%20Images/Wedding/Mernice2.jpeg','portfolio%20Images/Wedding/mernice1.jpeg','portfolio%20Images/Wedding/Mernice4.jpeg'],
   'mary-dickson':    ['portfolio%20Images/Wedding/5.jpeg','portfolio%20Images/Wedding/23.jpeg','portfolio%20Images/Wedding/24.jpeg','portfolio%20Images/Wedding/25.jpeg','portfolio%20Images/Wedding/26.jpeg','portfolio%20Images/Wedding/melvis.jpeg','portfolio%20Images/Wedding/melvis1.jpeg','portfolio%20Images/Wedding/melvis2.jpeg'],
   'clara-robert':    ['portfolio%20Images/Wedding/6.jpeg','portfolio%20Images/Wedding/27.jpeg','portfolio%20Images/Wedding/28.jpeg','portfolio%20Images/Wedding/29.jpeg','portfolio%20Images/Wedding/30.jpeg','portfolio%20Images/Wedding/inaris.jpeg','portfolio%20Images/Wedding/Inaris1.jpeg','portfolio%20Images/Wedding/Inaris3.jpeg'],
+
   // Studio
   'Studio-Classic':    ['Classic/1.jpeg','Classic/2.jpeg','Classic/3.jpeg','Classic/4.jpeg','Classic/5.jpeg','Classic/6.jpeg','Classic/7.jpeg','Classic/8.jpeg','Classic/9.jpeg','Classic/10.jpeg', 'Classic/11.jpeg','Classic/12.jpeg','Classic/13.jpeg','Classic/14.jpeg','Classic/15.jpeg','Classic/16.jpeg','Classic/17.jpeg','Classic/18.jpeg','Classic/19.jpeg','Classic/20.jpeg'],
 
