@@ -2749,38 +2749,23 @@ footer{background:var(--charcoal-mid);padding:5rem 4rem 2rem;position:relative;o
   <div class="ab-lb-swipe-hint">Swipe or use arrow keys to navigate</div>
 </div>
 
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-  // Dynamically load EmailJS SDK and initialize. Logs errors to console for troubleshooting.
   window._emailjsLoaded = false;
   window._emailjsLoadError = null;
-  (function loadEmailJs(){
-    const existing = document.querySelector('script[data-emailjs-loader]');
-    if(existing) return;
-    const s = document.createElement('script');
-    s.setAttribute('data-emailjs-loader','1');
-    s.src = 'https://cdn.emailjs.com/sdk/3.2.0/email.min.js';
-    s.async = true;
-    s.onload = function(){
-      try{
-        if(window.emailjs && typeof emailjs.init === 'function'){
-          emailjs.init('N5mPSYzyKjKlR0iFa');
-          window._emailjsLoaded = true;
-          console.log('EmailJS loaded and initialized');
-        } else {
-          window._emailjsLoadError = 'emailjs object missing after load';
-          console.error(window._emailjsLoadError);
-        }
-      }catch(err){
-        window._emailjsLoadError = err;
-        console.error('EmailJS init error', err);
-      }
-    };
-    s.onerror = function(err){
-      window._emailjsLoadError = err || new Error('EmailJS script failed to load');
-      console.error('EmailJS script load error', window._emailjsLoadError);
-    };
-    document.head.appendChild(s);
-  })();
+  try {
+    if(window.emailjs && typeof emailjs.init === 'function'){
+      emailjs.init({ publicKey: 'N5mPSYzyKjKlR0iFa' });
+      window._emailjsLoaded = true;
+      console.log('EmailJS loaded and initialized');
+    } else {
+      window._emailjsLoadError = 'emailjs object missing after script load';
+      console.error(window._emailjsLoadError);
+    }
+  } catch(err) {
+    window._emailjsLoadError = err;
+    console.error('EmailJS init error', err);
+  }
 </script>
 <script>
 // NAV SCROLL + BACK TO TOP
@@ -3090,7 +3075,24 @@ function submitBooking(e){
     notes: form.notes?.value || document.getElementById('bNotes')?.value || ''
   };
 
-  const templateParams = Object.assign({}, data, {subject: 'New Booking Request from STEWDIOONE'});
+  const summaryMessage = `Booking Information:\n\nName: ${data.name}\nEmail: ${data.email}\nPhone: ${data.phone}\nSession: ${data.session}\nPackage: ${data.package}\nDate: ${data.date}\nTime: ${data.time}\nLocation: ${data.location}\nAdd-Ons: ${data.addons}\n\nNotes:\n${data.notes || 'No additional notes provided.'}`;
+
+  const templateParams = {
+    ...data,
+    subject: 'New Booking Request from STEWDIOONE',
+    from_name: data.name,
+    reply_to: data.email,
+    user_email: data.email,
+    message: summaryMessage,
+    full_message: summaryMessage,
+    booking_date: data.date,
+    booking_time: data.time,
+    booking_package: data.package,
+    booking_session: data.session,
+    booking_addons: data.addons,
+    booking_location: data.location,
+    booking_notes: data.notes
+  };
 
   function showSuccess(){
     form.querySelectorAll('input,select,textarea').forEach(el=>el.style.display='none');
@@ -3105,11 +3107,12 @@ function submitBooking(e){
     attempts++;
     if(window.emailjs && typeof emailjs.send === 'function'){
       try{
-        emailjs.send('service_tn3fifg','template_40sn79n', templateParams)
+        emailjs.send('service_tn3fifg','template_40sn79n', templateParams, 'N5mPSYzyKjKlR0iFa')
           .then(()=>{ showSuccess(); })
           .catch(err=>{
             console.error('EmailJS error', err);
-            alert('Sending failed — please try again later or contact us at stanleymbajingtata@gmail.com');
+            const details = err && (err.text || err.message || JSON.stringify(err));
+            alert('Sending failed — ' + (details || 'please try again later or contact us at stanleymbajingtata@gmail.com'));
             submitBtn.disabled = false;
             submitBtn.textContent = originalBtnText;
           });
