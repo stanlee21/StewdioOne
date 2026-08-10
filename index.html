@@ -1302,6 +1302,60 @@ footer{background:var(--charcoal-mid);padding:5rem 4rem 2rem;position:relative;o
   .footer-watermark{font-size:5rem}
   .hero-scroll{display:none}
 }
+
+@media(max-width:1024px){
+  .sp-back-bar{padding:1.25rem 2rem}
+  .sp-hero{padding:0 2rem 2.5rem}
+  .sp-divider{margin:0 2rem}
+  .sp-sessions{padding:3rem 2rem 2.5rem}
+  .sp-grid{grid-template-columns:repeat(2, minmax(0, 1fr))}
+  .sp-cta{padding:4rem 2rem}
+  .ab-nav{padding:.9rem 2rem}
+  .ab-cover{height:60vh;min-height:380px}
+  .ab-hero-meta,.ab-gallery-header,.ab-gallery-divider,.ab-masonry,.ab-related,.ab-bottom-cta{padding-left:2rem;padding-right:2rem}
+  .ab-masonry{column-count:3}
+  .ab-related-grid{grid-template-columns:repeat(2, minmax(0, 1fr))}
+  .ab-bottom-cta{margin:2rem 2rem 3rem}
+}
+
+@media(max-width:768px){
+  .sp-back-bar{padding:1rem 1.25rem}
+  .sp-hero{padding:0 1.25rem 2rem;min-height:280px}
+  .sp-divider{margin:0 1.25rem}
+  .sp-sessions{padding:2.5rem 1.25rem 2rem}
+  .sp-grid{grid-template-columns:1fr}
+  .sp-card-img{height:200px}
+  .sp-card.featured .sp-card-img{height:220px}
+  .sp-card-meta{flex-wrap:wrap;gap:.45rem .8rem}
+  .sp-cta{padding:3rem 1.25rem}
+  .sp-cta-btns{flex-direction:column;gap:1rem}
+  .sp-cta-link{justify-content:center}
+  .ab-nav{flex-direction:column;align-items:flex-start;gap:.7rem;padding:.9rem 1.25rem}
+  .ab-breadcrumb{font-size:.56rem;text-align:left}
+  .ab-cover{height:54vh;min-height:320px}
+  .ab-hero-meta{padding:2rem 1.25rem 0}
+  .ab-hero-details{gap:1rem}
+  .ab-gallery-header{padding:2.5rem 1.25rem 1rem;flex-direction:column;align-items:flex-start;gap:.45rem}
+  .ab-gallery-divider{margin:0 1.25rem 2rem}
+  .ab-masonry{column-count:2;padding:0 1.25rem 1rem}
+  .ab-related{padding:2.5rem 1.25rem 1.5rem}
+  .ab-related-grid{grid-template-columns:1fr}
+  .ab-bottom-cta{margin:1.5rem 1.25rem 2.5rem;padding:2rem 1.25rem}
+  .ab-bottom-cta-text h3{font-size:1.6rem}
+  .ab-bottom-cta-btn{width:100%;justify-content:center}
+}
+
+@media(max-width:480px){
+  .sp-service-title{font-size:2.2rem;line-height:1.1}
+  .sp-service-desc{font-size:.86rem}
+  .sp-card-meta{flex-direction:column;align-items:flex-start;gap:.35rem}
+  .ab-hero-title{font-size:2.2rem}
+  .ab-hero-desc{font-size:1rem;padding-left:.9rem}
+  .ab-masonry{column-count:1}
+  .ab-lb-prev,.ab-lb-next{width:44px;height:44px}
+  .ab-lb-prev{left:.75rem}
+  .ab-lb-next{right:.75rem}
+}
 </style>
 </head>
 <body>
@@ -2607,44 +2661,6 @@ footer{background:var(--charcoal-mid);padding:5rem 4rem 2rem;position:relative;o
     </div>
     <h2 class="sp-sessions-title">Recent Sessions</h2>
 
-    <div class="sp-grid" id="spGrid">
-      <!-- populated by JS -->
-    </div>
-  </div>
-
-  <!-- CTA -->
-  <div class="sp-cta">
-    <h2 class="sp-cta-title">Ready to Create Your Story?</h2>
-    <p class="sp-cta-subtitle">Every great story begins with a single moment. Let us help you capture yours with the artistry it deserves.</p>
-    <div class="sp-cta-btns">
-      <button class="sp-cta-link" onclick="closeServicePage();setTimeout(()=>document.getElementById('booking').scrollIntoView({behavior:'smooth'}),400)">
-        Book Your Date
-        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </button>
-      <button class="sp-cta-link" onclick="closeServicePage();setTimeout(()=>document.getElementById('services').scrollIntoView({behavior:'smooth'}),400)">
-        Explore More Services
-        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </button>
-    </div>
-  </div>
-
-</div>
-
-<!-- BACK TO TOP -->
-<button class="back-to-top" id="backToTop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
-</button>
-
-<!-- ALBUM PAGE — 3rd level navigation -->
-<div class="album-page" id="albumPage">
-
-  <!-- Sticky nav bar -->
-  <div class="ab-nav">
-    <button class="ab-back" id="abBackBtn" onclick="closeAlbumPage()">
-      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-      Back to Sessions
-    </button>
-    <div class="ab-breadcrumb" id="abBreadcrumb">
     <div class="sp-grid" id="spGrid">
       <!-- populated by JS -->
     </div>
