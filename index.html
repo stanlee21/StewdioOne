@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>STEWDIOONE — Luxury Photography & Videography</title>
 <meta name="description" content="STEWDIOONE — Premium photography and videography services that preserve memories, tell stories and create timeless experiences.">
+<!-- Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
@@ -3016,7 +3018,7 @@ function prevLightbox(){
 document.getElementById('lightbox').addEventListener('click',function(e){if(e.target===this)closeLightbox();});
 
 // TESTIMONIALS
-let tIdx=0;const T_PAGES=3;let tTimer=null;
+let tIdx=0;let T_PAGES=3;let tTimer=null;
 function goTestimonial(n){
   tIdx=((n%T_PAGES)+T_PAGES)%T_PAGES;
   document.getElementById('testimonialsTrack').style.transform=`translateX(${-tIdx*100}%)`;
@@ -3549,6 +3551,202 @@ function closeServicePage() {
     document.body.style.overflow = '';
   }
 }
+
+// =============================================
+// SUPABASE LIVE DATA INTEGRATION
+// =============================================
+const SUPABASE_URL = 'https://jcvwqbpagxsivevvvfpl.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpjdndxYnBhZ3hzaXZldnZ2ZnBsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1NDE0NDcsImV4cCI6MjEwNDExNzQ0N30.cf4YiuPHEVYCNsZ4ywqxUk7XXZ3DGXTVaLkWBiHtTdA';
+const db = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+
+// ── BOOKING FORM → CMS ──────────────────────
+// Override submitBooking to ALSO save to Supabase CMS
+const _origSubmitBooking = submitBooking;
+async function submitBooking(e) {
+  e.preventDefault();
+  const form = document.getElementById('bookingForm');
+  const payload = {
+    client_name: document.getElementById('bName')?.value || '',
+    email:       document.getElementById('bEmail')?.value || '',
+    phone:       document.getElementById('bPhone')?.value || '',
+    session_type:document.getElementById('bSession')?.value || '',
+    date:        document.getElementById('bDate')?.value || '',
+    time:        document.getElementById('bTime')?.value || '',
+    package:     document.getElementById('bPackage')?.value || '',
+    addons:      document.getElementById('bAddons')?.value || '',
+    location:    document.getElementById('bLocation')?.value || '',
+    notes:       document.getElementById('bNotes')?.value || '',
+  };
+  // Save to Supabase silently (don't block the EmailJS flow)
+  db.from('bookings').insert(payload).then(({ error }) => {
+    if (error) console.warn('CMS booking save:', error.message);
+    else console.log('✓ Booking saved to CMS');
+  });
+  // Run the original EmailJS submit
+  _origSubmitBooking(e);
+}
+
+// ── ANALYTICS TRACKING ──────────────────────
+function trackPageView(page) {
+  db.from('analytics_events').insert({
+    event_type: 'page_view',
+    page: page || location.pathname || 'home',
+    metadata: { referrer: document.referrer, ua: navigator.userAgent.slice(0, 80) }
+  }).then(() => {});
+}
+// Track on load
+window.addEventListener('load', () => trackPageView('home'));
+
+// Track section views via IntersectionObserver
+const sections = ['about','services','packages','portfolio','testimonials','booking','contact'];
+sections.forEach(id => {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        trackPageView(id);
+        obs.unobserve(el);
+      }
+    });
+  }, { threshold: 0.3 });
+  obs.observe(el);
+});
+
+// ── LIVE TESTIMONIALS ────────────────────────
+async function loadLiveTestimonials() {
+  const { data, error } = await db
+    .from('testimonials')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  if (error || !data || data.length === 0) return; // keep hardcoded fallback
+
+  const track = document.getElementById('testimonialsTrack');
+  if (!track) return;
+
+  // Group into pairs for the 2-per-page layout
+  const pages = [];
+  for (let i = 0; i < data.length; i += 2) {
+    pages.push([data[i], data[i + 1]].filter(Boolean));
+  }
+
+  const starsSVG = (n) => Array.from({ length: 5 }, (_, i) =>
+    `<svg viewBox="0 0 24 24" style="width:15px;height:15px;fill:${i < n ? '#C9A84C' : 'none'};stroke:${i < n ? '#C9A84C' : '#555'};stroke-width:1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`
+  ).join('');
+
+  track.innerHTML = pages.map(pair => `
+    <div class="t-page">
+      ${pair.map(t => `
+        <div class="t-card">
+          <div class="t-stars">${starsSVG(t.stars || 5)}</div>
+          <div class="t-name">${t.client_name}</div>
+          <p class="t-quote">"${t.quote}"</p>
+          <div class="t-meta">${t.session_type || ''}</div>
+        </div>`).join('')}
+    </div>`).join('');
+
+  // Update dots
+  const dotsEl = document.getElementById('tDots');
+  if (dotsEl) {
+    dotsEl.innerHTML = pages.map((_, i) =>
+      `<button class="t-dot${i === 0 ? ' active' : ''}" onclick="goTestimonial(${i})" aria-label="Page ${i + 1}"></button>`
+    ).join('');
+  }
+
+  // Reset slider
+  tIdx = 0;
+  T_PAGES = pages.length;
+  resetTTimer();
+}
+
+// ── LIVE PORTFOLIO ───────────────────────────
+async function loadLivePortfolio() {
+  const { data, error } = await db
+    .from('portfolio_items')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  if (error || !data || data.length === 0) return; // keep hardcoded fallback
+
+  const grid = document.getElementById('portfolioGrid');
+  if (!grid) return;
+
+  grid.innerHTML = data.map(item => `
+    <div class="portfolio-item" data-cat="${item.category}" onclick="openLightboxFromItem(this)">
+      <img src="${item.image_url}" alt="${item.alt_text || item.category}" loading="lazy">
+      <div class="portfolio-item-overlay">
+        <div class="expand-icon">
+          <svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+        </div>
+      </div>
+    </div>`).join('');
+
+  // Re-clip to 9 items for homepage preview
+  clipPortfolioPreview();
+}
+
+// ── LIVE ALBUMS (SERVICE PAGE) ───────────────
+async function loadLiveAlbums() {
+  const { data, error } = await db
+    .from('albums')
+    .select('*')
+    .eq('published', true)
+    .order('created_at', { ascending: false });
+
+  if (error || !data || data.length === 0) return; // keep hardcoded SERVICE_DATA fallback
+
+  // Group albums by service
+  const grouped = {};
+  data.forEach(album => {
+    if (!grouped[album.service]) grouped[album.service] = [];
+    grouped[album.service].push({
+      id:          album.id,
+      slug:        album.slug,
+      name:        album.title,
+      date:        album.date,
+      location:    album.location,
+      img:         album.cover_image,
+      description: album.description,
+      featured:    grouped[album.service].length === 0, // first one is featured
+      images:      album.images || [],
+    });
+  });
+
+  // Merge into SERVICE_DATA — live albums override hardcoded ones per service
+  Object.entries(grouped).forEach(([service, sessions]) => {
+    if (SERVICE_DATA[service]) {
+      SERVICE_DATA[service].sessions = sessions;
+    }
+  });
+
+  // Also populate ALL_SESSIONS for album page routing
+  ALL_SESSIONS.length = 0;
+  Object.entries(SERVICE_DATA).forEach(([service, svcData]) => {
+    svcData.sessions.forEach(s => {
+      ALL_SESSIONS.push({
+        ...s,
+        service,
+        images: s.images && s.images.length > 0
+          ? s.images
+          : (ALBUM_GALLERIES[s.slug] || [s.img])
+      });
+    });
+  });
+
+  console.log('✓ Live albums loaded:', data.length);
+}
+
+// ── INIT ─────────────────────────────────────
+(async function initLiveData() {
+  await Promise.all([
+    loadLiveAlbums(),
+    loadLivePortfolio(),
+    loadLiveTestimonials(),
+  ]);
+  console.log('✓ STEWDIOONE live data ready');
+})();
+
 </script>
 </body>
 </html>
