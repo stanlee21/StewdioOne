@@ -99,7 +99,6 @@ background:var(--gold-light)
   width:36px;height:36px;
   flex-direction:column;align-items:center;justify-content:center;
   gap:0;padding:0;position:relative;flex-shrink:0;
-  aria-expanded:false;
 }
 /* Three bars — morphing to ✕ */
 .nav-hamburger .bar{
@@ -642,7 +641,7 @@ background:var(--gold-light)
 .form-full{grid-column:1/-1}
 .form-group{display:flex;flex-direction:column;gap:.5rem}
 .form-group label{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5)}
-.form-group input,.form-group select,.form-group textarea{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);padding:.85rem 1rem;color:var(--white);font-family:var(--sans);font-size:.85rem;outline:none;transition:border-color .3s;-webkit-appearance:none}
+.form-group input,.form-group select,.form-group textarea{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);padding:.85rem 1rem;color:var(--white);font-family:var(--sans);font-size:.85rem;outline:none;transition:border-color .3s;-webkit-appearance:none;appearance:none}
 .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--gold)}
 .form-group select option{background:var(--charcoal)}
 .form-group textarea{resize:vertical;min-height:100px}
@@ -3557,7 +3556,9 @@ function closeServicePage() {
 // =============================================
 const SUPABASE_URL = 'https://jcvwqbpagxsivevvvfpl.supabase.co';
 const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpjdndxYnBhZ3hzaXZldnZ2ZnBsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1NDE0NDcsImV4cCI6MjEwNDExNzQ0N30.cf4YiuPHEVYCNsZ4ywqxUk7XXZ3DGXTVaLkWBiHtTdA';
-const db = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+const db = window.supabase && typeof window.supabase.createClient === 'function'
+  ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON)
+  : null;
 
 // ── BOOKING FORM → CMS ──────────────────────
 // Override submitBooking to ALSO save to Supabase CMS
@@ -3578,7 +3579,7 @@ async function submitBooking(e) {
     notes:       document.getElementById('bNotes')?.value || '',
   };
   // Save to Supabase silently (don't block the EmailJS flow)
-  db.from('bookings').insert(payload).then(({ error }) => {
+  if (db) db.from('bookings').insert(payload).then(({ error }) => {
     if (error) console.warn('CMS booking save:', error.message);
     else console.log('✓ Booking saved to CMS');
   });
@@ -3588,6 +3589,7 @@ async function submitBooking(e) {
 
 // ── ANALYTICS TRACKING ──────────────────────
 function trackPageView(page) {
+  if (!db) return;
   db.from('analytics_events').insert({
     event_type: 'page_view',
     page: page || location.pathname || 'home',
@@ -3615,6 +3617,7 @@ sections.forEach(id => {
 
 // ── LIVE TESTIMONIALS ────────────────────────
 async function loadLiveTestimonials() {
+  if (!db) return;
   const { data, error } = await db
     .from('testimonials')
     .select('*')
@@ -3662,6 +3665,7 @@ async function loadLiveTestimonials() {
 
 // ── LIVE PORTFOLIO ───────────────────────────
 async function loadLivePortfolio() {
+  if (!db) return;
   const { data, error } = await db
     .from('portfolio_items')
     .select('*')
@@ -3688,6 +3692,7 @@ async function loadLivePortfolio() {
 
 // ── LIVE ALBUMS (SERVICE PAGE) ───────────────
 async function loadLiveAlbums() {
+  if (!db) return;
   const { data, error } = await db
     .from('albums')
     .select('*')
