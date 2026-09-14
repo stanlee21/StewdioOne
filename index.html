@@ -3556,9 +3556,7 @@ function closeServicePage() {
 // =============================================
 const SUPABASE_URL = 'https://jcvwqbpagxsivevvvfpl.supabase.co';
 const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpjdndxYnBhZ3hzaXZldnZ2ZnBsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1NDE0NDcsImV4cCI6MjEwNDExNzQ0N30.cf4YiuPHEVYCNsZ4ywqxUk7XXZ3DGXTVaLkWBiHtTdA';
-const db = window.supabase && typeof window.supabase.createClient === 'function'
-  ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON)
-  : null;
+const db = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
 
 // ── BOOKING FORM → CMS ──────────────────────
 // Override submitBooking to ALSO save to Supabase CMS
@@ -3579,7 +3577,7 @@ async function submitBooking(e) {
     notes:       document.getElementById('bNotes')?.value || '',
   };
   // Save to Supabase silently (don't block the EmailJS flow)
-  if (db) db.from('bookings').insert(payload).then(({ error }) => {
+  db.from('bookings').insert(payload).then(({ error }) => {
     if (error) console.warn('CMS booking save:', error.message);
     else console.log('✓ Booking saved to CMS');
   });
@@ -3589,7 +3587,6 @@ async function submitBooking(e) {
 
 // ── ANALYTICS TRACKING ──────────────────────
 function trackPageView(page) {
-  if (!db) return;
   db.from('analytics_events').insert({
     event_type: 'page_view',
     page: page || location.pathname || 'home',
@@ -3617,37 +3614,48 @@ sections.forEach(id => {
 
 // ── LIVE TESTIMONIALS ────────────────────────
 async function loadLiveTestimonials() {
-  if (!db) return;
   const { data, error } = await db
     .from('testimonials')
     .select('*')
     .order('created_at', { ascending: false });
 
-  if (error || !data || data.length === 0) return; // keep hardcoded fallback
+  if (error || !data || data.length === 0) return; // keep hardcoded as-is
 
   const track = document.getElementById('testimonialsTrack');
   if (!track) return;
-
-  // Group into pairs for the 2-per-page layout
-  const pages = [];
-  for (let i = 0; i < data.length; i += 2) {
-    pages.push([data[i], data[i + 1]].filter(Boolean));
-  }
 
   const starsSVG = (n) => Array.from({ length: 5 }, (_, i) =>
     `<svg viewBox="0 0 24 24" style="width:15px;height:15px;fill:${i < n ? '#C9A84C' : 'none'};stroke:${i < n ? '#C9A84C' : '#555'};stroke-width:1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`
   ).join('');
 
-  track.innerHTML = pages.map(pair => `
-    <div class="t-page">
-      ${pair.map(t => `
-        <div class="t-card">
-          <div class="t-stars">${starsSVG(t.stars || 5)}</div>
-          <div class="t-name">${t.client_name}</div>
-          <p class="t-quote">"${t.quote}"</p>
-          <div class="t-meta">${t.session_type || ''}</div>
-        </div>`).join('')}
+  // Build new CMS cards HTML
+  const newCardsHTML = data.map(t => `
+    <div class="t-card">
+      <div class="t-stars">${starsSVG(t.stars || 5)}</div>
+      <div class="t-name">${t.client_name}</div>
+      <p class="t-quote">"${t.quote}"</p>
+      <div class="t-meta">${t.session_type || ''}</div>
     </div>`).join('');
+
+  // Get all existing hardcoded cards
+  const existingCards = Array.from(track.querySelectorAll('.t-card'))
+    .map(c => c.outerHTML).join('');
+
+  // Combine: CMS cards first, then existing hardcoded ones
+  const allCardsHTML = newCardsHTML + existingCards;
+
+  // Re-wrap into pages of 2
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = allCardsHTML;
+  const allCards = Array.from(tempDiv.querySelectorAll('.t-card'));
+
+  const pages = [];
+  for (let i = 0; i < allCards.length; i += 2) {
+    const pair = [allCards[i], allCards[i+1]].filter(Boolean);
+    pages.push(`<div class="t-page">${pair.map(c => c.outerHTML).join('')}</div>`);
+  }
+
+  track.innerHTML = pages.join('');
 
   // Update dots
   const dotsEl = document.getElementById('tDots');
@@ -3665,18 +3673,18 @@ async function loadLiveTestimonials() {
 
 // ── LIVE PORTFOLIO ───────────────────────────
 async function loadLivePortfolio() {
-  if (!db) return;
   const { data, error } = await db
     .from('portfolio_items')
     .select('*')
     .order('created_at', { ascending: false });
 
-  if (error || !data || data.length === 0) return; // keep hardcoded fallback
+  if (error || !data || data.length === 0) return; // keep hardcoded as-is
 
   const grid = document.getElementById('portfolioGrid');
   if (!grid) return;
 
-  grid.innerHTML = data.map(item => `
+  // Build new CMS items HTML
+  const newItemsHTML = data.map(item => `
     <div class="portfolio-item" data-cat="${item.category}" onclick="openLightboxFromItem(this)">
       <img src="${item.image_url}" alt="${item.alt_text || item.category}" loading="lazy">
       <div class="portfolio-item-overlay">
@@ -3686,22 +3694,24 @@ async function loadLivePortfolio() {
       </div>
     </div>`).join('');
 
-  // Re-clip to 9 items for homepage preview
+  // PREPEND new CMS items before existing hardcoded ones
+  grid.insertAdjacentHTML('afterbegin', newItemsHTML);
+
+  // Re-clip to 9 for homepage preview (now includes CMS items first)
   clipPortfolioPreview();
 }
 
 // ── LIVE ALBUMS (SERVICE PAGE) ───────────────
 async function loadLiveAlbums() {
-  if (!db) return;
   const { data, error } = await db
     .from('albums')
     .select('*')
     .eq('published', true)
     .order('created_at', { ascending: false });
 
-  if (error || !data || data.length === 0) return; // keep hardcoded SERVICE_DATA fallback
+  if (error || !data || data.length === 0) return; // keep hardcoded as-is
 
-  // Group albums by service
+  // Group CMS albums by service
   const grouped = {};
   data.forEach(album => {
     if (!grouped[album.service]) grouped[album.service] = [];
@@ -3713,19 +3723,27 @@ async function loadLiveAlbums() {
       location:    album.location,
       img:         album.cover_image,
       description: album.description,
-      featured:    grouped[album.service].length === 0, // first one is featured
       images:      album.images || [],
     });
   });
 
-  // Merge into SERVICE_DATA — live albums override hardcoded ones per service
-  Object.entries(grouped).forEach(([service, sessions]) => {
+  // MERGE: prepend CMS albums to existing hardcoded sessions per service
+  // (CMS albums appear first, hardcoded ones follow)
+  Object.entries(grouped).forEach(([service, cmsAlbums]) => {
     if (SERVICE_DATA[service]) {
-      SERVICE_DATA[service].sessions = sessions;
+      const existing = SERVICE_DATA[service].sessions || [];
+      // Mark featured: first CMS album is featured if no hardcoded featured exists
+      const merged = [
+        ...cmsAlbums.map((a, i) => ({ ...a, featured: i === 0 && existing.length === 0 })),
+        ...existing.map(e => ({ ...e, featured: false })) // demote hardcoded featured
+      ];
+      // Restore one featured item — first overall
+      if (merged.length > 0) merged[0].featured = true;
+      SERVICE_DATA[service].sessions = merged;
     }
   });
 
-  // Also populate ALL_SESSIONS for album page routing
+  // Rebuild ALL_SESSIONS with merged data
   ALL_SESSIONS.length = 0;
   Object.entries(SERVICE_DATA).forEach(([service, svcData]) => {
     svcData.sessions.forEach(s => {
@@ -3739,7 +3757,7 @@ async function loadLiveAlbums() {
     });
   });
 
-  console.log('✓ Live albums loaded:', data.length);
+  console.log('✓ Live albums merged:', data.length, 'CMS +', ALL_SESSIONS.length - data.length, 'hardcoded');
 }
 
 // ── INIT ─────────────────────────────────────
