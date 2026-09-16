@@ -2743,6 +2743,187 @@ function closeServicePage() {
   }
 }
 
+// ── SERVICE PAGE ─────────────────────────────
+function openServicePage(serviceName) {
+  const data = SERVICE_DATA[serviceName];
+  if (!data) return;
+
+  document.getElementById('spTitle').textContent = serviceName;
+  document.getElementById('spDesc').textContent = data.desc;
+  document.getElementById('spHeroBg').style.backgroundImage = `url('${data.bg}')`;
+
+  const grid = document.getElementById('spGrid');
+
+  if (!data.sessions || data.sessions.length === 0) {
+    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:3rem;color:rgba(255,255,255,0.35)">
+      <p>No sessions yet for this service.</p>
+    </div>`;
+  } else {
+    grid.innerHTML = data.sessions.map(s => {
+      const calIcon = `<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`;
+      const pinIcon = `<svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>`;
+      const cls = s.featured ? 'sp-card featured' : 'sp-card';
+      const body = s.featured
+        ? `<div class="sp-card-overlay"><div>
+             <div class="sp-card-name">${s.name}</div>
+             <div class="sp-card-meta">
+               <span>${calIcon}${s.date}</span>
+               <span>${pinIcon}${s.location}</span>
+             </div>
+           </div></div>`
+        : `<div class="sp-card-body">
+             <div class="sp-card-name">${s.name}</div>
+             <div class="sp-card-meta">
+               <span>${calIcon}${s.date}</span>
+               <span>${pinIcon}${s.location}</span>
+             </div>
+           </div>`;
+      return `<div class="${cls}" onclick="openAlbumPage('${s.slug}','${serviceName}')" style="cursor:pointer">
+        <img class="sp-card-img" src="${s.img}" alt="${s.name}" loading="lazy">
+        ${body}
+      </div>`;
+    }).join('');
+  }
+
+  const page = document.getElementById('servicePage');
+  page.classList.add('open');
+  page.scrollTop = 0;
+  document.body.style.overflow = 'hidden';
+}
+
+// ── ALBUM PAGE ────────────────────────────────
+let currentAlbumSession = null;
+let abLbPhotos = [];
+let abLbIdx = 0;
+
+const masonryObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in-view'); });
+}, { threshold: 0.08 });
+
+function openAlbumPage(slug, fromServiceName) {
+  const session = ALL_SESSIONS.find(s => s.slug === slug);
+  if (!session) {
+    console.warn('Session not found:', slug, '— ALL_SESSIONS has', ALL_SESSIONS.length, 'items');
+    return;
+  }
+  currentAlbumSession = session;
+  abLbPhotos = session.images && session.images.length > 0 ? session.images : [session.img];
+
+  document.getElementById('abBreadService').textContent = session.service;
+  document.getElementById('abBreadTitle').textContent = session.name;
+  document.getElementById('abCoverImg').src = session.img;
+  document.getElementById('abCoverImg').alt = session.name;
+  document.getElementById('abService').textContent = session.service;
+  document.getElementById('abTitle').textContent = session.name;
+  document.getElementById('abDesc').textContent = session.description || '';
+  document.getElementById('abDetails').innerHTML = `
+    <span><svg viewBox="0 0 24 24" style="width:13px;height:13px;stroke:#C9A84C;fill:none;stroke-width:1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>${session.date}</span>
+    <span><svg viewBox="0 0 24 24" style="width:13px;height:13px;stroke:#C9A84C;fill:none;stroke-width:1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${session.location}</span>`;
+  document.getElementById('abCount').textContent = `${abLbPhotos.length} Photo${abLbPhotos.length !== 1 ? 's' : ''}`;
+
+  // Build masonry
+  const masonry = document.getElementById('abMasonry');
+  masonry.innerHTML = abLbPhotos.map((url, i) => `
+    <div class="ab-masonry-item" onclick="openAbLightbox(${i})" style="transition-delay:${Math.min(i*60,400)}ms">
+      <img src="${url}" alt="${session.name} — photo ${i+1}" loading="lazy">
+      <div class="ab-masonry-hover">
+        <div class="ab-zoom-icon">
+          <svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+        </div>
+      </div>
+    </div>`).join('');
+
+  masonry.querySelectorAll('.ab-masonry-item').forEach(el => masonryObs.observe(el));
+
+  // Related sessions — same service, excluding self
+  const related = (SERVICE_DATA[session.service]?.sessions || [])
+    .filter(s => s.slug !== slug).slice(0, 3);
+  document.getElementById('abRelated').innerHTML = related.length
+    ? related.map(s => `
+        <div class="ab-related-card" onclick="openAlbumPage('${s.slug}','${session.service}')">
+          <img src="${s.img}" alt="${s.name}" loading="lazy">
+          <div class="ab-related-body">
+            <div class="ab-related-name">${s.name}</div>
+            <div class="ab-related-sub">
+              <svg viewBox="0 0 24 24" style="width:10px;height:10px;stroke:#C9A84C;fill:none;stroke-width:2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              ${s.location}
+            </div>
+          </div>
+        </div>`).join('')
+    : '<p style="color:rgba(255,255,255,0.3);font-size:.85rem">More sessions coming soon.</p>';
+
+  // URL
+  const urlSlug = `/services/${slugify(session.service)}/${slug}`;
+  history.pushState({ album: slug, service: session.service }, session.name, `#${urlSlug}`);
+  document.title = `${session.name} | ${session.service} | STEWDIOONE`;
+
+  const page = document.getElementById('albumPage');
+  page.classList.add('open');
+  page.scrollTop = 0;
+  document.body.style.overflow = 'hidden';
+}
+
+function closeAlbumPage() {
+  const page = document.getElementById('albumPage');
+  page.classList.remove('open');
+  page.querySelectorAll('.ab-masonry-item').forEach(el => {
+    el.classList.remove('in-view');
+    masonryObs.unobserve(el);
+  });
+  if (currentAlbumSession) {
+    history.replaceState({}, '', `#/services/${slugify(currentAlbumSession.service)}`);
+    document.title = 'STEWDIOONE — Luxury Photography & Videography';
+  }
+  document.body.style.overflow = document.getElementById('servicePage').classList.contains('open') ? 'hidden' : '';
+}
+
+// Album lightbox
+function openAbLightbox(idx) {
+  abLbIdx = idx;
+  document.getElementById('abLbImg').src = abLbPhotos[idx];
+  document.getElementById('abLbCounter').textContent = `${idx + 1} / ${abLbPhotos.length}`;
+  document.getElementById('abLightbox').classList.add('open');
+}
+function closeAbLightbox() { document.getElementById('abLightbox').classList.remove('open'); }
+function nextAbPhoto() {
+  abLbIdx = (abLbIdx + 1) % abLbPhotos.length;
+  document.getElementById('abLbImg').src = abLbPhotos[abLbIdx];
+  document.getElementById('abLbCounter').textContent = `${abLbIdx + 1} / ${abLbPhotos.length}`;
+}
+function prevAbPhoto() {
+  abLbIdx = (abLbIdx - 1 + abLbPhotos.length) % abLbPhotos.length;
+  document.getElementById('abLbImg').src = abLbPhotos[abLbIdx];
+  document.getElementById('abLbCounter').textContent = `${abLbIdx + 1} / ${abLbPhotos.length}`;
+}
+
+// Swipe on album lightbox
+(function(){
+  let sx = 0;
+  const lb = document.getElementById('abLightbox');
+  if (!lb) return;
+  lb.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - sx;
+    if (Math.abs(dx) > 50) dx < 0 ? nextAbPhoto() : prevAbPhoto();
+  });
+  lb.addEventListener('click', e => { if (e.target === lb) closeAbLightbox(); });
+})();
+
+// Hash routing
+function checkHash() {
+  const h = window.location.hash;
+  const m = h.match(/^#\/services\/[^/]+\/([^/]+)$/);
+  if (m) {
+    const slug = m[1];
+    const session = ALL_SESSIONS.find(s => s.slug === slug);
+    if (session) {
+      openServicePage(session.service);
+      setTimeout(() => openAlbumPage(slug, session.service), 50);
+    }
+  }
+}
+window.addEventListener('hashchange', checkHash);
+
 // =============================================
 // SUPABASE — Single source of truth
 // =============================================
@@ -2927,8 +3108,32 @@ document.head.appendChild(pulseStyle);
     loadPortfolio(),
     loadTestimonials(),
   ]);
+  // Check hash AFTER data is loaded so album pages open correctly
+  checkHash();
   console.log('✓ STEWDIOONE data loaded from Supabase');
 })();
+
+// ── KEYBOARD NAVIGATION ──────────────────────
+document.addEventListener('keydown', e => {
+  if (document.getElementById('abLightbox').classList.contains('open')) {
+    if (e.key === 'ArrowRight') nextAbPhoto();
+    if (e.key === 'ArrowLeft') prevAbPhoto();
+    if (e.key === 'Escape') closeAbLightbox();
+    return;
+  }
+  if (document.getElementById('lightbox').classList.contains('open')) {
+    if (e.key === 'ArrowRight') nextLightbox();
+    if (e.key === 'ArrowLeft') prevLightbox();
+    if (e.key === 'Escape') closeLightbox();
+    return;
+  }
+  if (e.key === 'Escape') {
+    if (document.getElementById('albumPage').classList.contains('open')) { closeAlbumPage(); return; }
+    if (document.getElementById('fullPortfolioPage').classList.contains('open')) { closeFullPortfolio(); return; }
+    if (document.getElementById('servicePage').classList.contains('open')) { closeServicePage(); return; }
+    if (mobileMenu.classList.contains('open')) { closeMobile(); return; }
+  }
+});
 
 </script>
 </body>
