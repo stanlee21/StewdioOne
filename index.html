@@ -2613,7 +2613,7 @@ function selectPackage(pkg){
 }
 
 // BOOKING SUBMIT
-function submitBookingEmail(e){
+function submitBooking(e){
   e.preventDefault();
   const form = document.getElementById('bookingForm');
   const success = document.getElementById('bookingSuccess');
@@ -2703,6 +2703,23 @@ function submitBookingEmail(e){
     submitBtn.disabled = false;
     submitBtn.textContent = originalBtnText;
   };
+
+  // Save to Supabase CMS (once, silently)
+  db.from('bookings').insert({
+    client_name:  data.name,
+    email:        data.email,
+    phone:        data.phone,
+    session_type: data.session,
+    date:         data.date,
+    time:         data.time,
+    package:      data.package,
+    addons:       data.addons,
+    location:     data.location,
+    notes:        data.notes,
+  }).then(({ error }) => {
+    if (error) console.warn('CMS booking save:', error.message);
+    else console.log('✓ Booking saved to CMS');
+  });
 
   trySend();
 }
@@ -2950,25 +2967,7 @@ window.addEventListener('load', () => trackPageView('home'));
 });
 
 // ── BOOKING → SUPABASE ───────────────────────
-const _origSubmit = submitBookingEmail;
-async function submitBooking(e) {
-  e.preventDefault();
-  db.from('bookings').insert({
-    client_name:  document.getElementById('bName')?.value || '',
-    email:        document.getElementById('bEmail')?.value || '',
-    phone:        document.getElementById('bPhone')?.value || '',
-    session_type: document.getElementById('bSession')?.value || '',
-    date:         document.getElementById('bDate')?.value || '',
-    time:         document.getElementById('bTime')?.value || '',
-    package:      document.getElementById('bPackage')?.value || '',
-    addons:       document.getElementById('bAddons')?.value || '',
-    location:     document.getElementById('bLocation')?.value || '',
-    notes:        document.getElementById('bNotes')?.value || '',
-  }).then(({ error }) => {
-    if (error) console.warn('Booking save error:', error.message);
-  });
-  _origSubmit(e);
-}
+// Integrated directly into submitBooking above via db.from('bookings')
 
 // ── LOAD PORTFOLIO ────────────────────────────
 async function loadPortfolio() {
